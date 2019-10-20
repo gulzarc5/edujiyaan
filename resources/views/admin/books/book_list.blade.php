@@ -8,7 +8,7 @@
     	    <div class="x_panel">
 
     	        <div class="x_title">
-    	            <h2>Buyers List</h2>
+    	            <h2>Books List</h2>
     	            <div class="clearfix"></div>
     	        </div>
     	        <div>

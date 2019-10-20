@@ -32,6 +32,21 @@ Route::group(['namespace'=> 'Projects','prefix'=>'Project'], function(){
 
 });
 
+Route::group(['namespace'=> 'Megazines','prefix'=>'Megazine'], function(){
+
+	Route::get('Add/','MegazineController@addMegazineForm')->name('admin.add_new_megazine');
+	Route::post('insert/','MegazineController@addMegazine')->name('admin.insert_new_megazine');
+	Route::get('Edit/{megazine_id}','MegazineController@editMegazineForm')->name('admin.edit_megazine_form');
+	Route::post('update/','MegazineController@megazineUpdate')->name('admin.megazine_update');
+	Route::get('Detail/View/{megazine_id}','MegazineController@megazineDetailView')->name('admin.megazine_detail_view');
+	Route::get('cover_image_view/{file_name}', 'MegazineController@coverImageView')->name('cover_image_view');
+	Route::get('megazine_file_view/{file_name}', 'MegazineController@megazineFileView')->name('megazine_file_view');
+	Route::get('Status/Update/{megazine_id}/{status}','MegazineController@megazineStatusUpdate')->name('admin.megazine_status_update');
+
+	Route::get('list/','MegazineController@megazineList')->name('admin.megazine_list');
+	Route::get('ajax/list/','MegazineController@ajaxMegazineList')->name('admin.ajax_megazine_list');
+});
+
 Route::group(['namespace' => 'Order'],function(){
 	
 });

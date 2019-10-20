@@ -107,8 +107,8 @@
 
                   <li><a><i class="fa fa-desktop"></i>Megazine<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Add New Megazine</a></li>
-                      <li><a href="#">List Of Megazine</a></li>
+                      <li><a href="{{route('admin.add_new_megazine')}}">Add New Megazine</a></li>
+                      <li><a href="{{route('admin.megazine_list')}}">List Of Megazine</a></li>
                     </ul>
                   </li>
 
