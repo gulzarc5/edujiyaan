@@ -91,11 +91,11 @@ return [
 
         'seller' => [
             'driver' => 'eloquent',
-            'model' => App\Seller::class,
+            'model' => App\User::class,
         ],
         'buyer' => [
             'driver' => 'eloquent',
-            'model' => App\Seller::class,
+            'model' => App\User::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

@@ -1,16 +1,13 @@
 <?php
 
-Route::get('seller_login', function () {
-	return view('web.seller-login');
-})->name('seller_login');
+// Route::get('seller_login', function () {
+// 	return view('web.seller-login');
+// })->name('seller_login');
 
 Route::group(['prefix'=>'Seller','namespace'=>'Seller'],function(){
 
 	Route::post('/Login', 'SellerLoginController@sellerLogin')->name('seller.login');
 	Route::post('/logout', 'SellerLoginController@logout')->name('seller.logout');
-
-	Route::get('first/Category/{id}', 'SellerController@sellerFirstCategoryWithCategory');
-		Route::get('second/Category/{id}', 'SellerController@sellerSecondCategoryWithFirstCategory');
 
 	Route::group(['middleware'=>'auth:seller'],function(){
 

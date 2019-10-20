@@ -11,10 +11,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="{{asset('web/images/fab.png')}}" type="image/ico" />
+  <link rel="icon" href="{{asset('logo/logo.png')}}" type="image/ico" />
 
-    <title>Bibi Bobi</title>
-    <link rel="icon" href="{{asset('web/images/fab.png')}}" type="image/icon type">
+    <title>Edujiyaan</title>
+    <link rel="icon" href="{{asset('logo/logo.png')}}" type="image/icon type">
 
 
     <!-- Bootstrap -->
@@ -58,7 +58,7 @@
             <div class="navbar nav_title" style="border: 0;">
               <a href="{{route('seller.deshboard')}}" class="site_title" style="height: auto;
               background-color: #fff;display: flex;justify-content: center;">
-                <img src="{{asset('web/images/logo.png')}}" height="70">
+                <img src="{{asset('logo/logo.png')}}" height="70">
               </a>
             </div>
 
@@ -98,17 +98,40 @@
                   </li>
 
                   <li>
-                    <a>
-                      <i class="fa fa-desktop"></i>Products<span class="fa fa-chevron-down"></span>
-                    </a>
+                    <a><i class="fa fa-desktop"></i>Books<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('seller.add_product_form')}}">Add New Product</a></li>
-                      <li><a href="{{route('seller.product_list')}}">List Of Products</a></li>
+                      <li><a href="#">Add New Book</a></li>
+                      <li><a href="#">List Of Books</a></li>
                     </ul>
                   </li>
+                  <li>
+                    <a><i class="fa fa-desktop"></i>Projects<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Project</a></li>
+                      <li><a href="#">List Of Projects</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a><i class="fa fa-desktop"></i>Megazines<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Megazine</a></li>
+                      <li><a href="#">List Of Megazines</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a><i class="fa fa-desktop"></i>Quizes<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Quiz</a></li>
+                      <li><a href="#">List Of Quizes</a></li>
+                    </ul>
+                  </li>
+
                   <li><a><i class="fa fa-table"></i> Orders <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('seller.all_orders') }}">All Orders</a></li>
+                      <li><a href="#">Book Orders</a></li>
+                      <li><a href="#">Project Orders</a></li>
+                      <li><a href="#">Megazine Orders</a></li>
+                      <li><a href="#">Project Orders</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -145,7 +168,7 @@
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out pull-right" style="margin-top: 8px;margin-left: 7px;"></i> Log Out</a></li>
+                <li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out pull-right" style="margin-top: 8px;margin-left: 7px;"></i> Log Out</a></li>
              <form id="logout-form" action="{{ route('seller.logout') }}" method="POST" style="display: none;">
                   @csrf
               </form>
