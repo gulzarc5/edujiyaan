@@ -21,7 +21,7 @@
                               <th>Email</th>
                               <th>Mobile</th>
                               <th>Status</th>
-                              <th>Verification Status</th>
+                              <th>Approval Status</th>
                               <th>action</th>
                             </tr>
                           </thead>
@@ -53,7 +53,7 @@
                     {data: 'email', name: 'email' ,searchable: true},
                     {data: 'mobile', name: 'mobile' ,searchable: true},                 
                     {data: 'status_tab', name: 'status_tab',orderable: false, searchable: false},
-                    {data: 'verification_status', name: 'verification_status',orderable: false, searchable: false},               
+                    {data: 'seller_approved_status', name: 'seller_approved_status',orderable: false, searchable: false},               
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });

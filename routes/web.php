@@ -42,9 +42,9 @@ Route::group(['middleware'=>'auth:admin','prefix'=>'admin','namespace'=>'Admin']
 		Route::get('/Buyers/List','UsersController@allBuyers')->name('admin.allBuyers');
 		Route::get('Ajax/Buyers/','UsersController@ajaxAllBuyers')->name('admin.ajaxAllBuyers');
 
-		// Route::get('/Seller/Details/{seller_id}','UsersController@sellerView')->name('admin.seller_view');
-		// Route::get('/Seller/verification/{seller_id}','UsersController@sellerUpdateVerification')->name('admin.sellerUpdateVerification');
-		// Route::get('/Seller/Status/{seller_id}/{status}','UsersController@sellerUpdateStatus')->name('admin.sellerUpdateStatus');
+		Route::get('/Seller/Details/{seller_id}','UsersController@sellerView')->name('admin.seller_view');
+		Route::get('/Seller/verification/{seller_id}','UsersController@sellerUpdateVerification')->name('admin.sellerUpdateVerification');
+		Route::get('/Seller/Status/{seller_id}/{status}','UsersController@sellerUpdateStatus')->name('admin.sellerUpdateStatus');
 	});
 	 
 	Route::get('/deshboard', 'AdminDeshboardController@index')->name('admin.deshboard');

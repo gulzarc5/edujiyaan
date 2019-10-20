@@ -15,7 +15,7 @@ class UsersController extends Controller
 
     public function ajaxAllSellers()
     {
-    	$query = DB::table('user')        
+    	$query = DB::table('users')        
         ->whereNull('deleted_at')
         ->where('user_role',2)
         ->orderBy('id','desc');
@@ -23,15 +23,14 @@ class UsersController extends Controller
             return datatables()->of($query->get())
             ->addIndexColumn()
             ->addColumn('action', function($row){
-                   $btn = '
-                   <a href="'.route('admin.seller_view',['seller_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>';
-                   if ($row->verification_status == 2 && $row->seller_deal_status == 2) {
-                     $btn .= '<a href="'.route('admin.seller_view',['seller_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm" target="_blank">Verify</a>';
-                   }
+                    $btn = '<a href="'.route('admin.seller_view',['seller_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>';
+                    if ($row->seller_approved_status == 1 ) {
+                        $btn .= '<a href="'.route('admin.sellerUpdateVerification',['seller_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Verify</a>';
+                    }
                     if ($row->status == 1) {  
-                        $btn .= '<a href="'.route('admin.sellerUpdateStatus',['seller_id'=>encrypt($row->id),'status'=>encrypt(2)]).'" class="btn btn-danger btn-sm">DeActivate</a>';
+                        $btn .= '<a href="'.route('admin.sellerUpdateStatus',['seller_id'=>encrypt($row->id),'status'=>encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
                     }else{
-                        $btn .= '<a href="'.route('admin.sellerUpdateStatus',['seller_id'=>encrypt($row->id),'status'=>encrypt(1)]).'" class="btn btn-primary btn-sm">Activate</a>';
+                        $btn .= '<a href="'.route('admin.sellerUpdateStatus',['seller_id'=>encrypt($row->id),'status'=>encrypt(1)]).'" class="btn btn-primary btn-sm">Enable</a>';
                     }
                     
              
@@ -39,23 +38,21 @@ class UsersController extends Controller
             })
             ->addColumn('status_tab', function($row){
                 if ($row->status == 1) {
-                    $btn = '<a href="#" class="btn btn-success btn-sm">Enabled</a>';
+                    $btn = '<a class="btn btn-success btn-sm">Enabled</a>';
                 }else{
-                    $btn = '<a href="#" class="btn btn-danger btn-sm">Disabled</a>';
+                    $btn = '<a class="btn btn-danger btn-sm">Disabled</a>';
                 }
                 return $btn;
             })
-            ->addColumn('verification_status', function($row){
-                if ($row->verification_status == 3 && $row->seller_deal_status == 3) {
-                    $btn = '<a href="#" class="btn btn-success btn-sm">Verified</a>';
-                }elseif ($row->verification_status == 2 && $row->seller_deal_status == 2) {
-                     $btn = '<a href="#" class="btn btn-warning btn-sm">Under Review</a>';
+            ->addColumn('seller_approved_status', function($row){
+                if ($row->seller_approved_status == 2) {
+                    $btn = '<a class="btn btn-success btn-sm">Verified</a>';
                 }else{
-                    $btn = '<a href="#" class="btn btn-danger btn-sm">Details Not Set</a>';
+                    $btn = '<a class="btn btn-danger btn-sm">Un Verified</a>';
                 }
                 return $btn;
             })
-            ->rawColumns(['action','status_tab','verification_status'])
+            ->rawColumns(['action','status_tab','seller_approved_status'])
             ->make(true);
     }
 
@@ -101,30 +98,17 @@ class UsersController extends Controller
             return redirect()->back();
         }
 
-        $seller = DB::table('user')
-        ->select('user.id as seller_id','user.name as name','user.verification_status as verification_status','user.seller_deal_status as seller_deal_status','user.email as email', 'user.mobile as mobile','user_details.dob as dob','user_details.pan as pan', 'user_details.gst as gst','user_details.gender as gender','user_details.state_id as state', 'user_details.city_id as city','user_details.pin as pin','user_details.address as address','seller_bank.bank_name as bank_name','seller_bank.branch_name as branch_name','seller_bank.account as account','seller_bank.ifsc as ifsc','seller_bank.micr as micr')
-        ->join('seller_bank','user.id','=','seller_bank.seller_id')
-        ->join('user_details','user.id','=','user_details.seller_id')
-        ->where('user.id',$seller_id)
-        ->first();
-
-        $state = DB::table('state')->whereNull('deleted_at')->get();
-
-        $city = null;
-        if (!empty($seller->state)) {
-            $city = DB::table('city')
-            ->where('state_id',$seller->state)
-            ->get();
-        }
+        $seller = DB::table('users')
+            ->select('users.*','state.name as state_name','city.name as city_name','seller_bank_account.bank_name as b_name','seller_bank_account.branch_name as branch_name','seller_bank_account.account_no as account','seller_bank_account.ifsc as ifsc','seller_bank_account.upi_name as upi_name','seller_bank_account.upi_id as upi_id','seller_bank_account.upi_mobile as upi_mobile')
+            ->leftjoin('state','state.id','=','users.state_id')
+            ->leftjoin('city','city.id','=','users.city_id')            
+            ->leftjoin('seller_bank_account','users.id','=','seller_bank_account.user_id')
+            ->where('users.id',$seller_id)
+            ->first();
         
-        $dealing_category = DB::table('seller_deals')
-                ->select('seller_deals.*', 'category.name as category_name','first_category.name as f_cat_name')
-                ->join('category','category.id','=','seller_deals.category_id')
-                ->join('first_category','first_category.id','=','seller_deals.first_category_id')
-                ->where('seller_deals.seller_id',$seller_id)
-                ->whereNull('seller_deals.deleted_at')->get();
+        $dealing_category = DB::table('seller_deals')->where('user_id',$seller_id)->first();
 
-        return view('admin.users.user_details',compact('seller','state','city','dealing_category'));
+        return view('admin.users.user_details',compact('seller','dealing_category'));
     }
 
     public function sellerUpdateVerification($seller_id)
@@ -135,11 +119,10 @@ class UsersController extends Controller
             return redirect()->back();
         }
 
-        $seller_update = DB::table('user')
+        $seller_update = DB::table('users')
         ->where('id',$seller_id)
         ->update([
-            'verification_status' => 3,
-            'seller_deal_status' => 3,
+            'seller_approved_status' => 2,
         ]);
         return redirect()->back();
     }
@@ -153,7 +136,7 @@ class UsersController extends Controller
             return redirect()->back();
         }
 
-        $seller_update = DB::table('user')
+        $seller_update = DB::table('users')
         ->where('id',$seller_id)
         ->update([
             'status'=>$status,

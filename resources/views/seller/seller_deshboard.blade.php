@@ -28,7 +28,16 @@
         <!-- /top tiles -->
 
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">				 
+            <div class="col-md-12 col-sm-12 col-xs-12">		
+                @if(Auth::guard('seller')->user()->seller_approved_status == 1)
+                    <div class="x_content bs-example-popovers">
+                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <strong>Hello {{ Auth::guard('seller')->user()->name }}</strong> Please Update Your Required Detalis To get All The features of Seler Panel <a href="{{ route('seller.MyprofileForm') }}" style="color:blue; font-weight: bold">Click Here to Update</a href="#">
+                    </div>
+                    </div>	
+                @endif
+
                 @if(Auth::guard('seller')->user()->verification_status == 1)
                 <div class="x_content bs-example-popovers">
                 <div class="alert alert-danger alert-dismissible fade in" role="alert">
