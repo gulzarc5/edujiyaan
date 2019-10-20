@@ -98,17 +98,40 @@
                   </li>
 
                   <li>
-                    <a>
-                      <i class="fa fa-desktop"></i>Products<span class="fa fa-chevron-down"></span>
-                    </a>
+                    <a><i class="fa fa-desktop"></i>Books<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('seller.add_product_form')}}">Add New Product</a></li>
-                      <li><a href="{{route('seller.product_list')}}">List Of Products</a></li>
+                      <li><a href="#">Add New Book</a></li>
+                      <li><a href="#">List Of Books</a></li>
                     </ul>
                   </li>
+                  <li>
+                    <a><i class="fa fa-desktop"></i>Projects<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Project</a></li>
+                      <li><a href="#">List Of Projects</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a><i class="fa fa-desktop"></i>Megazines<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Megazine</a></li>
+                      <li><a href="#">List Of Megazines</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a><i class="fa fa-desktop"></i>Quizes<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Quiz</a></li>
+                      <li><a href="#">List Of Quizes</a></li>
+                    </ul>
+                  </li>
+
                   <li><a><i class="fa fa-table"></i> Orders <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('seller.all_orders') }}">All Orders</a></li>
+                      <li><a href="#">Book Orders</a></li>
+                      <li><a href="#">Project Orders</a></li>
+                      <li><a href="#">Megazine Orders</a></li>
+                      <li><a href="#">Project Orders</a></li>
                     </ul>
                   </li>
                 </ul>

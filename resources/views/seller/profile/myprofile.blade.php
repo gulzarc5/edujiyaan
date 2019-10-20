@@ -237,49 +237,48 @@
                        </div>
 
                        <div class="well" style="overflow: auto">
-                        <div class="form-row mb-10">    
+                            <div class="form-row mb-10">    
 
-                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
-                              <label for="upi_name">UPI Provider Name</label>
-                              <input type="text" class="form-control" name="upi_name" placeholder="Enter Bank Name" value="{{$seller_bank->upi_name}}" disabled id="upi_name">
-                              @if($errors->has('upi_name'))
-                                    <span class="invalid-feedback" role="alert" style="color:red">
-                                        <strong>{{ $errors->first('upi_name') }}</strong>
-                                    </span>
-                                @enderror
+                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                <label for="upi_name">UPI Provider Name</label>
+                                <input type="text" class="form-control" name="upi_name" placeholder="Enter Bank Name" value="{{$seller_bank->upi_name}}" disabled id="upi_name">
+                                @if($errors->has('upi_name'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('upi_name') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                
+                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                <label for="upi_id">UPI Id</label>
+                                <input type="text" class="form-control" name="upi_id" placeholder="Enter Branch Name" value="{{$seller_bank->upi_id}}" id="upi_id" disabled>
+                                @if($errors->has('upi_id'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('upi_id') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                        
+                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                <label for="upi_mobile">UPI Mobile Number</label>
+                                <input type="number" class="form-control" name="upi_mobile" placeholder="Enter Account Number" value="{{$seller_bank->upi_mobile}}" id="upi_mobile" disabled>
+
+                                    @if($errors->has('upi_mobile'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('upi_mobile') }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+
                             </div>
-                            
-                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
-                              <label for="upi_id">UPI Id</label>
-                              <input type="text" class="form-control" name="upi_id" placeholder="Enter Branch Name" value="{{$seller_bank->upi_id}}" id="upi_id" disabled>
-                              @if($errors->has('upi_id'))
-                                    <span class="invalid-feedback" role="alert" style="color:red">
-                                        <strong>{{ $errors->first('upi_id') }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                      
-                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
-                              <label for="upi_mobile">UPI Mobile Number</label>
-                              <input type="number" class="form-control" name="upi_mobile" placeholder="Enter Account Number" value="{{$seller_bank->upi_mobile}}" id="upi_mobile" disabled>
-
-                                @if($errors->has('upi_mobile'))
-                                    <span class="invalid-feedback" role="alert" style="color:red">
-                                        <strong>{{ $errors->first('upi_mobile') }}</strong>
-                                    </span>
-                                @enderror
-
-                            </div>
-
                         </div>
-                   </div>
 
-
-    	            	<div class="form-group" id="seller_btn">
-                            <a  class="btn btn-warning" onclick="sellerValidation()">Edit</a>
-    	                   
-    	            	</div>
-    	            	{{ Form::close() }}
+                    <div class="form-group" id="seller_btn">
+                        <a  class="btn btn-warning" onclick="sellerValidation()">Edit</a>
+                        
+                    </div>
+                    {{ Form::close() }}
 
     	            </div>
                     @endif
