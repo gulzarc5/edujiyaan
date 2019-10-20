@@ -114,7 +114,7 @@
 
                   <li><a><i class="fa fa-desktop"></i>Quiz<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Add New Quiz</a></li>
+                      <li><a href="{{route('admin.add_new_quiz_form')}}">Add New Quiz</a></li>
                       <li><a href="#">List Of Quiz</a></li>
                     </ul>
                   </li>
