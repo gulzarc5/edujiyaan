@@ -94,14 +94,28 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i>Books<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{route('add_new_book')}}">Add New Books</a></li>
-                      <li><a href="#">List Of Books</a></li>
+                      <li><a href="{{route('admin.add_new_book')}}">Add New Books</a></li>
+                      <li><a href="{{ route('admin.book_list')}}">List Of Books</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Projects <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#">Add New Project</a></li>
                       <li><a href="tables_dynamic.html">Project List</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-desktop"></i>Megazine<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Megazine</a></li>
+                      <li><a href="#">List Of Megazine</a></li>
+                    </ul>
+                  </li>
+
+                  <li><a><i class="fa fa-desktop"></i>Quiz<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Add New Quiz</a></li>
+                      <li><a href="#">List Of Quiz</a></li>
                     </ul>
                   </li>
 
