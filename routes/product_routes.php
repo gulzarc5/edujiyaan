@@ -15,6 +15,23 @@ Route::group(['namespace'=> 'Books','prefix'=>'Book'], function(){
 
 });
 
+Route::group(['namespace'=> 'Projects','prefix'=>'Project'], function(){
+
+	Route::get('Add/','ProjectController@addProjectForm')->name('admin.add_new_project');
+	Route::post('insert/','ProjectController@addProject')->name('admin.insert_new_project');
+	Route::get('Edit/{project_id}','ProjectController@editProjectForm')->name('admin.edit_project_form');
+	Route::post('update/','ProjectController@projectUpdate')->name('admin.project_update');
+	Route::get('Detail/View/{project_id}','ProjectController@projectDetailView')->name('admin.project_detail_view');
+	Route::get('preview_file_view/{file_name}', 'ProjectController@previewFileView')->name('preview_file_view');
+	Route::get('documentation_file_view/{file_name}', 'ProjectController@documentationFileView')->name('documentation_file_view');
+	Route::get('synopsis_file_view/{file_name}', 'ProjectController@synopsisFileView')->name('synopsis_file_view');
+	Route::get('Status/Update/{project_id}/{status}','ProjectController@projectStatusUpdate')->name('admin.project_status_update');
+
+	Route::get('list/','ProjectController@projectList')->name('admin.project_list');
+	Route::get('ajax/list/','ProjectController@ajaxProjectList')->name('admin.ajax_project_list');
+
+});
+
 Route::group(['namespace' => 'Order'],function(){
 	
 });

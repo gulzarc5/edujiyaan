@@ -100,8 +100,8 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Projects <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Add New Project</a></li>
-                      <li><a href="tables_dynamic.html">Project List</a></li>
+                      <li><a href="{{route('admin.add_new_project')}}">Add New Project</a></li>
+                      <li><a href="{{route('admin.project_list')}}">Project List</a></li>
                     </ul>
                   </li>
 
