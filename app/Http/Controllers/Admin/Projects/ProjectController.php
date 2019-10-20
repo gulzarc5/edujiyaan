@@ -34,43 +34,34 @@ class ProjectController extends Controller
         $file_name_preview = null;
         if($request->hasfile('preview'))
         {
-            $originName = $request->file('preview')->getClientOriginalName();
-        	$file_name_preview   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('preview')->getClientOriginalExtension();
-        	$file_name_preview   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-        	$request->file('preview')->move(storage_path('files/projects/preview'), $file_name_preview);
+        	$file = $request->file('preview');
+    		$file_name_preview = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/preview', $file_name_preview);
         }
 
         $file_name_documentation = null;
         if($request->hasfile('documentation'))
         {
-            $originName = $request->file('documentation')->getClientOriginalName();
-        	$file_name_documentation   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('documentation')->getClientOriginalExtension();
-        	$file_name_documentation   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-        	$request->file('documentation')->move(storage_path('files/projects/documentation'), $file_name_documentation);
+            $file = $request->file('documentation');
+            $file_name_documentation = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/documentation', $file_name_documentation);
         }
 
         $file_name_synopsis = null;
         if($request->hasfile('synopsis'))
         {
-            $originName = $request->file('synopsis')->getClientOriginalName();
-        	$file_name_synopsis   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('synopsis')->getClientOriginalExtension();
-        	$file_name_synopsis   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-        	$request->file('synopsis')->move(storage_path('files/projects/synopsis'), $file_name_synopsis);
+            $file = $request->file('synopsis');
+            $file_name_synopsis = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/synopsis', $file_name_synopsis);
         }
 
         $file_name_ppt = null;
         if($request->hasfile('ppt'))
         {
-            $originName = $request->file('ppt')->getClientOriginalName();
-        	$file_name_ppt   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('ppt')->getClientOriginalExtension();
-        	$file_name_ppt   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-        	$request->file('ppt')->move(storage_path('files/projects/ppt'), $file_name_ppt);
+            $file = $request->file('ppt');
+            $file_name_ppt = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/ppt', $file_name_ppt);
         }
-
 
         $project_insert = DB::table('projects')
             ->insert([
@@ -111,14 +102,14 @@ class ProjectController extends Controller
             ->addIndexColumn()
             ->addColumn('action', function($row){
                    $btn = '
-                   <a href="'.route('admin.book_detail_view',['book_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
+                   <a href="'.route('admin.project_detail_view',['project_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
                    <a href="'.route('admin.edit_project_form',['book_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Edit</a>                 
                    ';
                    if ($row->status == '1') {
-                       $btn .= '<a href="'.route('admin.book_status_update',['book_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
+                       $btn .= '<a href="'.route('admin.project_status_update',['project_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
                         return $btn;
                     }else{
-                       $btn .= '<a href="'.route('admin.book_status_update',['book_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
+                       $btn .= '<a href="'.route('admin.project_status_update',['project_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
                         return $btn;
                     }
                     return $btn;
@@ -177,12 +168,9 @@ class ProjectController extends Controller
         $file_name_preview = null;
         if($request->hasfile('preview'))
         {
-            $originName = $request->file('preview')->getClientOriginalName();
-        	$file_name_preview   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('preview')->getClientOriginalExtension();
-        	$file_name_preview   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-
-        	$request->file('preview')->move(storage_path('files/projects/preview'), $file_name_preview);
+    		$file = $request->file('preview');
+    		$file_name_preview = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/preview', $file_name_preview);
         	DB::table('projects')->where('id', $project_id)
         						->update(['preview' => $file_name_preview]);
         	File::delete(storage_path()."/files/projects/preview/".$project_details->preview);
@@ -191,13 +179,9 @@ class ProjectController extends Controller
         $file_name_documentation = null;
         if($request->hasfile('documentation'))
         {
-            $originName = $request->file('documentation')->getClientOriginalName();
-        	$file_name_documentation   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('documentation')->getClientOriginalExtension();
-        	$file_name_documentation   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-        	$request->file('documentation')->move(storage_path('files/projects/documentation'), $file_name_documentation);
-
-        	$request->file('documentation')->move(storage_path('files/projects/documentation'), $file_name_documentation);
+            $file = $request->file('documentation');
+            $file_name_documentation = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/documentation', $file_name_documentation);
         	DB::table('projects')->where('id', $project_id)
         						->update(['documentation' => $file_name_documentation]);
         	File::delete(storage_path()."/files/projects/documentation/".$project_details->documentation);
@@ -206,13 +190,9 @@ class ProjectController extends Controller
         $file_name_synopsis = null;
         if($request->hasfile('synopsis'))
         {
-            $originName = $request->file('synopsis')->getClientOriginalName();
-        	$file_name_synopsis   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('synopsis')->getClientOriginalExtension();
-        	$file_name_synopsis   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-        	$request->file('synopsis')->move(storage_path('files/projects/synopsis'), $file_name_synopsis);
-
-        	$request->file('synopsis')->move(storage_path('files/projects/synopsis'), $file_name_synopsis);
+            $file = $request->file('synopsis');
+            $file_name_synopsis = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/synopsis', $file_name_synopsis);
         	DB::table('projects')->where('id', $project_id)
         						->update(['synopsis' => $file_name_synopsis]);
         	File::delete(storage_path()."/files/projects/synopsis/".$project_details->synopsis);
@@ -221,18 +201,13 @@ class ProjectController extends Controller
         $file_name_ppt = null;
         if($request->hasfile('ppt'))
         {
-            $originName = $request->file('ppt')->getClientOriginalName();
-        	$file_name_ppt   = pathinfo($originName, PATHINFO_FILENAME);
-        	$extension  = $request->file('ppt')->getClientOriginalExtension();
-        	$file_name_ppt   = date('d-m-Y').'-'.$request->input('project_name').'-'.time().'.'.$extension;
-        	$request->file('ppt')->move(storage_path('files/projects/ppt'), $file_name_ppt);
-
-        	$request->file('ppt')->move(storage_path('files/projects/ppt'), $file_name_ppt);
+            $file = $request->file('ppt');
+            $file_name_ppt = date('d-m-Y').'-'.$request->input('project_name').'.'.$file->getClientOriginalExtension();
+    		$file->storeAs('files/projects/ppt', $file_name_ppt);
         	DB::table('projects')->where('id', $project_id)
         						->update(['ppt' => $file_name_ppt]);
         	File::delete(storage_path()."/files/projects/ppt/".$project_details->ppt);
         }
-
 
         $project_update = DB::table('projects')
 				        	->where('id', $project_id)
@@ -250,5 +225,86 @@ class ProjectController extends Controller
         }else{
              return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
+    }
+
+    public function projectDetailView($project_id)
+    {
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $project = DB::table('projects')->where('projects.id', $project_id)           
+            ->leftjoin('project_spalization','projects.specialization_id','=','project_spalization.id')
+            ->select('projects.*','project_spalization.name as specialization_name')
+            ->first();
+        $seller = null;
+        if (!empty($project->user_id) && $project->user_id != "A") {
+            $seller = DB::table('users')->where('id',$project->user_id)->first();
+        }
+        return view('admin.projects.project_details',compact('project', 'seller'));
+    }
+
+    public function previewFileView ($file_name) {
+
+        $path = storage_path('\files\project\preview\\'.$file_name);
+        if (!File::exists($path)) 
+            $response = 404;
+        $file = File::get($path);
+        $type = File::extension($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
+    public function documentationFileView ($file_name) {
+
+        $path = storage_path('\files\project\documentation\\'.$file_name);
+        if (!File::exists($path)) 
+            $response = 404;
+        $file = File::get($path);
+        $type = File::extension($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
+    public function synopsisFileView ($file_name) {
+
+        $path = storage_path('\files\project\synopsis\\'.$file_name);
+        if (!File::exists($path)) 
+            $response = 404;
+        $file = File::get($path);
+        $type = File::extension($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
+    public function projectStatusUpdate($project_id,$status)
+    {
+        try {
+            $project_id = decrypt($project_id);
+            $status = decrypt($status);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $project_status = DB::table('projects')
+            ->where('id',$project_id)
+            ->update([
+                'status' => $status,
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($project_status) {
+            return redirect()->back()->with('message','Project Status Updated Successfully');
+        } else {
+            return redirect()->back()->with('error','Something Went Wrong Please Try Again');
+        }
+        
     }
 }
