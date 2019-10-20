@@ -14,63 +14,35 @@ use Carbon\Carbon;
 class SellerController extends Controller
 {
     // Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString();
+
+    public function sellerLoginForm()
+    {
+        return view('seller.index');
+    }
     
     public function index(){
-        $seller_id = Auth::guard('seller')->user()->id;
-        $product_count = DB::table('products')
-            ->where('seller_id',$seller_id)
-            ->whereNull('deleted_at')
-            ->count();
-        $orders_count = DB::table('order_details')
-            ->where('seller_id',$seller_id)
-            ->count();
-        $pending_orders_count = DB::table('order_details')
-            ->where('seller_id',$seller_id)
-            ->where('order_status',1)
-            ->count();
-        $delivered_orders_count = DB::table('order_details')
-            ->where('seller_id',$seller_id)
-            ->where('order_status',3)
-            ->count();
-        
-        $last_ten_orders = DB::table('order_details')
-            ->select('order_details.*','user.name as u_name')
-            ->leftjoin('user','user.id','=','order_details.user_id')
-            ->where('seller_id',$seller_id)
-            ->orderBy('order_details.id','desc')
-            ->limit(10)
-            ->get(); 
-        // dd($last_ten_orders);    
-        $dashboard_data = [
-            'product_count' => $product_count,
-            'orders_count' => $orders_count,
-            'pending_orders_count' => $pending_orders_count,
-            'delivered_orders_count' => $delivered_orders_count,
-            'last_ten_orders' => $last_ten_orders,
-        ];
-        return view('seller.seller_deshboard',compact('dashboard_data'));
+        return view('seller.seller_deshboard');
     }
 
     public function myProfileForm()
     {
         $seller_id = Auth::guard('seller')->user()->id;
-        $seller = DB::table('user')
-        ->select('user.name as name','user.email as email', 'user.mobile as mobile','user_details.dob as dob','user_details.pan as pan', 'user_details.gst as gst','user_details.gender as gender','user_details.state_id as state', 'user_details.city_id as city','user_details.pin as pin','user_details.address as address','seller_bank.bank_name as bank_name','seller_bank.branch_name as branch_name','seller_bank.account as account','seller_bank.ifsc as ifsc','seller_bank.micr as micr')
-        ->join('seller_bank','user.id','=','seller_bank.seller_id')
-        ->join('user_details','user.id','=','user_details.seller_id')
-        ->where('user.id',$seller_id)
+        $seller = DB::table('users')
         ->first();
 
         $state = DB::table('state')->whereNull('deleted_at')->get();
 
         $city = null;
-        if (!empty($seller->state)) {
+        if (!empty($seller->state_id)) {
             $city = DB::table('city')
-            ->where('state_id',$seller->state)
+            ->where('state_id',$seller->state_id)
             ->get();
         }
-        
-        return view('seller.profile.myprofile',compact('seller','state','city'));
+        $seller_bank = DB::table('seller_bank_account')
+            ->whereNull('deleted_at')
+            ->where('user_id',$seller_id)
+            ->first();
+        return view('seller.profile.myprofile',compact('seller','state','city','seller_bank'));
     }
 
     public function sellerUpdate(Request $request)
@@ -79,9 +51,8 @@ class SellerController extends Controller
 
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'mobile' =>  ['required','digits:10','numeric'],
+            'dob' => 'required',
             'pan' => 'required',
-            'gst' => 'required',
             'gender' => 'required',
             'pin' => 'required',
             'state' => 'required',
@@ -92,37 +63,31 @@ class SellerController extends Controller
             'ifsc' => 'required',
         ]);
 
-        $seller = DB::table('user')
+        $seller = DB::table('users')
         ->where('id',$seller_id)
         ->update([
             'name' => $request->input('name'),
             'mobile' => $request->input('mobile'),
-            'verification_status' => 2,
-            'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
-        ]);
-
-        $seller_details = DB::table('user_details')
-        ->where('seller_id',$seller_id)
-        ->update([
+            'gender' => $request->input('gender'),
+            'dob' => $request->input('dob'),
+            'pan' => $request->input('pan'),
             'state_id' => $request->input('state'),
             'city_id' => $request->input('city'),
             'address' => $request->input('address'),
-            'pin' => $request->input('pin'),
-            'gst' => $request->input('gst'),
-            'pan' => $request->input('pan'),
-            'dob' => $request->input('dob'),
-            'gender' => $request->input('gender'),
+            'pin' => $request->input('pin'),     
             'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
         ]);
 
-         $seller_bank = DB::table('seller_bank')
-        ->where('seller_id',$seller_id)
+        $seller_details = DB::table('seller_bank_account')
+        ->where('user_id',$seller_id)
         ->update([
             'bank_name' => $request->input('bank_name'),
             'branch_name' => $request->input('branch_name'),
-            'account' => $request->input('account_no'),
+            'account_no' => $request->input('account_no'),
             'ifsc' => $request->input('ifsc'),
-            'micr' => $request->input('micr'),
+            'upi_name' => $request->input('upi_name'),
+            'upi_id' => $request->input('upi_id'),
+            'upi_mobile' => $request->input('upi_mobile'),
             'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
         ]);
 

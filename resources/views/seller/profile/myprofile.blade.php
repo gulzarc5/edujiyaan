@@ -80,15 +80,6 @@
                                     @enderror
                                 </div>
                           
-                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
-                                  <label for="gst">GST No.</label>
-                                  <input type="text" class="form-control" name="gst" placeholder="Enter GST Number" value="{{ $seller->gst }}" id="gst" disabled>
-                                  @if($errors->has('gst'))
-                                        <span class="invalid-feedback" role="alert" style="color:red">
-                                            <strong>{{ $errors->first('gst') }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
                             </div>
 
                             <div class="form-row mb-3">
@@ -128,7 +119,7 @@
                                        @if(isset($state) && !empty($state))
                                         @foreach($state as $states)
 
-                                            @if($seller->state == $states->id)
+                                            @if($seller->state_id == $states->id)
                                                 <option selected value="{{ $states->id }}">{{ $states->name }}</option>
                                             @else
 
@@ -153,7 +144,7 @@
                                       @if(isset($city) && !empty($city))
 
                                         @foreach($city as $cities)
-                                           @if($seller->city == $cities->id)
+                                           @if($seller->city_id == $cities->id)
                                             <option value="{{ $cities->id }}" selected>{{ $cities->name }}</option>
                                             @else
                                             <option value="{{ $cities->id }}">{{ $cities->name }}</option>
@@ -198,7 +189,7 @@
 
                                 <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                   <label for="bank_name">Bank Name</label>
-                                  <input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name" value="{{ $seller->bank_name }}" disabled id="bank_name">
+                                <input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name" value="{{$seller_bank->bank_name}}" disabled id="bank_name">
                                   @if($errors->has('bank_name'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('bank_name') }}</strong>
@@ -208,7 +199,7 @@
                                 
                                 <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                   <label for="branch_name">Branch Name</label>
-                                  <input type="text" class="form-control" name="branch_name" placeholder="Enter Branch Name" value="{{ $seller->branch_name }}" id="branch_name" disabled>
+                                  <input type="text" class="form-control" name="branch_name" placeholder="Enter Branch Name" value="{{$seller_bank->branch_name}}" id="branch_name" disabled>
                                   @if($errors->has('branch_name'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('branch_name') }}</strong>
@@ -218,7 +209,7 @@
                           
                                 <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                   <label for="account_no">Account Number</label>
-                                  <input type="number" class="form-control" name="account_no" placeholder="Enter Account Number" value="{{ $seller->account }}" id="account_no" disabled>
+                                  <input type="number" class="form-control" name="account_no" placeholder="Enter Account Number" value="{{$seller_bank->account_no}}" id="account_no" disabled>
 
                                     @if($errors->has('account_no'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
@@ -234,21 +225,54 @@
 
                                 <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                   <label for="ifsc">IFSC COde</label>
-                                  <input type="text" class="form-control" name="ifsc" placeholder="Enter IFSC Code" value="{{ $seller->ifsc }}" disabled id="ifsc">
+                                  <input type="text" class="form-control" name="ifsc" placeholder="Enter IFSC Code" value="{{$seller_bank->ifsc}}" disabled id="ifsc">
                                   @if($errors->has('ifsc'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('ifsc') }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                                
-                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
-                                  <label for="micr">MICR Code</label>
-                                  <input type="text" class="form-control" name="micr" placeholder="Enter MICR Code" value="{{ $seller->micr }}" disabled id="micr">
-                                </div>
 
                             </div>
                        </div>
+
+                       <div class="well" style="overflow: auto">
+                        <div class="form-row mb-10">    
+
+                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                              <label for="upi_name">UPI Provider Name</label>
+                              <input type="text" class="form-control" name="upi_name" placeholder="Enter Bank Name" value="{{$seller_bank->upi_name}}" disabled id="upi_name">
+                              @if($errors->has('upi_name'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('upi_name') }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            
+                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                              <label for="upi_id">UPI Id</label>
+                              <input type="text" class="form-control" name="upi_id" placeholder="Enter Branch Name" value="{{$seller_bank->upi_id}}" id="upi_id" disabled>
+                              @if($errors->has('upi_id'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('upi_id') }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                      
+                            <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                              <label for="upi_mobile">UPI Mobile Number</label>
+                              <input type="number" class="form-control" name="upi_mobile" placeholder="Enter Account Number" value="{{$seller_bank->upi_mobile}}" id="upi_mobile" disabled>
+
+                                @if($errors->has('upi_mobile'))
+                                    <span class="invalid-feedback" role="alert" style="color:red">
+                                        <strong>{{ $errors->first('upi_mobile') }}</strong>
+                                    </span>
+                                @enderror
+
+                            </div>
+
+                        </div>
+                   </div>
 
 
     	            	<div class="form-group" id="seller_btn">

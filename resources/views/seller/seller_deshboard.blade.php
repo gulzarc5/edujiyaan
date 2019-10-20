@@ -8,19 +8,19 @@
         <div class="row tile_count">
         <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Total Products</span>
-            <div class="count green">{{ $dashboard_data['product_count'] }}</div>
+            <div class="count green">0</div>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-clock-o"></i> Total Orders</span>
-            <div class="count green">{{ $dashboard_data['orders_count'] }}</div>
+            <div class="count green">0</div>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Pending Orders</span>
-            <div class="count green">{{ $dashboard_data['pending_orders_count'] }}</div>
+            <div class="count green">0</div>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Delivered Orders</span>
-            <div class="count green">{{ $dashboard_data['delivered_orders_count'] }}</div>
+            <div class="count green">0</div>
         </div>
     
         
