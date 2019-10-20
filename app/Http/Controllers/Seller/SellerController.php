@@ -126,7 +126,7 @@ class SellerController extends Controller
        }
     }
     
-    public function myCategoryForm($status=null)
+    public function myCategoryForm()
     {
         $seller_id = Auth::guard('seller')->user()->id;
         $dealing_category = DB::table('seller_deals')->where('user_id',$seller_id)->first();
@@ -172,41 +172,5 @@ class SellerController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         return redirect()->back();
-    }
-
-    public function myCategoryDelete($id)
-    {
-        try {
-            $id = decrypt($id);
-        }catch(DecryptException $e) {
-            return redirect()->back();
-        }
-        $seller_name = Auth::guard('seller')->user()->name;
-        $get_deal_category = DB::table('seller_deals')->where('id',$id)->first();
-        // dd($get_deal_category);
-        $brand_delete = DB::table('brand_name')
-            ->where('name',$seller_name)
-            ->where('first_category',$get_deal_category->first_category_id)
-            ->update([
-                'deleted_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
-            ]);
-        $my_deal_delete = DB::table('seller_deals')
-            ->where('id',$id)
-            ->update([
-                'deleted_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
-            ]);
-        return redirect()->back();
-    }
-
-    public function sellerFirstCategoryWithCategory($id)
-    {
-        $seller_id = Auth::guard('seller')->user()->id;
-        $category = DB::table('seller_deals')
-            ->select('first_category.*')
-            ->join('first_category','seller_deals.first_category_id','first_category.id')
-            ->where('seller_deals.seller_id',$seller_id)
-            ->where('seller_deals.category_id',$id)
-            ->get();
-        echo $category;
     }
 }
