@@ -24,8 +24,8 @@
     	        <div>
     	            <div class="x_content">
                         @if (isset($book) && !empty($book))
-    	            	{{ Form::open(['method' => 'post','route'=>'admin.insert_new_book' , 'enctype'=>'multipart/form-data']) }}
-    	            	
+    	            	{{ Form::open(['method' => 'post','route'=>'admin.update_book' , 'enctype'=>'multipart/form-data']) }}
+                    <input type="hidden" value="{{encrypt($book->id)}}" name="book_id">
                         <div class="well" style="overflow: auto">
                             <div class="form-row mb-10">
                                 {{-- <div class="col-md-4 col-sm-12 col-xs-12 mb-3">

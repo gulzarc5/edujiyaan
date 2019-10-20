@@ -57,8 +57,14 @@
                     {data: 'book_name', name: 'book_name' ,searchable: true},
                     {data: 'author_name', name: 'author_name' ,searchable: true},              
                     {data: 'publisher_name', name: 'publisher_name' ,searchable: true},    
-                    {data: 'publisher_name', name: 'publisher_name' ,searchable: true},                    
-                    {data: 'book_type', name: 'book_type' ,searchable: true},                 
+                    {data: 'publisher_name', name: 'publisher_name' ,searchable: true},  
+                    {data: 'book_type', name: 'book_type', render:function(data, type, row){
+                      if (row.book_type == '1') {
+                        return "<button class='btn btn-info'>Academic</a>"
+                      }else{
+                        return "<button class='btn btn-primary'>Non-Academic</a>"
+                      }                        
+                    }},                  
                     {data: 'mrp', name: 'mrp' ,searchable: true},                 
                     {data: 'price', name: 'price' ,searchable: true},                 
                     {data: 'status_tab', name: 'status_tab',orderable: false, searchable: false},          

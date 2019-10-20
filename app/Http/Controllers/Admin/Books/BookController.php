@@ -31,7 +31,6 @@ class BookController extends Controller
     public function addBook(Request $request)
     {
     	 $validatedData = $request->validate([
-            'book_id_prefix' => 'required',
             'book_name' => 'required',
             'author_name' => 'required',
             'publisher_name' => 'required',
@@ -84,7 +83,7 @@ class BookController extends Controller
         if ($book_insert) {
             return redirect()->back()->with('message','Book Added Successfully');
         }else{
-             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
+            return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
     }
 
@@ -150,6 +149,84 @@ class BookController extends Controller
         return view('admin.books.edit_book',compact('category','sub_category','language','book'));
     }
 
+    public function updateBook(Request $request)
+    {
+        $validatedData = $request->validate([
+            'book_id' => 'required',
+            'book_name' => 'required',
+            'author_name' => 'required',
+            'publisher_name' => 'required',
+            'book_condition' => 'required',
+            'book_type' => 'required',
+            'category' => 'required',
+            'language' => 'required',
+            'stock' => 'required',
+            'image' => 'mimes:jpg,jpeg,png,bmp,tiff |max:4096',
+        ]);
+
+        try {
+            $book_id = decrypt($request->input('book_id'));
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        if($request->hasfile('image'))
+        {
+            $image = $request->file('image');
+            $destination = base_path().'/public/images/book_image/';
+            $image_extension = $image->getClientOriginalExtension();
+            $image_name = md5(date('now').time())."-".$request->input('name')."."."$image_extension";
+            $original_path = $destination.$image_name;
+            Image::make($image)->save($original_path);
+            $thumb_path = base_path().'/public/images/book_image/thumb/'.$image_name;
+            Image::make($image)
+            ->resize(300, 400)
+            ->save($thumb_path);
+
+            $book = DB::table('books')->select('book_image')->where('id',$book_id)->first();
+
+            $book_image = DB::table('books')
+                ->where('id',$book_id)
+                ->update([
+                    'book_image' => $image_name,
+                ]);
+            if ($book_image) {
+                $destination_thumb = base_path().'/public/images/book_image/thumb/'.$book->book_image;
+                File::delete($destination_thumb);
+        
+                $destination = base_path().'/public/images/book_image/'.$book->book_image;
+                File::delete($destination);
+        
+            }
+        }
+
+        $book_update = DB::table('books')
+            ->where('id',$book_id)
+            ->update([
+                'category_id' => $request->input('category'),
+                'sub_category_id' => $request->input('sub_category'),
+                'language_id' => $request->input('language'),
+                'book_name' => $request->input('book_name'),
+                'author_name' => $request->input('author_name'),
+                'publisher_name' => $request->input('publisher_name'),
+                'published_year' => $request->input('published_year'),
+                'isbn' => $request->input('isbn'),
+                'mrp' => $request->input('mrp'),
+                'price' => $request->input('price'),
+                'book_condition' => $request->input('book_condition'),
+                'book_type' => $request->input('book_type'),
+                'stock' => $request->input('stock'),
+                'book_type' => $request->input('book_type'),
+                'description' => $request->input('description'),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($book_update) {
+            return redirect()->back()->with('message','Book Updated Successfully');
+        }else{
+            return redirect()->back()->with('error','Something Went Wrong Please Try Again');
+        }
+    }
+
     public function bookStatusUpdate($book_id,$status)
     {
         try {
@@ -182,8 +259,15 @@ class BookController extends Controller
         }
 
         $book = DB::table('books')
-            ->select('books.*')
-            ->get();
+            ->select('books.*','book_category.name as category_name','book_sub_category.name as sub_cat_name','book_language.name as language')
+            ->leftjoin('book_category','book_category.id','=','books.category_id')
+            ->leftjoin('book_sub_category','book_sub_category.id','=','books.sub_category_id')
+            ->leftjoin('book_language','book_language.id','=','books.language_id')
+            ->first();
+        $seller = null;
+        if (!empty($book->seller_id) && $book->seller_id != "A") {
+            $seller = DB::table('users')->where('id',$book->user_id)->first();
+        }
         return view('admin.books.book_details',compact('book'));
     }
 }
