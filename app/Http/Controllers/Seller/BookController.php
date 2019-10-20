@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Books;
+namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,6 +9,7 @@ use DataTables;
 use Intervention\Image\Facades\Image;
 use File;
 use Carbon\Carbon;
+use Auth;
 
 class BookController extends Controller
 {
@@ -25,7 +26,7 @@ class BookController extends Controller
     		->whereNull('deleted_at')
     		->get();
 
-    	return view('admin.books.add_book_form',compact('category','sub_category','language'));
+    	return view('seller.books.add_book_form',compact('category','sub_category','language'));
     }
 
     public function addBook(Request $request)
@@ -57,10 +58,10 @@ class BookController extends Controller
             ->save($thumb_path);
         }
 
-
+        $seller_id = Auth::guard('seller')->user()->id;
         $book_insert = DB::table('books')
             ->insert([
-                'user_id' => 'A',
+                'user_id' =>  $seller_id,
                 'category_id' => $request->input('category'),
                 'sub_category_id' => $request->input('sub_category'),
                 'language_id' => $request->input('language'),
@@ -77,6 +78,7 @@ class BookController extends Controller
                 'book_type' => $request->input('book_type'),
                 'book_image' => $image_name,
                 'description' => $request->input('description'),
+                'approve_status' => 2,
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
@@ -89,27 +91,29 @@ class BookController extends Controller
 
     public function bookList()
     {
-        return view('admin.books.book_list');
+        return view('seller.books.book_list');
     }
 
     public function ajaxBookList()
     {
+        $seller_id = Auth::guard('seller')->user()->id;
         $query = DB::table('books')
-        ->whereNull('deleted_at')
-        ->orderBy('id','desc');
+            ->where('user_id',$seller_id)
+            ->whereNull('deleted_at')
+            ->orderBy('id','desc');
        
             return datatables()->of($query->get())
             ->addIndexColumn()
             ->addColumn('action', function($row){
                    $btn = '
-                   <a href="'.route('admin.book_detail_view',['book_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
-                   <a href="'.route('admin.edit_book_form',['book_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Edit</a>                 
+                   <a href="'.route('seller.book_detail_view',['book_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
+                   <a href="'.route('seller.edit_book_form',['book_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Edit</a>                 
                    ';
                    if ($row->status == '1') {
-                       $btn .= '<a href="'.route('admin.book_status_update',['book_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
+                       $btn .= '<a href="'.route('seller.book_status_update',['book_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
                         return $btn;
                     }else{
-                       $btn .= '<a href="'.route('admin.book_status_update',['book_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
+                       $btn .= '<a href="'.route('seller.book_status_update',['book_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
                         return $btn;
                     }
                     return $btn;
@@ -146,7 +150,7 @@ class BookController extends Controller
             ->get();
         $book = DB::table('books')->where('id',$book_id)->first();
 
-        return view('admin.books.edit_book',compact('category','sub_category','language','book'));
+        return view('seller.books.edit_book',compact('category','sub_category','language','book'));
     }
 
     public function updateBook(Request $request)
@@ -169,7 +173,7 @@ class BookController extends Controller
         }catch(DecryptException $e) {
             return redirect()->back();
         }
-
+        $seller_id = Auth::guard('seller')->user()->id;
         if($request->hasfile('image'))
         {
             $image = $request->file('image');
@@ -187,6 +191,7 @@ class BookController extends Controller
 
             $book_image = DB::table('books')
                 ->where('id',$book_id)
+                ->where('user_id',$seller_id)
                 ->update([
                     'book_image' => $image_name,
                 ]);
@@ -202,6 +207,7 @@ class BookController extends Controller
 
         $book_update = DB::table('books')
             ->where('id',$book_id)
+            ->where('user_id',$seller_id)
             ->update([
                 'category_id' => $request->input('category'),
                 'sub_category_id' => $request->input('sub_category'),
@@ -235,9 +241,10 @@ class BookController extends Controller
         }catch(DecryptException $e) {
             return redirect()->back();
         }
-
+        $seller_id = Auth::guard('seller')->user()->id;
         $book_status = DB::table('books')
             ->where('id',$book_id)
+            ->where('user_id',$seller_id)
             ->update([
                 'status' => $status,
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
@@ -269,6 +276,6 @@ class BookController extends Controller
         if (!empty($book->user_id) && $book->user_id != "A") {
             $seller = DB::table('users')->where('id',$book->user_id)->first();
         }
-        return view('admin.books.book_details',compact('book'));
+        return view('seller.books.book_details',compact('book','seller'));
     }
 }

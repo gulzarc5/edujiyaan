@@ -100,8 +100,8 @@
                   <li>
                     <a><i class="fa fa-desktop"></i>Books<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Add New Book</a></li>
-                      <li><a href="#">List Of Books</a></li>
+                      <li><a href="{{route('seller.add_book_form')}}">Add New Book</a></li>
+                      <li><a href="{{route('seller.book_list')}}">List Of Books</a></li>
                     </ul>
                   </li>
                   <li>
