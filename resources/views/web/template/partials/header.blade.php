@@ -55,7 +55,7 @@
 									<li><a href="checkout.php">Checkout</a></li>
 									<li><a href="Signin">Sign in</a></li>
 									<li><a href="Signup">Sign Up</a></li>
-									<li><a href="Seller-Signin">Seller Sign in</a></li>
+									<li><a href="{{route('seller_login')}}">Seller Sign in</a></li>
 								</ul>
 							</div>
 						</div>

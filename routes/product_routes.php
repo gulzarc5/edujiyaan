@@ -15,6 +15,21 @@ Route::group(['namespace'=> 'Books','prefix'=>'Book'], function(){
 
 });
 
+Route::group(['namespace'=> 'Quiz','prefix'=>'Quiz'], function(){
+
+	Route::get('Add/','QuizController@addQuizForm')->name('admin.add_new_quiz_form');
+	Route::post('insert/','QuizController@addQuiz')->name('admin.insert_new_quiz');
+	Route::get('Edit/{quiz_id}','QuizController@editQuizForm')->name('admin.edit_quiz_form');
+	Route::post('update/','QuizController@updateQuiz')->name('admin.update_quiz');
+	Route::get('Status/Update/{quiz_id}/{status}','QuizController@quizStatusUpdate')->name('admin.quiz_status_update');
+	Route::get('Detail/View/{quiz_id}','QuizController@quizDetailView')->name('admin.quiz_detail_view');
+	Route::get('Download/file/{quiz_id}','QuizController@quizFileDownload')->name('admin.quiz_file_download')->middleware('fileAuthorization');
+
+
+	Route::get('list/','QuizController@quizList')->name('admin.quiz_list');
+	Route::get('ajax/list/','QuizController@ajaxQuizList')->name('admin.ajax_quiz_list');
+});
+
 Route::group(['namespace'=> 'Projects','prefix'=>'Project'], function(){
 
 	Route::get('Add/','ProjectController@addProjectForm')->name('admin.add_new_project');

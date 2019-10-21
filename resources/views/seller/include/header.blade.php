@@ -121,8 +121,8 @@
                   <li>
                     <a><i class="fa fa-desktop"></i>Quizes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Add New Quiz</a></li>
-                      <li><a href="#">List Of Quizes</a></li>
+                      <li><a href="{{route('seller.add_new_quiz_form')}}">Add New Quiz</a></li>
+                      <li><a href="{{route('seller.quiz_list')}}">List Of Quizes</a></li>
                     </ul>
                   </li>
 
