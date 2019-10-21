@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Quiz;
+namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 use File;
 use Carbon\Carbon;
 use Response;
+use Auth;
 
 class QuizController extends Controller
 {
@@ -19,7 +20,7 @@ class QuizController extends Controller
     		->whereNull('deleted_at')
     		->get();
 
-    	return view('admin.quiz.add_quiz_form',compact('category'));
+    	return view('seller.quiz.add_quiz_form',compact('category'));
 	}
 	
 	public function addQuiz(Request $request)
@@ -29,7 +30,7 @@ class QuizController extends Controller
             'category' => 'required',
             'file' => 'required|file|mimes:pdf,doc,docx'
         ]);
-
+        $user_id = Auth::guard('seller')->id();
         $file_name = null;
         if($request->hasfile('file'))
         {
@@ -38,15 +39,15 @@ class QuizController extends Controller
     		$file->storeAs('files/quiz', $file_name);
         }
 
+        
         $quiz_insert = DB::table('quiz')
             ->insert([
-                'user_id' => 'A',
+                'user_id' =>  $user_id,
                 'category_id' => $request->input('category'),
                 'name' => $request->input('name'),
                 'pages' => $request->input('pages'),
                 'file_name' => $file_name,
                 'description' => $request->input('description'),
-                'approve_status' => 2,
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
@@ -59,13 +60,15 @@ class QuizController extends Controller
 
     public function quizList()
     {
-        return view('admin.quiz.quiz_list');
+        return view('seller.quiz.quiz_list');
     }
 
     public function ajaxQuizList()
     {
+        $user_id = Auth::guard('seller')->id();
         $query = DB::table('quiz')	
         ->select('quiz.*', 'quiz_category.name as cat_name')
+        ->where('user_id',$user_id)
         ->leftJoin('quiz_category', 'quiz.category_id', '=', 'quiz_category.id')
         ->whereNull('quiz.deleted_at')
         ->orderBy('quiz.id','desc');
@@ -74,14 +77,14 @@ class QuizController extends Controller
             ->addIndexColumn()
             ->addColumn('action', function($row){
                    $btn = '
-                   <a href="'.route('admin.quiz_detail_view',['quiz_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
-                   <a href="'.route('admin.edit_quiz_form',['quiz_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Edit</a>                 
+                   <a href="'.route('seller.quiz_detail_view',['quiz_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
+                   <a href="'.route('seller.edit_quiz_form',['quiz_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Edit</a>                 
                    ';
                    if ($row->status == '1') {
-                       $btn .= '<a href="'.route('admin.quiz_status_update',['quiz_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
+                       $btn .= '<a href="'.route('seller.quiz_status_update',['quiz_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
                         return $btn;
                     }else{
-                       $btn .= '<a href="'.route('admin.quiz_status_update',['quiz_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
+                       $btn .= '<a href="'.route('seller.quiz_status_update',['quiz_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
                         return $btn;
                     }
                     return $btn;
@@ -103,7 +106,7 @@ class QuizController extends Controller
     		->get();
         $quiz = DB::table('quiz')->where('id', $quiz_id)->first();
 
-        return view('admin.quiz.edit_quiz',compact('category','quiz'));
+        return view('seller.quiz.edit_quiz',compact('category','quiz'));
     }
 
     public function updateQuiz(Request $request)
@@ -155,25 +158,6 @@ class QuizController extends Controller
         }
     }
 
-    public function quizDetailView($quiz_id)
-    {
-        try {
-            $quiz_id = decrypt($quiz_id);
-        }catch(DecryptException $e) {
-            return redirect()->back();
-        }
-
-        $quiz = DB::table('quiz')->where('quiz.id', $quiz_id)      
-            ->select('quiz.*','quiz_category.name as cat_name')     
-            ->leftjoin('quiz_category','quiz_category.id','=','quiz.category_id')
-            ->first();
-        $seller = null;
-        if (!empty($quiz->user_id) && $quiz->user_id != "A") {
-            $seller = DB::table('users')->where('id',$quiz->user_id)->first();
-        }
-        return view('admin.quiz.quiz_details',compact('quiz', 'seller'));
-    }
-
     public function quizStatusUpdate($quiz_id,$status)
     {
         try {
@@ -197,23 +181,23 @@ class QuizController extends Controller
         
     }
 
-    public function quizFileDownload($quiz_id) {
+
+    public function quizDetailView($quiz_id)
+    {
         try {
             $quiz_id = decrypt($quiz_id);
         }catch(DecryptException $e) {
-            abort(404);
+            return redirect()->back();
         }
-        
-        $quiz_file = DB::table('quiz')->select('file_name')->where('id',$quiz_id)->first();
-        // dd($quiz_file);
-        $path = storage_path('\app\files\quiz\\'.$quiz_file->file_name);
-        if (!File::exists($path)) {
-            abort(404);
-        }        
-        $file = File::get($path);
-        $type = File::mimeType($path);
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-        return $response;
+
+        $quiz = DB::table('quiz')->where('quiz.id', $quiz_id)      
+            ->select('quiz.*','quiz_category.name as cat_name')     
+            ->leftjoin('quiz_category','quiz_category.id','=','quiz.category_id')
+            ->first();
+        $seller = null;
+        if (!empty($quiz->user_id) && $quiz->user_id != "A") {
+            $seller = DB::table('users')->where('id',$quiz->user_id)->first();
+        }
+        return view('admin.quiz.quiz_details',compact('quiz', 'seller'));
     }
 }

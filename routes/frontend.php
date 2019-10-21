@@ -23,10 +23,10 @@ Route::get('/Forgot-Password', function () {
 
     return view('web.forgot-password');
 });
-Route::get('/Seller-Signin', function () {
+// Route::get('/Seller-Signin', function () {
 
-    return view('web.seller-login');
-});
+//     return view('web.seller-login');
+// });
 Route::get('/Books', function () {
 
     return view('web.books');

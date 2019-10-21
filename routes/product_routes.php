@@ -19,9 +19,9 @@ Route::group(['namespace'=> 'Quiz','prefix'=>'Quiz'], function(){
 
 	Route::get('Add/','QuizController@addQuizForm')->name('admin.add_new_quiz_form');
 	Route::post('insert/','QuizController@addQuiz')->name('admin.insert_new_quiz');
-	// Route::get('Edit/{book_id}','BookController@editBookForm')->name('admin.edit_book_form');
-	// Route::post('update/','BookController@updateBook')->name('admin.update_book');
-	// Route::get('Status/Update/{book_id}/{status}','BookController@bookStatusUpdate')->name('admin.book_status_update');
+	Route::get('Edit/{quiz_id}','QuizController@editQuizForm')->name('admin.edit_quiz_form');
+	Route::post('update/','QuizController@updateQuiz')->name('admin.update_quiz');
+	Route::get('Status/Update/{quiz_id}/{status}','QuizController@quizStatusUpdate')->name('admin.quiz_status_update');
 	Route::get('Detail/View/{quiz_id}','QuizController@quizDetailView')->name('admin.quiz_detail_view');
 	Route::get('Download/file/{quiz_id}','QuizController@quizFileDownload')->name('admin.quiz_file_download')->middleware('fileAuthorization');
 

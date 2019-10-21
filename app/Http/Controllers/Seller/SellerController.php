@@ -17,7 +17,8 @@ class SellerController extends Controller
 
     public function sellerLoginForm()
     {
-        return view('seller.index');
+        return view('web.seller-login');
+        
     }
     
     public function index(){

@@ -25,7 +25,7 @@ class CheckValidAccessUser
 
             }            
         }else{
-
+         return redirect()->route('we.index');
         }
     }
 }

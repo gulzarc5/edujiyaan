@@ -10,3 +10,17 @@ Route::group(['prefix'=>'Books'], function(){
 	Route::get('list/','BookController@bookList')->name('seller.book_list');
 	Route::get('ajax/list/','BookController@ajaxBookList')->name('seller.ajax_book_list');
 });
+
+Route::group(['prefix'=>'Quiz'], function(){
+	Route::get('Add/','QuizController@addQuizForm')->name('seller.add_new_quiz_form');
+	Route::post('insert/','QuizController@addQuiz')->name('seller.insert_new_quiz');
+	Route::get('Edit/{quiz_id}','QuizController@editQuizForm')->name('seller.edit_quiz_form');
+	Route::post('update/','QuizController@updateQuiz')->name('seller.update_quiz');
+	Route::get('Status/Update/{quiz_id}/{status}','QuizController@quizStatusUpdate')->name('seller.quiz_status_update');
+	Route::get('Detail/View/{quiz_id}','QuizController@quizDetailView')->name('seller.quiz_detail_view');
+	// Route::get('Download/file/{quiz_id}','QuizController@quizFileDownload')->name('admin.quiz_file_download')->middleware('fileAuthorization');
+
+
+	Route::get('list/','QuizController@quizList')->name('seller.quiz_list');
+	Route::get('ajax/list/','QuizController@ajaxQuizList')->name('seller.ajax_quiz_list');
+});
