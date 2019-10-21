@@ -18,16 +18,16 @@ Route::group(['namespace'=> 'Books','prefix'=>'Book'], function(){
 Route::group(['namespace'=> 'Quiz','prefix'=>'Quiz'], function(){
 
 	Route::get('Add/','QuizController@addQuizForm')->name('admin.add_new_quiz_form');
-	// Route::post('insert/','BookController@addBook')->name('admin.insert_new_book');
+	Route::post('insert/','QuizController@addQuiz')->name('admin.insert_new_quiz');
 	// Route::get('Edit/{book_id}','BookController@editBookForm')->name('admin.edit_book_form');
 	// Route::post('update/','BookController@updateBook')->name('admin.update_book');
 	// Route::get('Status/Update/{book_id}/{status}','BookController@bookStatusUpdate')->name('admin.book_status_update');
-	// Route::get('Detail/View/{book_id}','BookController@bookDetailView')->name('admin.book_detail_view');
+	Route::get('Detail/View/{quiz_id}','QuizController@quizDetailView')->name('admin.quiz_detail_view');
+	Route::get('Download/file/{quiz_id}','QuizController@quizFileDownload')->name('admin.quiz_file_download')->middleware('fileAuthorization');
 
 
-	// Route::get('list/','BookController@bookList')->name('admin.book_list');
-	// Route::get('ajax/list/','BookController@ajaxBookList')->name('admin.ajax_book_list');
-
+	Route::get('list/','QuizController@quizList')->name('admin.quiz_list');
+	Route::get('ajax/list/','QuizController@ajaxQuizList')->name('admin.ajax_quiz_list');
 });
 
 Route::group(['namespace'=> 'Projects','prefix'=>'Project'], function(){
