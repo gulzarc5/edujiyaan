@@ -35,3 +35,11 @@ Route::get('/Old-Books', function () {
 
     return view('web.old-books');
 })->name('web.old-books');
+Route::get('/Books-Detail', function () {
+
+    return view('web.books-detail');
+})->name('web.books-detail');
+Route::get('/Project', function () {
+
+    return view('web.project');
+})->name('web.project');

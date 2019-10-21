@@ -13,7 +13,6 @@
 	background-color: #ffffff;
 	border-color: #f07c29;
 	padding: 1px 25px;
-	border-radius: 20px;
 }
 .product-link .product-button {
 	float:none
@@ -34,6 +33,28 @@
 }
 .new-books:hover{
 	border: solid 1px #f07c29;
+}
+.project-page .product-wrapper{
+	background: #fff;
+	-webkit-box-shadow: 0px 0px 15px 9px rgba(230,230,230,0.69)
+	-moz-box-shadow: 0px 0px 15px 9px rgba(230,230,230,0.69);
+	box-shadow: 0px 0px 15px 9px rgba(230,230,230,0.69);
+	border-color: #f07c2994;
+}
+.project-page .product-wrapper:hover{
+	border: solid 1px #f07c29;
+	background: #f7f8fa;
+	-webkit-box-shadow: 0px 0px 19px 9px rgba(250,190,37,0.43);
+	-moz-box-shadow: 0px 0px 19px 9px rgba(250,190,37,0.43);
+	box-shadow: 0px 0px 19px 9px rgba(250,190,37,0.43);
+}
+.project-page .margin-mobile{
+	background-color: #f07c29;border-color: #f07c29;padding: 6px 33px;font-weight: 500;
+}
+.project-page .margin-mobile:hover,
+.project-page .margin-mobile:active,
+.project-page .margin-mobile:focus{
+	color: #000;background-color: #ffffff;border-color: #f07c29;padding: 6px 31px;font-weight: 700;
 }
 /*==================
 	Responsive
@@ -75,6 +96,9 @@
 	}
 	.breadcrumbs-area-mobile {
 	    margin-bottom: 0!important;
+	}
+	.project-page .margin-mobile{
+		margin-bottom: 15px;
 	}
 }
 /*========================

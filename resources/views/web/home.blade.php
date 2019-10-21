@@ -400,7 +400,7 @@
                         <div class="single-team">
                             <div class="team-img-area">
                                 <div class="team-img">
-                                    <a href="shop.php"><img src="{{asset('web/img/icons/1.png')}}" alt="man" /></a>
+                                    <a href="{{route('web.books')}}"><img src="{{asset('web/img/icons/1.png')}}" alt="man" /></a>
                                 </div>
                             </div>
                             <div class="team-content text-center">
@@ -409,15 +409,14 @@
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                        <div class="single-team">
+                        <div class="single-team mrg-none-xs">
                             <div class="team-img-area">
                                 <div class="team-img">
-                                    <a href="documents.php"><img src="{{asset('web/img/icons/2.png')}}" alt="man" /></a>
+                                    <a href="project.php"><img src="{{asset('web/img/icons/4.png')}}" alt="man" /></a>
                                 </div>
                             </div>
                             <div class="team-content text-center">
-                                <h3>Documents</h3>
-                                <!-- <span>Marketer</span> -->
+                                <h3>Projects</h3>
                             </div>
                         </div>
                     </div>
@@ -434,14 +433,15 @@
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                        <div class="single-team mrg-none-xs">
+                        <div class="single-team">
                             <div class="team-img-area">
                                 <div class="team-img">
-                                    <a href="project.php"><img src="{{asset('web/img/icons/4.png')}}" alt="man" /></a>
+                                    <a href="documents.php"><img src="{{asset('web/img/icons/2.png')}}" alt="man" /></a>
                                 </div>
                             </div>
                             <div class="team-content text-center">
-                                <h3>Projects</h3>
+                                <h3>Quiz</h3>
+                                <!-- <span>Marketer</span> -->
                             </div>
                         </div>
                     </div>
