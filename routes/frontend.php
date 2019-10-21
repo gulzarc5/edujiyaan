@@ -1,9 +1,9 @@
 <?php
 
-// Route::group(['namespace'=> 'Web'], function(){   
+Route::group(['namespace'=> 'Web'], function(){   
 
 
-// });
+});
 Route::get('/', function () {
 
     return view('web.home');
