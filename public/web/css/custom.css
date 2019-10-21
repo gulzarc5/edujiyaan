@@ -1,0 +1,20 @@
+.flex-center{
+	display: inline-flex;
+    justify-content: center;
+}
+.margin-mobile{
+	background-color: #f07c29;
+	border-color: #f07c29;
+	padding: 1px 33px;
+	font-weight: 500;
+}
+.margin-mobile:hover,.margin-mobile:active,.margin-mobile:focus{
+	color: #000!important;
+	background-color: #ffffff;
+	border-color: #f07c29;
+	padding: 1px 31px;
+	border-radius: 20px
+}
+.product-link .product-button {
+	float:none
+}
