@@ -5,16 +5,86 @@
 .margin-mobile{
 	background-color: #f07c29;
 	border-color: #f07c29;
-	padding: 1px 33px;
+	padding: 1px 25px;
 	font-weight: 500;
 }
 .margin-mobile:hover,.margin-mobile:active,.margin-mobile:focus{
 	color: #000!important;
 	background-color: #ffffff;
 	border-color: #f07c29;
-	padding: 1px 31px;
-	border-radius: 20px
+	padding: 1px 25px;
+	border-radius: 20px;
 }
 .product-link .product-button {
 	float:none
+}
+.book-list .product-img a img {
+    height: 180px;
+    padding: 0 10px;
+}
+.semi-name {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.new-books{
+	border: solid 1px #fff;
+}
+.new-books:hover{
+	border: solid 1px #f07c29;
+}
+/*==================
+	Responsive
+====================*/
+@media (max-width: 767px){
+	.product-area .owl-carousel .owl-item {
+	    padding: 0 49px;
+	}
+	.slider-area{
+		height: 179px;
+	}
+    .product-area .owl-carousel .owl-nav button{
+    	visibility: visible!important;opacity: 1!important;
+    }
+    .product-area .owl-carousel .owl-item{
+    	padding: 0 49px;
+    } 
+    .product-area .product-wrapper {
+    	height: auto!important;
+    }
+    .product-area .owl-carousel .owl-item img{
+    	height: 200px!important;
+    }
+    .bestseller-area .owl-carousel .owl-item{
+    	width: 162px!important;
+    } 
+    .order-tab-ul {
+        display: block!important;
+    }
+    .team-content h3 {
+	    font-size: 14px;
+	    margin-left: -5px;
+	}
+	.book-mobile {
+	    width: 50%;
+	    float: left;
+	    padding-left: 3px!important;
+	    padding-right: 3px!important;
+	}
+	.breadcrumbs-area-mobile {
+	    margin-bottom: 0!important;
+	}
+}
+/*========================
+		Only Mobile
+==========================*/
+@media only screen and (max-width: 700px) and (min-width: 375px){
+	.mobile-side {
+	    display: none;
+	}	
+	.new-books{
+		border: solid 1px #f07c297d;
+	}
 }

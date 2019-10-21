@@ -27,4 +27,11 @@ Route::get('/Seller-Signin', function () {
 
     return view('web.seller-login');
 });
+Route::get('/Books', function () {
 
+    return view('web.books');
+})->name('web.books');
+Route::get('/Old-Books', function () {
+
+    return view('web.old-books');
+})->name('web.old-books');

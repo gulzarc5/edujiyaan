@@ -137,8 +137,8 @@
 								<nav>
 									<ul style="display: flex;justify-content: center;">
 										<li class="active"><a href="{{route('web.index')}}">Home</a></li>
-										<li><a href="#">Books</a></li>
-										<li><a href="#">Old Books</a></li>
+										<li><a href="{{route('web.books')}}">Books</a></li>
+										<li><a href="{{route('web.old-books')}}">Old Books</a></li>
 										<li><a href="#">Projects</a></li>
 										<li><a href="#">Magazines</a></li>
 										<li><a href="#">Quiz</a></li>

@@ -395,8 +395,8 @@
                             <h2>Our Products</h2>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12"></div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-3">
+                    <div class="col-lg-2 col-md-2 hidden-sm col-xs-12"></div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
                         <div class="single-team">
                             <div class="team-img-area">
                                 <div class="team-img">
@@ -408,7 +408,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-3">
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
                         <div class="single-team">
                             <div class="team-img-area">
                                 <div class="team-img">
@@ -421,7 +421,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-3">
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
                         <div class="single-team">
                             <div class="team-img-area">
                                 <div class="team-img">
@@ -433,7 +433,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 hidden-sm col-xs-3">
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
                         <div class="single-team mrg-none-xs">
                             <div class="team-img-area">
                                 <div class="team-img">

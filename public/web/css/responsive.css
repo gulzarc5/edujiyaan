@@ -1041,12 +1041,14 @@
     }
     .bestseller-content h1 {
         margin-bottom: 30px;
+        text-align: left;
     }
     .bestseller-area .banner-img-2 {
         float: left;
         margin-bottom: 50px;
         padding-left: 0;
         width: 100%;
+        display: none;
     }
     .pb-100 {
         padding-bottom: 60px;
