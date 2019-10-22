@@ -7,6 +7,11 @@ Route::group(['namespace'=> 'Web'], function(){
 
         Route::post('Ajax/Book/List','BookController@ajaxBookList')->name('ajax_book_list');
         Route::get('/search/pagination','BookController@ajaxBookList');
+        Route::get('/Books-Detail/{book_id}', 'BookController@bookDetail')->name('web.books-detail');
+    });
+
+    Route::group(['prefix'=>'User'],function(){
+        Route::get('/Signup', 'PagesController@signUpForm')->name('web.signup');
     });
     
 });
@@ -18,10 +23,7 @@ Route::get('/Signin', function () {
 
     return view('web.login');
 });
-Route::get('/Signup', function () {
 
-    return view('web.register');
-});
 
 Route::get('seller/login','Seller\SellerController@sellerLoginForm')->name('seller_login');
 
@@ -34,11 +36,7 @@ Route::get('/Old-Books', function () {
     return view('web.old-books');
 })->name('web.old-books');
 
-Route::get('/Books-Detail', function () {
 
-    return view('web.books-detail');
-
-})->name('web.books-detail');
 
 Route::get('/Project', function () {
 

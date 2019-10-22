@@ -4,12 +4,12 @@
             <!-- single-product-start -->
             <div class="product-wrapper new-books mb-40">
                 <div class="product-img">
-                    <a href="{{route('web.books-detail')}}">
+                    <a href="{{route('web.books-detail',['book_id'=>encrypt($item->id)])}}">
                         <img src="{{asset('images/book_image/thumb/'.$item->book_image.'')}}" alt="book" class="primary" />
                     </a>
                 </div>
                 <div class="product-details text-center">
-                    <h4><a class="semi-name" href="product-details.php?product_id=192">BHOYYOK</a></h4>
+                    <h4><a class="semi-name" href="product-details.php?product_id=192">{{$item->book_name}}</a></h4>
                     <h6 class="semi-name">Author: {{$item->author_name}}</h6>
                     <h6 class="semi-name">Publisher: {{$item->publisher_name}}</h6>
                     <div class="product-price">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="product-link">
                     <div class="product-button">
-                        <a href="{{route('web.books-detail')}}" class="btn btn-primary margin-mobile">View</a>
+                        <a href="{{route('web.books-detail',['book_id'=>encrypt($item->id)])}}" class="btn btn-primary margin-mobile">View</a>
                     </div>                              
                 </div>	
             </div>

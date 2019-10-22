@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+use DB;
 
 class CheckValidAccessUser
 {
@@ -14,23 +15,23 @@ class CheckValidAccessUser
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$guard=null)
     {
-        dd(Auth::guard()->name());
+        
+        
         if (Auth::check()) {
-            if (Auth::guard('admin')) {
+            if (Auth::guard('admin')->check()) {
                 return $next($request);
-            } elseif(Auth::guard('seller')) {
+            } elseif(Auth::guard('seller')->check()) {
                 try {
                     $project_id = decrypt($request->route('project_id'));
                 }catch(DecryptException $e) {
                     abort(404);
                 }
-
-                dd($project_id);
                 $seller_id = Auth::guard('seller')->user()->id;
 
-            }elseif(Auth::guard('buyer')){
+
+            }elseif(Auth::guard('buyer')->check()){
 
             }            
         }else{

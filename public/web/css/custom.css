@@ -97,6 +97,15 @@
     top: 120%;
     color: #f07c29
 }
+.single-register .check input {
+	height: auto;
+	width: auto;
+	margin-right: 5px;
+}
+.single-register .check .option {
+    width: 50%;
+    float: left;
+}
 /*==================
 	Responsive
 ====================*/

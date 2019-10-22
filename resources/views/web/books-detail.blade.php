@@ -21,78 +21,82 @@
 		<div class="product-main-area mb-70">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
-						<!-- product-main-area-start -->
-						<div class="product-main-area">
-							<div class="row">
-								<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-									<div class="flexslider">
-										<img src="{{asset('web/img/product/10.jpg')}}">
-									</div>
-								</div>
-								<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-									<div class="product-info-main">
-										<div class="page-title">
-											<h1>Savvy Shoulder Tote</h1>
-											<h5>Savvy Shoulder Tote</h5>
-										</div>
-										<div class="product-info-stock-sku">
-                                            <span>Language:</span>
-                                            <div class="product-attribute">
-                                                 <span>English</span>
-                                            </div>
-                                        </div>
-										<div class="product-info-stock-sku">
-											<span>Publisher:</span>
-											<div class="product-attribute">
-												<span>SKU</span>
-											</div>
-										</div>
-										<div class="product-reviews-summary">
-											<div class="reviews-actions">
-												<a>Academic</a>
-												<a class="view">Old Books</a>
-                                                <a class="view">LGBTQ Fiction</a>
-											</div>
-										</div>
-										<div class="product-info-price">
-											<div class="price-final">
-												<span>$34.00</span>
-												<span class="old-price">$40.00</span>
-											</div>
-										</div>
-										<div class="product-add-form">
-											<form action="#">
-												<a href="#">Add to cart</a>
-											</form>
+
+					@if (isset($book_detail) && !empty($book_detail))
+						<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+							<!-- product-main-area-start -->
+							<div class="product-main-area">
+								<div class="row">
+									<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+										<div class="flexslider">
+											<img src="{{asset('images/book_image/'.$book_detail->book_image.'')}}">
 										</div>
 									</div>
-								</div>
-							</div>	
+									<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+										<div class="product-info-main">
+											<div class="page-title">
+												<h1>{{$book_detail->book_name}}</h1>
+												<h5>{{$book_detail->author_name}}</h5>
+											</div>
+											<div class="product-info-stock-sku">
+												<span>Language:</span>
+												<div class="product-attribute">
+													<span>{{$book_detail->lang_name}}</span>
+												</div>
+											</div>
+											<div class="product-info-stock-sku">
+												<span>Publisher:</span>
+												<div class="product-attribute">
+													<span>{{$book_detail->publisher_name}}</span>
+												</div>
+											</div>
+											<div class="product-reviews-summary">
+												<div class="reviews-actions">
+													<a>Academic</a>
+													<a class="view">
+														@if ($book_detail->book_type == '1')
+															Academic
+														@else
+															Non-Academic
+														@endif
+													</a>
+													<a class="view">{{$book_detail->cat_name}}</a>
+												</div>
+											</div>
+											<div class="product-info-price">
+												<div class="price-final">
+													<span>₹{{ number_format($book_detail->price,2,".",'')}}</span>
+													<span class="old-price">₹{{ number_format($book_detail->mrp,2,".",'')}}</span>
+												</div>
+											</div>
+											<div class="product-add-form">
+												<form action="#">
+													<a href="#">Add to cart</a>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+							<!-- product-main-area-end -->
+							<!-- product-info-area-start -->
+							<div class="product-info-area">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist">
+									<li class="active"><a href="#Details" data-toggle="tab">DESCRIPTION</a></li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="Details">
+										<div class="valu">
+										<p>{{$book_detail->description}}</p>
+										</div>
+									</div>
+								</div>	
+							</div>
+							<!-- product-info-area-end -->
 						</div>
-						<!-- product-main-area-end -->
-						<!-- product-info-area-start -->
-						<div class="product-info-area">
-							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li class="active"><a href="#Details" data-toggle="tab">DESCRIPTION</a></li>
-							</ul>
-							<div class="tab-content">
-                                <div class="tab-pane active" id="Details">
-                                    <div class="valu">
-                                      <p>The sporty Joust Duffle Bag can't be beat - not in the gym, not on the luggage carousel, not anywhere. Big enough to haul a basketball or soccer ball and some sneakers with plenty of room to spare, it's ideal for athletes with places to go.</p>
-                                      <ul>
-                                        <li><i class="fa fa-circle"></i>Dual top handles.</li>
-                                        <li><i class="fa fa-circle"></i>Adjustable shoulder strap.</li>
-                                        <li><i class="fa fa-circle"></i>Full-length zipper.</li>
-                                        <li><i class="fa fa-circle"></i>L 29" x W 13" x H 11".</li>
-                                      </ul>
-                                    </div>
-                                </div>
-                            </div>	
-						</div>
-						<!-- product-info-area-end -->
-					</div>
+					@endif
+
 					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 mobile-side">
 						<div class="shop-left">
 							<div class="section-title-5 mb-30">
