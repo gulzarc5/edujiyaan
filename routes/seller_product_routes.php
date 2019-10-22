@@ -18,7 +18,7 @@ Route::group(['prefix'=>'Project'], function(){
 	Route::get('Edit/{project_id}','ProjectController@editProjectForm')->name('seller.edit_project_form');
 	Route::post('update/','ProjectController@projectUpdate')->name('seller.project_update');
 	Route::get('Detail/View/{project_id}','ProjectController@projectDetailView')->name('seller.project_detail_view');
-	Route::get('preview_file_view/{project_id}', 'ProjectController@previewFileView')->name('seller.preview_file_view')->middleware('fileAuthorization');;
+	Route::get('preview_file_view/{project_id}', 'ProjectController@previewFileView')->name('seller.preview_file_view')->middleware('fileAuthorization');
 	// Route::get('documentation_file_view/{file_name}', 'ProjectController@documentationFileView')->name('documentation_file_view');
 	// Route::get('synopsis_file_view/{file_name}', 'ProjectController@synopsisFileView')->name('synopsis_file_view');
 	Route::get('Status/Update/{project_id}/{status}','ProjectController@projectStatusUpdate')->name('seller.project_status_update');
