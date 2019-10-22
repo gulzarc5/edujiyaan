@@ -90,6 +90,13 @@
 .add-ship-addrs .checkout-form-list {
     margin: 15px;
 }
+.loader-spin{
+	font-size: 80px;
+    position: absolute;
+    left: 50%;
+    top: 120%;
+    color: #f07c29
+}
 /*==================
 	Responsive
 ====================*/

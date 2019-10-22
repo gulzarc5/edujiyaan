@@ -160,6 +160,10 @@
 							book_title:book_title,
 							publisher:publisher,
 						},
+						beforeSend: function() {
+					        // setting a timeout
+					        $("#pagination_data").html('<i class="fa fa-spinner fa-spin loader-spin"></i>');
+					    },
 						success:function(data){
 							$("#pagination_data").html(data);
 						}
