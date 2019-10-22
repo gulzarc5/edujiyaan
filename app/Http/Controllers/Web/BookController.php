@@ -97,10 +97,10 @@ class BookController extends Controller
             }    
             if (isset($publisher) && !empty($publisher) ) {               
                 if ($count_data == '1') {
-                    $q->where('publisher_name','like','%'.$publisher.'%');
+                    $q->where('publisher_name','like','%'.$publisher);
                     $count_data++;
                 } else {
-                    $q->orWhere('publisher_name','like','%'.$publisher.'%');
+                    $q->orWhere('publisher_name','like','%'.$publisher);
                     $count_data++;
                 }
             }         
@@ -114,5 +114,22 @@ class BookController extends Controller
         $books = $books->paginate(12);
 
         return view('web.pagination.book_search',compact('books'));
+    }
+
+    public function bookDetail($book_id)
+    {
+        try {
+            $book_id = decrypt($book_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $book_detail = DB::table('books')
+            ->select('books.*','book_category.name as cat_name','book_language.name as lang_name')
+            ->leftjoin('book_category','book_category.id','=','books.category_id')
+            ->leftjoin('book_language','book_language.id','=','books.language_id')
+            ->where('books.id',$book_id)
+            ->first();
+        return view('web.books-detail',compact('book_detail'));
     }
 }
