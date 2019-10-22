@@ -1,8 +1,14 @@
 <?php
 
 Route::group(['namespace'=> 'Web'], function(){   
+    Route::group(['prefix'=>'Book'],function(){
+        Route::get('List/{academic?}','BookController@bookList')->name('web.new_book_list');
+        Route::get('List/Category/{cat_id}','BookController@bookListCategory')->name('web.new_book_list_category');
 
-
+        Route::post('Ajax/Book/List','BookController@ajaxBookList')->name('ajax_book_list');
+        Route::get('/search/pagination','BookController@ajaxBookList');
+    });
+    
 });
 Route::get('/', function () {
 
@@ -23,18 +29,6 @@ Route::get('/Forgot-Password', function () {
 
     return view('web.forgot-password');
 });
-// Route::get('/Seller-Signin', function () {
-
-//     return view('web.seller-login');
-// });
-
-// ======== Main Pages ==========
-
-Route::get('/Books', function () {
-
-    return view('web.books');
-})->name('web.books');
-
 Route::get('/Old-Books', function () {
 
     return view('web.old-books');
