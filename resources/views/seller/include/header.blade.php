@@ -107,8 +107,8 @@
                   <li>
                     <a><i class="fa fa-desktop"></i>Projects<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Add New Project</a></li>
-                      <li><a href="#">List Of Projects</a></li>
+                      <li><a href="{{ route('seller.add_project_form') }}">Add New Project</a></li>
+                      <li><a href="{{ route('seller.project_list') }}">List Of Projects</a></li>
                     </ul>
                   </li>
                   <li>

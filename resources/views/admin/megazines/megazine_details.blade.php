@@ -71,19 +71,19 @@
                       <caption>Seller Deails</caption>
                       <tr>
                         <th>Seller Name : </th>
-                        <td></td>
+                      <td>{{$seller->name}}</td>
                       </tr>
                       <tr>
                         <th>Mobile No : </th>
-                        <td></td>
+                        <td>{{$seller->mobile}}</td>
                       </tr>
                       <tr>
                         <th>Email : </th>
-                        <td></td>
+                        <td>{{$seller->email}}</td>
                       </tr>
                       <tr>
                         <th>Address : </th>
-                        <td></td>
+                        <td>{{$seller->address}}</td>
                       </tr>
                     @endif
                   </table>

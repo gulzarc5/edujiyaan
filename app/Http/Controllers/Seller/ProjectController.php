@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Projects;
+namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -8,6 +8,7 @@ use DB;
 use DataTables;
 use File;
 use Carbon\Carbon;
+use Auth;
 
 class ProjectController extends Controller
 {
@@ -16,7 +17,7 @@ class ProjectController extends Controller
     	$project_spalization = DB::table('project_spalization')
     									->get();
 
-    	return view('admin.projects.add_project_form',compact('project_spalization'));
+    	return view('seller.projects.add_project_form',compact('project_spalization'));
     }
 
     public function addProject(Request $request)
@@ -30,6 +31,8 @@ class ProjectController extends Controller
             'synopsis' => 'file|mimes:pdf,doc,docx,ppt',
             'ppt' => 'file|mimes:ppt',
         ]);
+
+        $seller_id = Auth::guard('seller')->user()->id;
 
         $file_name_preview = null;
         if($request->hasfile('preview'))
@@ -65,7 +68,7 @@ class ProjectController extends Controller
 
         $project_insert = DB::table('projects')
             ->insert([
-                'user_id' => 'A',
+                'user_id' => $seller_id,
                 'specialization_id' => $request->input('specialization'),
                 'name' => $request->input('project_name'),
                 'cost' => $request->input('cost'),
@@ -75,6 +78,7 @@ class ProjectController extends Controller
                 'preview' => $file_name_preview,
                 'ppt' => $file_name_ppt,
                 'description' => $request->input('description'),
+                'approval_status' => 2,
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
@@ -87,14 +91,17 @@ class ProjectController extends Controller
 
     public function projectList()
     {
-        return view('admin.projects.project_list');
+        return view('seller.projects.project_list');
     }
 
     public function ajaxProjectList()
     {
+    	$seller_id = Auth::guard('seller')->user()->id;
+
         $query = DB::table('projects')	
         ->select('projects.*', 'project_spalization.name as spalization_name')
         ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
+        ->where('projects.user_id', $seller_id)
         ->whereNull('projects.deleted_at')
         ->orderBy('projects.id','desc');
        
@@ -102,14 +109,14 @@ class ProjectController extends Controller
             ->addIndexColumn()
             ->addColumn('action', function($row){
                    $btn = '
-                   <a href="'.route('admin.project_detail_view',['project_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
-                   <a href="'.route('admin.edit_project_form',['project_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Edit</a>                 
+                   <a href="'.route('seller.project_detail_view',['project_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>
+                   <a href="'.route('seller.edit_project_form',['project_id'=>encrypt($row->id)]).'" class="btn btn-warning btn-sm">Edit</a>                 
                    ';
                    if ($row->status == '1') {
-                       $btn .= '<a href="'.route('admin.project_status_update',['project_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
+                       $btn .= '<a href="'.route('seller.project_status_update',['project_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Disable</a>';
                         return $btn;
                     }else{
-                       $btn .= '<a href="'.route('admin.project_status_update',['project_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
+                       $btn .= '<a href="'.route('seller.project_status_update',['project_id'=>encrypt($row->id),'status' => encrypt(1)]).'" class="btn btn-success btn-sm">Enable</a>';
                         return $btn;
                     }
                     return $btn;
@@ -126,6 +133,45 @@ class ProjectController extends Controller
             ->make(true);
     }
 
+    public function projectDetailView($project_id)
+    {
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $project = DB::table('projects')->where('projects.id', $project_id)           
+            ->leftjoin('project_spalization','projects.specialization_id','=','project_spalization.id')
+            ->select('projects.*','project_spalization.name as specialization_name')
+            ->first();
+        $seller = null;
+        if (!empty($project->user_id) && $project->user_id != "A") {
+            $seller = DB::table('users')->where('id',$project->user_id)->first();
+        }
+        return view('seller.projects.project_details',compact('project', 'seller'));
+    }
+
+    public function previewFileView($project_id) {
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            abort(404);
+        }
+        
+        $project_file = DB::table('projects')->select('preview')->where('id',$project_id)->first();
+        // dd($quiz_file);
+        $path = storage_path('\app\files\projects\preview\\'.$project_file->preview);
+        if (!File::exists($path)) {
+            abort(404);
+        }        
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
+    }
+
     public function editProjectForm($project_id)
     {
         try {
@@ -139,7 +185,7 @@ class ProjectController extends Controller
     		->get();
         $project = DB::table('projects')->where('id', $project_id)->first();
 
-        return view('admin.projects.edit_project',compact('project_spalization','project'));
+        return view('seller.projects.edit_project',compact('project_spalization','project'));
     }
 
     public function projectUpdate(Request $request) 
@@ -212,7 +258,6 @@ class ProjectController extends Controller
         $project_update = DB::table('projects')
 				        	->where('id', $project_id)
 				            ->update([
-				                'user_id' => 'A',
 				                'specialization_id' => $request->input('specialization'),
 				                'name' => $request->input('project_name'),
 				                'cost' => $request->input('cost'),
@@ -225,64 +270,6 @@ class ProjectController extends Controller
         }else{
              return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
-    }
-
-    public function projectDetailView($project_id)
-    {
-        try {
-            $project_id = decrypt($project_id);
-        }catch(DecryptException $e) {
-            return redirect()->back();
-        }
-
-        $project = DB::table('projects')->where('projects.id', $project_id)           
-            ->leftjoin('project_spalization','projects.specialization_id','=','project_spalization.id')
-            ->select('projects.*','project_spalization.name as specialization_name')
-            ->first();
-        $seller = null;
-        if (!empty($project->user_id) && $project->user_id != "A") {
-            $seller = DB::table('users')->where('id',$project->user_id)->first();
-        }
-        return view('admin.projects.project_details',compact('project', 'seller'));
-    }
-
-    public function previewFileView ($file_name) {
-
-        $path = storage_path('\app\files\project\preview\\'.$file_name);
-        if (!File::exists($path)) 
-            $response = 404;
-        $file = File::get($path);
-        $type = File::extension($path);
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-
-        return $response;
-    }
-
-    public function documentationFileView ($file_name) {
-
-        $path = storage_path('\app\files\project\documentation\\'.$file_name);
-        if (!File::exists($path)) 
-            $response = 404;
-        $file = File::get($path);
-        $type = File::extension($path);
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-
-        return $response;
-    }
-
-    public function synopsisFileView ($file_name) {
-
-        $path = storage_path('\app\files\project\synopsis\\'.$file_name);
-        if (!File::exists($path)) 
-            $response = 404;
-        $file = File::get($path);
-        $type = File::extension($path);
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
-
-        return $response;
     }
 
     public function projectStatusUpdate($project_id,$status)

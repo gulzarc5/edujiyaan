@@ -1,4 +1,4 @@
-@extends('admin.template.admin_master')
+@extends('seller.template.seller_master')
 
 @section('content')
 
@@ -97,7 +97,7 @@
                              Preview 
                           </td>
                           <td>
-                              <a href="{{ route('preview_file_view', ['file_name' => $project->preview]) }}" target="_blank">View Preview</a>
+                              <a href="{{ route('seller.preview_file_view', ['project_id' => encrypt($project->id)]) }}" target="_blank">View Preview</a>
                           </td>
                         </tr> 
                         @endif  

@@ -11,6 +11,23 @@ Route::group(['prefix'=>'Books'], function(){
 	Route::get('ajax/list/','BookController@ajaxBookList')->name('seller.ajax_book_list');
 });
 
+Route::group(['prefix'=>'Project'], function(){
+
+	Route::get('Add/','ProjectController@addProjectForm')->name('seller.add_project_form');
+	Route::post('insert/','ProjectController@addProject')->name('seller.insert_project');
+	Route::get('Edit/{project_id}','ProjectController@editProjectForm')->name('seller.edit_project_form');
+	Route::post('update/','ProjectController@projectUpdate')->name('seller.project_update');
+	Route::get('Detail/View/{project_id}','ProjectController@projectDetailView')->name('seller.project_detail_view');
+	Route::get('preview_file_view/{project_id}', 'ProjectController@previewFileView')->name('seller.preview_file_view')->middleware('fileAuthorization');;
+	// Route::get('documentation_file_view/{file_name}', 'ProjectController@documentationFileView')->name('documentation_file_view');
+	// Route::get('synopsis_file_view/{file_name}', 'ProjectController@synopsisFileView')->name('synopsis_file_view');
+	Route::get('Status/Update/{project_id}/{status}','ProjectController@projectStatusUpdate')->name('seller.project_status_update');
+
+	Route::get('list/','ProjectController@projectList')->name('seller.project_list');
+	Route::get('ajax/list/','ProjectController@ajaxProjectList')->name('seller.ajax_project_list');
+
+});
+
 Route::group(['prefix'=>'Quiz'], function(){
 	Route::get('Add/','QuizController@addQuizForm')->name('seller.add_new_quiz_form');
 	Route::post('insert/','QuizController@addQuiz')->name('seller.insert_new_quiz');
