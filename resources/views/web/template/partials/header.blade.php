@@ -49,13 +49,23 @@
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-							<div class="account-area text-right">
+							<div class="account-area language-area text-right">
 								<ul>
 									<li><a href="membership.php">Membership</a></li>
-									<li><a href="checkout.php">Checkout</a></li>
 									<li><a href="Signin">Sign in</a></li>
 									<li><a href="Signup">Sign Up</a></li>
 									<li><a href="{{route('seller_login')}}">Seller Sign in</a></li>
+									<li><a>My Account<i class="fa fa-angle-down"></i></a>
+										<div class="header-sub">
+											<ul>
+												<li><a href="{{route('web.user.cart')}}">Cart</a></li>
+												<li><a href="{{route('web.user.user-detail')}}">User Detail</a></li>
+												{{-- <li><a href="{{route('web.user-detail')}}">Checkout</a></li> --}}
+												<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
+												<li><a href="{{route('web.shipping-address.shipping-address')}}">My Shipping Address</a></li>
+											</ul>
+										</div>
+									</li>
 								</ul>
 							</div>
 						</div>

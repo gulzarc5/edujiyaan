@@ -382,7 +382,7 @@ body {
 .language-area ul li .header-sub {
     background: #fff none repeat scroll 0 0;
     box-shadow: 0 1px 7px -2px rgba(0, 0, 0, 0.3);
-    left: 0;
+    left: -61px;
     opacity: 0;
     padding: 15px 6px 18px 12px;
     position: absolute;
@@ -390,7 +390,7 @@ body {
     top: 120%;
     transition: all 0.3s ease 0s;
     visibility: hidden;
-    width: 100px;
+    width: 200px;
     z-index: 234;
 }
 .language-area ul li .header-sub.dolor {
@@ -5797,14 +5797,14 @@ p.checkout-coupon input[type="submit"]:hover {
 p.lost-password a:hover {
     color: #F07C29;
 }
-.checkbox-form h3 {
-    border-bottom: 1px solid #e5e5e5;
-    font-size: 30px;
+.checkbox-form h5 {
+    border-bottom: 1px solid #8f8585;
+    font-size: 16px;
     margin: 0 0 20px;
     padding-bottom: 10px;
-    text-transform: uppercase;
     font-family: 'Rufina', serif;
-    font-weight: 400;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 .country-select {
     margin-bottom: 30px;

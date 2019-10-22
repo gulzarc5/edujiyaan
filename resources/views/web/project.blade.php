@@ -2,7 +2,7 @@
 		<!-- Head & Header Section -->
 		@section('content') 
 				<!-- breadcrumbs-area-start -->
-		<div class="breadcrumbs-area breadcrumbs-area-mobile mb-70">
+		<div class="breadcrumbs-area breadcrumbs-area-mobile mb-10">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
