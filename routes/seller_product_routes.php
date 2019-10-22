@@ -28,6 +28,21 @@ Route::group(['prefix'=>'Project'], function(){
 
 });
 
+Route::group(['prefix'=>'Megazine'], function(){
+
+	Route::get('Add/','MegazineController@addMegazineForm')->name('seller.add_new_megazine');
+	Route::post('insert/','MegazineController@addMegazine')->name('seller.insert_new_megazine');
+	Route::get('Edit/{megazine_id}','MegazineController@editMegazineForm')->name('seller.edit_megazine_form');
+	Route::post('update/','MegazineController@megazineUpdate')->name('seller.megazine_update');
+	Route::get('Detail/View/{megazine_id}','MegazineController@megazineDetailView')->name('seller.megazine_detail_view');
+	Route::get('cover_image_view/{file_name}', 'MegazineController@coverImageView')->name('cover_image_view');
+	Route::get('megazine_file_view/{file_name}', 'MegazineController@megazineFileView')->name('megazine_file_view');
+	Route::get('Status/Update/{megazine_id}/{status}','MegazineController@megazineStatusUpdate')->name('seller.megazine_status_update');
+
+	Route::get('list/','MegazineController@megazineList')->name('seller.megazine_list');
+	Route::get('ajax/list/','MegazineController@ajaxMegazineList')->name('seller.ajax_megazine_list');
+});
+
 Route::group(['prefix'=>'Quiz'], function(){
 	Route::get('Add/','QuizController@addQuizForm')->name('seller.add_new_quiz_form');
 	Route::post('insert/','QuizController@addQuiz')->name('seller.insert_new_quiz');

@@ -114,8 +114,8 @@
                   <li>
                     <a><i class="fa fa-desktop"></i>Megazines<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Add New Megazine</a></li>
-                      <li><a href="#">List Of Megazines</a></li>
+                      <li><a href="{{ route('seller.add_new_megazine') }}">Add New Megazine</a></li>
+                      <li><a href="{{ route('seller.megazine_list') }}">List Of Megazines</a></li>
                     </ul>
                   </li>
                   <li>
