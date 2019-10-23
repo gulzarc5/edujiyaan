@@ -25,7 +25,13 @@
 						<div class="login-title text-center mb-30">
 							<h2>Login</h2>
 							<p>Insert here your username name and password</p>
+							@if (Session::has('message'))
+								<div class="alert alert-success">{{ Session::get('message') }}</div>
+							@endif @if (Session::has('error'))
+								<div class="alert alert-danger">{{ Session::get('error') }}</div>
+							@endif
 						</div>
+						
 					</div>
 					<div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
 						<div class="login-form">

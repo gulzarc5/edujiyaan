@@ -11,4 +11,9 @@ class PagesController extends Controller
     {
         return view('web.register');
     }
+
+    public function userLoginForm()
+    {
+        return view('web.login');
+    }
 }

@@ -34,6 +34,6 @@ class SellerLoginController extends Controller
     public function logout()
     {
         Auth::guard('seller')->logout();
-        return redirect()->route('seller_login');
+        return redirect()->route('web.user_login');
     }
 }

@@ -29,6 +29,7 @@ class SellerController extends Controller
     {
         $seller_id = Auth::guard('seller')->user()->id;
         $seller = DB::table('users')
+        ->where('id',$seller_id)
         ->first();
 
         $state = DB::table('state')->whereNull('deleted_at')->get();

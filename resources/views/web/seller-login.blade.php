@@ -25,6 +25,11 @@
 						<div class="login-title text-center mb-30">
 							<h2> Seller Login</h2>
 							<p>Insert here your username name and password</p>
+							@if (Session::has('message'))
+								<div class="alert alert-success">{{ Session::get('message') }}</div>
+							@endif @if (Session::has('error'))
+								<div class="alert alert-danger">{{ Session::get('error') }}</div>
+							@endif
 						</div>
 					</div>
 					{{ Form::open(array('route' => 'seller.login', 'method' => 'post')) }}

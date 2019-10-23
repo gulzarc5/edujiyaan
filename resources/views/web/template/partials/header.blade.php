@@ -52,7 +52,7 @@
 							<div class="account-area language-area text-right">
 								<ul>
 									<li><a href="membership.php">Membership</a></li>
-									<li><a href="Signin">Sign in</a></li>
+									<li><a href="{{route('web.user_login')}}">Sign in</a></li>
 									<li><a href="{{route('web.signup')}}">Sign Up</a></li>
 									<li><a href="{{route('seller_login')}}">Seller Sign in</a></li>
 									<li><a>My Account<i class="fa fa-angle-down"></i></a>

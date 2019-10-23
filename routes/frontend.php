@@ -12,20 +12,22 @@ Route::group(['namespace'=> 'Web'], function(){
 
     Route::group(['prefix'=>'User'],function(){
         Route::get('/Signup', 'PagesController@signUpForm')->name('web.signup');
+        Route::get('/Login', 'PagesController@userLoginForm')->name('web.user_login');
+
+        Route::get('/Login', 'LoginController@userLogin')->name('web.user_login_submit');
+
+        Route::post('/Register/User', 'RegisterController@userRegister')->name('web.register');
     });
     
 });
-Route::get('/', function () {
-
-    return view('web.home');
-})->name('web.index');
-Route::get('/Signin', function () {
-
-    return view('web.login');
-});
-
 
 Route::get('seller/login','Seller\SellerController@sellerLoginForm')->name('seller_login');
+
+Route::get('/', function () {
+    return view('web.home');
+})->name('web.index');
+
+
 
 Route::get('/Forgot-Password', function () {
 
