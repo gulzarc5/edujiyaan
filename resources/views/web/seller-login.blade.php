@@ -25,6 +25,11 @@
 						<div class="login-title text-center mb-30">
 							<h2> Seller Login</h2>
 							<p>Insert here your username name and password</p>
+							@if (Session::has('message'))
+								<div class="alert alert-success">{{ Session::get('message') }}</div>
+							@endif @if (Session::has('error'))
+								<div class="alert alert-danger">{{ Session::get('error') }}</div>
+							@endif
 						</div>
 					</div>
 					{{ Form::open(array('route' => 'seller.login', 'method' => 'post')) }}
@@ -61,7 +66,12 @@
 									<button type="submit">login</button>
 								</div>
 							</form>
-							<a href="Signin">Are you a buyer? Login</a>
+							<div class="col-lg-6">
+								<a href="{{route('web.user_login')}}">Are you a buyer? Login</a>
+							</div>
+							<div class="col-lg-6">
+								<a href="{{route('web.forgot_password_form')}}">Lost your password?</a>
+							</div>
 						</div>
 					</div>
 					{{ Form::close() }}

@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
                     $route = 'Seller/Deshboard';
                     break;
                default:
-                    $route = 'web.userLoginForm';
+                    $route = 'web.index';
             }
             return redirect($route);
         }
