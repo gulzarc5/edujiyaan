@@ -66,7 +66,12 @@
 									<button type="submit">login</button>
 								</div>
 							</form>
-							<a href="Signin">Are you a buyer? Login</a>
+							<div class="col-lg-6">
+								<a href="{{route('web.user_login')}}">Are you a buyer? Login</a>
+							</div>
+							<div class="col-lg-6">
+								<a href="{{route('web.forgot_password_form')}}">Lost your password?</a>
+							</div>
 						</div>
 					</div>
 					{{ Form::close() }}

@@ -25,7 +25,7 @@ class Authenticate extends Middleware
                        $route = 'Seller/Deshboard';
                        break;
                   default:
-                       $route = 'web.userLoginForm';
+                       $route = 'web.index';
                }
                return redirect($route);
            }

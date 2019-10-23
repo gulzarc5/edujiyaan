@@ -125,7 +125,7 @@
 										<button type="submit">Register</button>
 									</div>
 								</form>	
-								<a href="Signin">Already Signed up? Login</a>
+								<a href="{{route('web.user_login')}}">Already Signed up? Login</a>
 							</div>
 						</div>
 					{{ Form::close() }}

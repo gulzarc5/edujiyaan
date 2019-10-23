@@ -14,9 +14,13 @@ Route::group(['namespace'=> 'Web'], function(){
         Route::get('/Signup', 'PagesController@signUpForm')->name('web.signup');
         Route::get('/Login', 'PagesController@userLoginForm')->name('web.user_login');
 
-        Route::get('/Login', 'LoginController@userLogin')->name('web.user_login_submit');
+        Route::post('/Login', 'LoginController@userLogin')->name('web.user_login_submit');
+        Route::post('/logout', 'LoginController@logout')->name('user.logout');
 
+        Route::get('/Forgot/Password', 'PagesController@forgotPasswordForm')->name('web.forgot_password_form');
         Route::post('/Register/User', 'RegisterController@userRegister')->name('web.register');
+
+        Route::get('Cart','CartController@viewCart')->name('web.view_cart');
     });
     
 });
@@ -28,11 +32,6 @@ Route::get('/', function () {
 })->name('web.index');
 
 
-
-Route::get('/Forgot-Password', function () {
-
-    return view('web.forgot-password');
-});
 Route::get('/Old-Books', function () {
 
     return view('web.old-books');
@@ -72,11 +71,6 @@ Route::get('/Add-User-Detail', function () {
 
     return view('web.user.add-user-addrs');
 })->name('web.user.add-user-addrs');
-
-Route::get('/Cart', function () {
-
-    return view('web.user.cart');
-})->name('web.user.cart');
 
 Route::get('/My-Orders', function () {
 

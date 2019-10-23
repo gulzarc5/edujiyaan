@@ -35,25 +35,41 @@
 					</div>
 					<div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
 						<div class="login-form">
-							<form>
+							{{ Form::open(array('route' => 'web.user_login_submit', 'method' => 'post')) }}
 								<div class="single-login">
 									<label>Username or email<span>*</span></label>
-									<input type="text" />
+								<input type="text" name="email" value="{{old('email')}}"/>
+									@if ($message = Session::get('login_error'))
+										<span class="invalid-feedback" role="alert">
+											<strong style="color:red">{{ $message }}</strong>
+										</span>
+									@endif
+									@error('email')
+										<span class="invalid-feedback" role="alert">
+											<strong style="color:red">{{ $message }}</strong>
+										</span>
+									@enderror
 								</div>
 								<div class="single-login">
 									<label>Passwords <span>*</span></label>
-									<input type="text" />
+									<input type="password" name="password" />
+									@error('password')
+										<span class="invalid-feedback" role="alert">
+											<strong style="color:red">{{ $message }}</strong>
+										</span>
+									@enderror
 								</div>
 								<div class="single-login single-login-2">
 									<button type="submit">login</button>
+									
 								</div>
-							</form>
+							{{ Form::close() }}
 							<div class="row">
 								<div class="col-lg-6">
-									<a href="Signup">New Member? Register here</a>
+									<a href="{{route('web.signup')}}">New Member? Register here</a>
 								</div>
 								<div class="col-lg-6">
-									<a href="Forgot-Password">Lost your password?</a>
+									<a href="{{route('web.forgot_password_form')}}">Lost your password?</a>
 								</div>
 							</div>
 						</div>

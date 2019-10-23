@@ -16,4 +16,9 @@ class PagesController extends Controller
     {
         return view('web.login');
     }
+
+    public function forgotPasswordForm()
+    {
+        return view('web.forgot-password');
+    }
 }

@@ -38,7 +38,7 @@
 									<button type="submit">login</button>
 								</div>
 							</form>
-							<a href="Signin">Already Signed up? Login</a>
+							<a href="{{URL::previous()}}">Back</a>
 						</div>
 					</div>
 				</div>

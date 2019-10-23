@@ -52,13 +52,22 @@
 							<div class="account-area language-area text-right">
 								<ul>
 									<li><a href="membership.php">Membership</a></li>
-									<li><a href="{{route('web.user_login')}}">Sign in</a></li>
-									<li><a href="{{route('web.signup')}}">Sign Up</a></li>
-									<li><a href="{{route('seller_login')}}">Seller Sign in</a></li>
+									@auth('buyer')
+										<li><a href="#">{{ Auth::guard('buyer')->user()->name }}</a></li>
+										<li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
+										<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+											@csrf
+										</form>
+									@else
+										<li><a href="{{route('web.user_login')}}">Sign in</a></li>
+										<li><a href="{{route('web.signup')}}">Sign Up</a></li>
+										<li><a href="{{route('seller_login')}}">Seller Sign in</a></li>
+									@endauth
+									
 									<li><a>My Account<i class="fa fa-angle-down"></i></a>
 										<div class="header-sub">
 											<ul>
-												<li><a href="{{route('web.user.cart')}}">Cart</a></li>
+												<li><a href="{{route('web.view_cart')}}">Cart</a></li>
 												<li><a href="{{route('web.user.user-detail')}}">User Detail</a></li>
 												<li><a href="{{route('web.user.change-password')}}">Change Password</a></li>
 												<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
@@ -91,7 +100,7 @@
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 							<div class="my-cart pt-25">
 								<ul>
-									<li><a href="#"><i class="fa fa-shopping-cart"></i>My Cart</a>
+									<li><a href="{{route('web.view_cart')}}"><i class="fa fa-shopping-cart"></i>My Cart</a>
 										<span>2</span>
 										<div class="mini-cart-sub">
 											<div class="cart-product">
@@ -124,7 +133,7 @@
 												<h5>Total <span>£12.00</span></h5>
 											</div>
 											<div class="cart-bottom">
-												<a class="view-cart" href="cart.html">view cart</a>
+												<a class="view-cart" href="{{route('web.view_cart')}}">view cart</a>
 												<a href="checkout.html">Check out</a>
 											</div>
 										</div>
