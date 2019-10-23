@@ -124,7 +124,7 @@
                                             </div>
 			                                <div class="product-link">
 			                                    <div class="product-button">
-			                                        <a href="#" class="btn btn-primary margin-mobile">View</a>
+			                                        <a href="{{route('web.user.membership')}}" class="btn btn-primary margin-mobile">View</a>
 			                                    </div>                              
 			                                </div>	
 			                            </div>
@@ -154,7 +154,7 @@
                                             </div>
 			                                <div class="product-link">
 			                                    <div class="product-button">
-			                                        <a href="#" class="btn btn-primary margin-mobile">View</a>
+			                                        <a href="{{route('web.user.membership')}}" class="btn btn-primary margin-mobile">View</a>
 			                                    </div>                              
 			                                </div>	
 			                            </div>
@@ -184,7 +184,7 @@
                                             </div>
 			                                <div class="product-link">
 			                                    <div class="product-button">
-			                                        <a href="#" class="btn btn-primary margin-mobile">View</a>
+			                                        <a href="{{route('web.user.membership')}}" class="btn btn-primary margin-mobile">View</a>
 			                                    </div>                              
 			                                </div>	
 			                            </div>
