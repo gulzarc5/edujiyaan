@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'fileAuthorization' => \App\Http\Middleware\CheckValidAccessUser::class,
         'projectFileAuthorization' => \App\Http\Middleware\ProjectFileAuthorization::class,
+        'megazineFileAuthorization' => \App\Http\Middleware\MegazineFileAuthorization::class,
     ];
 
     /**

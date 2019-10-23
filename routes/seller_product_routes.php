@@ -19,8 +19,8 @@ Route::group(['prefix'=>'Project'], function(){
 	Route::post('update/','ProjectController@projectUpdate')->name('seller.project_update');
 	Route::get('Detail/View/{project_id}','ProjectController@projectDetailView')->name('seller.project_detail_view');
 	Route::get('preview_file_view/{project_id}', 'ProjectController@previewFileView')->name('seller.preview_file_view')->middleware('projectFileAuthorization');
-	// Route::get('documentation_file_view/{file_name}', 'ProjectController@documentationFileView')->name('documentation_file_view');
-	// Route::get('synopsis_file_view/{file_name}', 'ProjectController@synopsisFileView')->name('synopsis_file_view');
+	Route::get('documentation_file_view/{project_id}', 'ProjectController@documentationFileView')->name('seller.documentation_file_view')->middleware('projectFileAuthorization');
+	Route::get('synopsis_file_view/{project_id}', 'ProjectController@synopsisFileView')->name('seller.synopsis_file_view');
 	Route::get('Status/Update/{project_id}/{status}','ProjectController@projectStatusUpdate')->name('seller.project_status_update');
 
 	Route::get('list/','ProjectController@projectList')->name('seller.project_list');
@@ -35,8 +35,8 @@ Route::group(['prefix'=>'Megazine'], function(){
 	Route::get('Edit/{megazine_id}','MegazineController@editMegazineForm')->name('seller.edit_megazine_form');
 	Route::post('update/','MegazineController@megazineUpdate')->name('seller.megazine_update');
 	Route::get('Detail/View/{megazine_id}','MegazineController@megazineDetailView')->name('seller.megazine_detail_view');
-	Route::get('cover_image_view/{file_name}', 'MegazineController@coverImageView')->name('cover_image_view');
-	Route::get('megazine_file_view/{file_name}', 'MegazineController@megazineFileView')->name('megazine_file_view');
+	Route::get('cover_image_view/{megazine_id}', 'MegazineController@coverImageView')->name('seller.cover_image_view');
+	Route::get('megazine_file_view/{megazine_id}', 'MegazineController@megazineFileView')->name('seller.megazine_file_view')->middleware('megazineFileAuthorization');
 	Route::get('Status/Update/{megazine_id}/{status}','MegazineController@megazineStatusUpdate')->name('seller.megazine_status_update');
 
 	Route::get('list/','MegazineController@megazineList')->name('seller.megazine_list');

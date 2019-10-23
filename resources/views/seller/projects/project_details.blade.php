@@ -107,7 +107,7 @@
                              Documentation 
                           </td>
                           <td>
-                              <a href="{{ route('documentation_file_view', ['file_name' => $project->documentation]) }}" target="_blank">View Documentation</a>
+                              <a href="{{ route('seller.documentation_file_view', ['project_id' => encrypt($project->id)]) }}" target="_blank">View Documentation</a>
                           </td>
                         </tr>
                         @endif    
@@ -117,7 +117,7 @@
                              Synopsis 
                           </td>
                           <td>
-                              <a href="{{ route('synopsis_file_view', ['file_name' => $project->synopsis]) }}" target="_blank">View Synopsis</a>
+                              <a href="{{ route('seller.synopsis_file_view', ['project_id' => encrypt($project->id)]) }}" target="_blank">View Synopsis</a>
                           </td>
                         </tr>
                         @endif             
