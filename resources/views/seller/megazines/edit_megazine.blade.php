@@ -1,4 +1,4 @@
-@extends('admin.template.admin_master')
+@extends('seller.template.seller_master')
 
 @section('content')
 
@@ -25,7 +25,7 @@
     	            <div class="x_content">
     	           
     	            	 @if (isset($megazine) && !empty($megazine))
-                        {{ Form::open(['method' => 'post','route'=>'admin.megazine_update' , 'enctype'=>'multipart/form-data']) }}
+                        {{ Form::open(['method' => 'post','route'=>'seller.megazine_update' , 'enctype'=>'multipart/form-data']) }}
                         <input type="hidden" name="megazine_id" value="{{ encrypt($megazine->id) }}" required>
     	            	
                         <div class="well" style="overflow: auto">

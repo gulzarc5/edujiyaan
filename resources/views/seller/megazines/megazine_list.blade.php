@@ -1,4 +1,4 @@
-@extends('admin.template.admin_master')
+@extends('seller.template.seller_master')
 
 @section('content')
 
@@ -46,7 +46,7 @@
             var table = $('#megazine_list').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admin.ajax_megazine_list') }}",
+                ajax: "{{ route('seller.ajax_megazine_list') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'category_name', name: 'category_name',searchable: true},
