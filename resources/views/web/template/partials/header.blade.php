@@ -67,9 +67,8 @@
 									<li><a>My Account<i class="fa fa-angle-down"></i></a>
 										<div class="header-sub">
 											<ul>
-												<li><a href="{{route('web.view_cart')}}">Cart</a></li>
-												<li><a href="{{route('web.user.user-detail')}}">User Detail</a></li>
-												<li><a href="{{route('web.user.change-password')}}">Change Password</a></li>
+												<li><a href="{{route('web.myProfile')}}">My Profile</a></li>
+												<li><a href="{{route('web.change_password_form')}}">Change Password</a></li>
 												<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
 												<li><a href="{{route('web.shipping-address.shipping-address')}}">My Shipping Address</a></li>
 											</ul>
@@ -101,41 +100,49 @@
 							<div class="my-cart pt-25">
 								<ul>
 									<li><a href="{{route('web.view_cart')}}"><i class="fa fa-shopping-cart"></i>My Cart</a>
-										<span>2</span>
+										<span>
+											@if (isset($cart_data_header['cart_count']) && !empty($cart_data_header['cart_count']))
+												{{$cart_data_header['cart_count']}}		
+											@else
+												0
+											@endif
+										</span>
 										<div class="mini-cart-sub">
-											<div class="cart-product">
-												<div class="single-cart">
-													<div class="cart-img">
-														<a href="#"><img src="{{asset('web/img/product/1.jpg')}}" alt="book" /></a>
-													</div>
-													<div class="cart-info">
-														<h5><a href="#">Joust Duffle Bag</a></h5>
-														<p>1 x £60.00</p>
-													</div>
-													<div class="cart-icon">
-													    <a href="#"><i class="fa fa-remove"></i></a>
-													</div>
+											@php
+												$cart_amount = 0;
+											@endphp
+											@if (isset($cart_data_header['cart_data']) && count((array)$cart_data_header['cart_data']) > 0 )
+											
+												<div class="cart-product">
+													@foreach ($cart_data_header['cart_data'] as $item)
+														<div class="single-cart">
+															<div class="cart-img">
+																<a href="#"><img src="{{asset('images/book_image/thumb/'.$item->book_image.'')}}" alt="book" /></a>
+															</div>
+															<div class="cart-info">
+																<h5><a href="#">{{$item->book_name}}</a></h5>
+																<p>{{$item->quantity}} x ₹ {{ number_format($item->price,2,".",'')}}</p>
+															</div>
+															<div class="cart-icon">
+																<a href="#"><i class="fa fa-remove"></i></a>
+															</div>
+														</div>
+														@php
+															$cart_amount += (floatval($item->quantity) * floatval($item->price));
+														@endphp
+													@endforeach
+													
 												</div>
-												<div class="single-cart">
-													<div class="cart-img">
-														<a href="#"><img src="{{asset('web/img/product/3.jpg')}}" alt="book" /></a>
-													</div>
-													<div class="cart-info">
-														<h5><a href="#">Chaz Kangeroo Hoodie</a></h5>
-														<p>1 x £52.00</p>
-													</div>
-													<div class="cart-icon">
-                                                        <a href="#"><i class="fa fa-remove"></i></a>
-                                                    </div>
+												<div class="cart-totals">
+													<h5>Total <span> ₹ {{ number_format($cart_amount,2,".",'')}}</span></h5>
 												</div>
-											</div>
-											<div class="cart-totals">
-												<h5>Total <span>£12.00</span></h5>
-											</div>
-											<div class="cart-bottom">
-												<a class="view-cart" href="{{route('web.view_cart')}}">view cart</a>
-												<a href="checkout.html">Check out</a>
-											</div>
+												<div class="cart-bottom">
+													<a class="view-cart" href="{{route('web.view_cart')}}">view cart</a>
+													<a href="checkout.html">Check out</a>
+												</div>
+											@else
+												
+											@endif
 										</div>
 									</li>
 								</ul>

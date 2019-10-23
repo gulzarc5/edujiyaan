@@ -39,42 +39,52 @@
 							<div class="product-info-area">
 								<div class="tab-content">
 	                                <div class="tab-pane active" id="Books">
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/10.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>Savvy Shoulder Tote</h4>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
-	                                      				<p>Publisher : <span>BANALATA</span></p>
-	                                      			</div>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 34.00</span>
+										@php
+											$cart_amount = 0;
+											$shipping_charge = 0;
+											$total_item = 0;
+										@endphp
+										@if (isset($cart_data) && !empty($cart_data) && count((array)$cart_data) > 0)
+											
+											@foreach ($cart_data as $item)
+												<div class="row valu" style="margin-bottom: 20px ">
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+														  <img src="{{asset('images/book_image/thumb/'.$item->book_image.'')}}">
 													</div>
-	                                      			<a href="#">Remove item</a>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/20.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>The Girl Without a Name</h4>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
-	                                      				<p>Publisher : <span>BANALATA</span></p>
-	                                      			</div>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 104.00</span>
-													</div>
-	                                      			<a href="#">Remove item</a>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
+													  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+														  <div class="order-content">
+															  <h4>{{$item->book_name}}</h4>
+															  <div class="flex" style="justify-content: space-between;width: 100%;">
+																  <p>Author : <span>{{$item->author_name}}</span></p>
+																  <p>Publisher : <span>{{$item->publisher_name}}</span></p>
+															  </div>
+															  	<div class="price-final mb-10">
+																	Rate: <span>₹ {{ number_format($item->price,2,".",'')}}</span>
+																</div>
+																<div class="price-final mb-10">
+																	Total: <span>₹ {{ number_format(floatval($item->quantity) * floatval($item->price),2,".",'')}}</span>
+																</div>
+															{{ Form::open(['method' => 'post','route'=>'web.updateCart']) }}
+															<input type="hidden" name="book_id" value="{{encrypt($item->id)}}">
+															<div class="price-final mb-10">
+																<span><input type="number" min="1" name="quantity" value="{{$item->quantity}}"></span>
+															</div>
+															<button type="submit" class="btn btn-success">Update Item</button>
+															<a href="{{route('cartItemRemove',['book_id'=>encrypt($item->id)])}}" class="btn btn-danger">Remove item</a>
+															{{ Form::close() }}
+														  </div>
+													  </div>
+												</div>
+												@php
+													$cart_amount += (floatval($item->quantity) * floatval($item->price));
+													$shipping_charge += $item->shipping_charge;
+													$total_item++;
+												@endphp
+											@endforeach
+										@else
+											<h1>Cart Is Empty</h1>
+										@endif										
+
 	                                </div>
 	                            </div>	
 							</div>
@@ -85,22 +95,26 @@
 							<h5 style="text-align: center;">Cart Amount</h5>
 							<div class="row">
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									Sub Total (2 items)
+									Sub Total ({{$total_item}} items)
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									₹ 138.00
+									₹ {{ number_format($cart_amount,2,".",'')}}
 								</div>	
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+								{{-- <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 									GST
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 									₹ 14.00
-								</div>
+								</div> --}}
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									Delivery Charge
+									Shipping Charge
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-									₹ 30.00
+									@if ($shipping_charge > 0)
+										₹ {{ number_format($shipping_charge,2,".",'')}}
+									@else
+										Free
+									@endif
 								</div>
 							</div>	
 							<div class="bdr"></div>
@@ -109,7 +123,12 @@
 									<strong>Grand Total</strong>
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-10">
-									<strong>₹ 182.00</strong>
+									<strong>₹ 
+										@php
+											$grand_total = $cart_amount+$shipping_charge;
+										@endphp
+										{{$grand_total}}
+									</strong>
 								</div>
 								<div style="margin: auto;display: table;">									
 									<a href="{{route('web.checkout')}}"><button class="btn btn-success">Proceed To Checkout</button></a>

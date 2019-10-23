@@ -19,14 +19,27 @@ Route::group(['namespace'=> 'Web'], function(){
 
         Route::get('/Forgot/Password', 'PagesController@forgotPasswordForm')->name('web.forgot_password_form');
         Route::post('/Register/User', 'RegisterController@userRegister')->name('web.register');
-
         Route::get('Cart','CartController@viewCart')->name('web.view_cart');
+
+        Route::group(['middleware'=>'auth:buyer'], function(){
+            Route::get('Profile','UserController@myProfile')->name('web.myProfile');
+            Route::get('Profile/Edit','UserController@myProfileEdit')->name('web.myProfileEdit');
+            Route::post('Profile/Update','UserController@myProfileUpdate')->name('web.myProfileUpdate');
+
+            Route::get('/change/Password', 'UserController@viewChangePasswordForm')->name('web.change_password_form');
+		    Route::post('/change/Password', 'UserController@ChangePassword')->name('web.change_password');
+        });
     });
-    
+
+    Route::group(['prefix'=>'cart'],function(){
+        Route::get('/view', 'CartController@viewCart')->name('web.viewCart');
+        Route::get('/Add/{book_id}', 'CartController@AddCart')->name('web.add_cart');
+        Route::post('/Update', 'CartController@updateCart')->name('web.updateCart');
+        Route::get('/item/remove/{p_id}','CartController@cartItemRemove')->name('cartItemRemove');
+    }); 
 });
 
 Route::get('seller/login','Seller\SellerController@sellerLoginForm')->name('seller_login');
-
 Route::get('/', function () {
     return view('web.home');
 })->name('web.index');
@@ -62,15 +75,6 @@ Route::get('/Checkout', function () {
 
 // ======== Main Pages ==========
 
-Route::get('/User-Detail', function () {
-
-    return view('web.user.user-detail');
-})->name('web.user.user-detail');
-
-Route::get('/Add-User-Detail', function () {
-
-    return view('web.user.add-user-addrs');
-})->name('web.user.add-user-addrs');
 
 Route::get('/Project-Cart', function () {
 
@@ -91,11 +95,6 @@ Route::get('/My-Orders', function () {
 
     return view('web.user.orders');
 })->name('web.user.orders');
-
-Route::get('/Change-Password', function () {
-
-    return view('web.user.change-password');
-})->name('web.user.change-password');
 
 // ======== Shiping Address Pages ==========
 

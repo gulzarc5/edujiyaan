@@ -65,13 +65,13 @@
 											</div>
 											<div class="product-info-price">
 												<div class="price-final">
-													<span>₹{{ number_format($book_detail->price,2,".",'')}}</span>
+													<span>₹ {{ number_format($book_detail->price,2,".",'')}}</span>
 													<span class="old-price">₹{{ number_format($book_detail->mrp,2,".",'')}}</span>
 												</div>
 											</div>
 											<div class="product-add-form">
 												<form action="#">
-													<a href="#">Add to cart</a>
+													<a href="{{route('web.add_cart',['book_id'=>encrypt($book_detail->id)])}}">Add to cart</a>
 												</form>
 											</div>
 										</div>

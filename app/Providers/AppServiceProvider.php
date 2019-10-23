@@ -29,6 +29,59 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        View::composer('web.template.partials.header', function ($view) {
+            $cart_count =0;    
+            $cart_data = [];
 
+            if( Auth::guard('buyer')->user() && !empty(Auth::guard('buyer')->user()->id)) 
+            {
+                $user_id = Auth::guard('buyer')->user()->id;
+                $cart_count = DB::table('cart')->where('user_id',$user_id)->count();
+                $cart = DB::table('cart')->where('user_id',$user_id)->get();
+                if (count($cart) > 0) {
+                    foreach ($cart as $key => $item) {
+                        $cart = DB::table('books')->where('id',$item->book_id)
+                            ->whereNull('deleted_at')
+                            ->where('status',1)
+                            ->first();
+                            $cart->quantity = $item->quantity;
+                            $cart_data[] =$cart;
+                    }
+                }else{
+                    $cart_data = false;
+                }
+
+            }else{
+                if (Session::has('cart') && !empty(Session::get('cart'))) {
+                    $cart_count = count(Session::get('cart'));
+                    $cart = Session::get('cart');
+                    $cart_data =[];
+
+                    if (count($cart) > 0) {
+                        foreach ($cart as $product_id => $value) {
+                            $cart = DB::table('books')->where('id',$product_id)
+                            ->whereNull('deleted_at')
+                            ->where('status',1)
+                            ->first();
+                            $cart->quantity = $value['quantity'];
+                            $cart_data[] =$cart;
+                        }
+                    }else{
+                        $cart_data = false;
+                    }
+                }else{
+                    $cart_count = 0;
+                }
+            }
+
+            $cart_data_header = [
+                'cart_count' => $cart_count,
+                'cart_data' => $cart_data,
+            ];
+           
+            //  dd($cart_data_header);
+            //  die();
+            $view->with('cart_data_header', $cart_data_header);
+        });
     }
 }

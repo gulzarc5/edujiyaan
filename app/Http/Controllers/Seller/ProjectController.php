@@ -9,13 +9,14 @@ use DataTables;
 use File;
 use Carbon\Carbon;
 use Auth;
+use Response;
 
 class ProjectController extends Controller
 {
     public function addProjectForm()
     {
     	$project_spalization = DB::table('project_spalization')
-    									->get();
+    		->get();
 
     	return view('seller.projects.add_project_form',compact('project_spalization'));
     }

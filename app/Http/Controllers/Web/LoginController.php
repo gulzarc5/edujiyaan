@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Hash;
+use Session;
+use DB;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -18,6 +21,28 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('buyer')->attempt(['email' => $request->email, 'password' => $request->password,'status' => '1'])) {
+            if (Session::has('cart') && !empty(Session::get('cart'))) {
+                $cart = Session::get('cart');
+                if (count($cart) > 0) {
+                    foreach ($cart as $book_id => $value) {
+                    $check_cart_product = DB::table('cart')
+                        ->where('book_id',$book_id)
+                        ->where('user_id',Auth::guard('buyer')->user()->id)
+                        ->count();
+                    if ($check_cart_product < 1 ) {
+                        DB::table('cart')
+                            ->insert([
+                            'book_id' =>  $book_id,
+                            'user_id' => Auth::guard('buyer')->user()->id,
+                            'quantity' => $value['quantity'],
+                            'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                            ]);
+                    }
+                    }
+                }
+                Session::forget('cart');
+                Session::save();
+             }
             return redirect()->intended('/');
         }
         return back()->withInput($request->only('email', 'remember'))->with('login_error','Username or password incorrect');

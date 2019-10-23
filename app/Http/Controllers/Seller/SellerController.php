@@ -121,10 +121,10 @@ class SellerController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
 
-            return redirect()->back()->with('message','Your Password Changed Successfully');
+            return redirect()->back()->with('message','Profile Updated Successfully');
             
         }else{           
-            return redirect()->back()->with('error','Sorry Current Password Does Not matched');
+            return redirect()->back()->with('error','Something Wrong With Update');
        }
     }
     

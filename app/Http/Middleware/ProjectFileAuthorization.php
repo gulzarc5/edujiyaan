@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Auth;
 use DB;
+use Closure;
 
-class CheckValidAccessUser
+class ProjectFileAuthorization
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,6 @@ class CheckValidAccessUser
      */
     public function handle($request, Closure $next)
     {
-        
-        
         if (Auth::check()) {
             if (Auth::guard('admin')->check()) {
                 return $next($request);
@@ -29,8 +27,16 @@ class CheckValidAccessUser
                     abort(404);
                 }
                 $seller_id = Auth::guard('seller')->user()->id;
-
-
+                
+                $check_data = DB::table('projects')
+                    ->where('id',$project_id)
+                    ->where('user_id',$seller_id)
+                    ->count();
+                if ($check_data > 0) {
+                    return $next($request);
+                }else{
+                    abort(404);
+                }
             }elseif(Auth::guard('buyer')->check()){
 
             }            
