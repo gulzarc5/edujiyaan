@@ -97,7 +97,7 @@
                              Cover Image 
                           </td>
                           <td>
-                              <a href="{{ route('cover_image_view', ['file_name' => $megazine->cover_image]) }}" target="_blank">View Cover Image</a>
+                              <a href="{{ route('seller.cover_image_view', ['megazine_id' => encrypt($megazine->id )]) }}" target="_blank">View Cover Image</a>
                           </td>
                         </tr> 
                         @endif  
@@ -107,7 +107,7 @@
                              File 
                           </td>
                           <td>
-                              <a href="{{ route('megazine_file_view', ['file_name' => $megazine->file_name  ]) }}" target="_blank">View File</a>
+                              <a href="{{ route('seller.megazine_file_view', ['megazine_id' => encrypt($megazine->id ) ]) }}" target="_blank">View File</a>
                           </td>
                         </tr>
                         @endif               

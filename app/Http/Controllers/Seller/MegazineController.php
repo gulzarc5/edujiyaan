@@ -226,6 +226,65 @@ class MegazineController extends Controller
         } else {
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
+    }
+
+     public function megazineDetailView($megazine_id)
+    {
+        try {
+            $megazine_id = decrypt($megazine_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $seller_id = Auth::guard('seller')->user()->id;
+
+        $megazine = DB::table('megazines')->where('megazines.id', $megazine_id)           
+            ->leftJoin('magazine_category','megazines.category_id','=','magazine_category.id')
+            ->select('megazines.*','magazine_category.name as category_name')
+            ->first();
+        $seller = null;
+        if (!empty($megazine->user_id) && $megazine->user_id != "A") {
+            $seller = DB::table('users')->where('id',$megazine->user_id)->first();
+        }
+        return view('seller.megazines.megazine_details',compact('megazine', 'seller'));
+    }
+
+    public function megazineFileView ($megazine_id) {
+        try {
+            $megazine_id = decrypt($megazine_id);
+        }catch(DecryptException $e) {
+            abort(404);
+        }
         
+        $megazine_file = DB::table('megazines')->select('file_name')->where('id', $megazine_id)->first();
+
+        $path = storage_path('\app\files\megazines\\'.$megazine_file->file_name);
+        if (!File::exists($path)) 
+            $response = 404;
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
+    public function coverImageView ($megazine_id) {
+        try {
+            $megazine_id = decrypt($megazine_id);
+        }catch(DecryptException $e) {
+            abort(404);
+        }
+        
+        $megazine_file = DB::table('megazines')->select('cover_image')->where('id', $megazine_id)->first();
+        $path = public_path('\images\megazines\\'.$megazine_file->cover_image);
+        if (!File::exists($path)) 
+            $response = 404;
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 }

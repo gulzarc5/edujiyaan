@@ -160,8 +160,7 @@ class ProjectController extends Controller
             abort(404);
         }
         
-        $project_file = DB::table('projects')->select('preview')->where('id',$project_id)->first();
-        // dd($quiz_file);
+        $project_file = DB::table('projects')->select('preview')->where('id', $project_id)->first();
         $path = storage_path('\app\files\projects\preview\\'.$project_file->preview);
         if (!File::exists($path)) {
             abort(404);
@@ -293,6 +292,43 @@ class ProjectController extends Controller
         } else {
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
-        
+    }
+
+    public function documentationFileView ($project_id) {
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            abort(404);
+        }
+
+        $project_file = DB::table('projects')->select('documentation')->where('id', $project_id)->first();
+        $path = storage_path('app\files\projects\documentation\\'.$project_file->documentation);
+        if (!File::exists($path)) 
+            $response = 404;
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
+    public function synopsisFileView ($project_id) {
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            abort(404);
+        }
+
+        $project_file = DB::table('projects')->select('synopsis')->where('id', $project_id)->first();    
+        $path = storage_path('\app\files\projects\synopsis\\'.$project_file->synopsis);
+        if (!File::exists($path)) 
+            $response = 404;
+        $file = File::get($path);
+        $type = File::mimeType($path);
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 }

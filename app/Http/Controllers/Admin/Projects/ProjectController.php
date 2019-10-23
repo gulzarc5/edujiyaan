@@ -248,7 +248,7 @@ class ProjectController extends Controller
 
     public function previewFileView ($file_name) {
 
-        $path = storage_path('\app\files\project\preview\\'.$file_name);
+        $path = storage_path('\app\files\projects\preview\\'.$file_name);
         if (!File::exists($path)) 
             $response = 404;
         $file = File::get($path);
@@ -261,7 +261,7 @@ class ProjectController extends Controller
 
     public function documentationFileView ($file_name) {
 
-        $path = storage_path('\app\files\project\documentation\\'.$file_name);
+        $path = storage_path('\app\files\projects\documentation\\'.$file_name);
         if (!File::exists($path)) 
             $response = 404;
         $file = File::get($path);
@@ -274,7 +274,7 @@ class ProjectController extends Controller
 
     public function synopsisFileView ($file_name) {
 
-        $path = storage_path('\app\files\project\synopsis\\'.$file_name);
+        $path = storage_path('\app\files\projects\synopsis\\'.$file_name);
         if (!File::exists($path)) 
             $response = 404;
         $file = File::get($path);
