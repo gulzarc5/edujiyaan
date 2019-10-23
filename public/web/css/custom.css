@@ -61,7 +61,7 @@
 }
 .project-page .product-wrapper{
 	background: #fff;
-	-webkit-box-shadow: 0px 0px 15px 9px rgba(230,230,230,0.69)
+	-webkit-box-shadow: 0px 0px 15px 9px rgba(230,230,230,0.69);
 	-moz-box-shadow: 0px 0px 15px 9px rgba(230,230,230,0.69);
 	box-shadow: 0px 0px 15px 9px rgba(230,230,230,0.69);
 	border-color: #f07c2994;
@@ -126,7 +126,8 @@
 }
 .single-register .check .option {
     width: 50%;
-    float: left;
+	float: left;
+}
 .orders .checkbox-form{
 	padding: 10px 0;
 }
