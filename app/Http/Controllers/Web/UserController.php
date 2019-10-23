@@ -74,6 +74,7 @@ class UserController extends Controller
                 'state_id' => $request->input('state'),
                 'city_id' => $request->input('city'),
                 'address' => $request->input('address'),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         if ($user_update) {
             return redirect()->route('web.myProfile')->with('message','Your Password Changed Successfully');
@@ -111,5 +112,84 @@ class UserController extends Controller
         }else{           
             return redirect()->back()->with('error','Sorry Current Password Does Not matched');
        }
+    }
+
+    public function viewShippingAddressList()
+    {
+        $user_id = Auth::guard('buyer')->id();
+        $shipping_address = DB::table('user_shipping_address')
+            ->select('user_shipping_address.*','state.name as s_name','city.name as c_name')
+            ->leftjoin('state','state.id','=','user_shipping_address.state_id')
+            ->leftjoin('city','city.id','=','user_shipping_address.city_id')
+            ->where('user_shipping_address.user_id',$user_id)
+            ->whereNull('user_shipping_address.deleted_at')
+            ->get();
+        if ($shipping_address->count() > 0) {
+           
+            return view('web.shipping-address.shipping-address',compact('shipping_address'));
+        }else {
+            $states = DB::table('state')
+            ->whereNull('deleted_at')
+            ->get();
+            return view('web.shipping-address.add-shipping-address',compact('states'));
+        }       
+        
+    }
+
+    public function viewShippingAddressForm()
+    {
+        $states = DB::table('state')
+            ->whereNull('deleted_at')
+            ->get();
+        return view('web.shipping-address.add-shipping-address',compact('states'));
+    }
+
+    public function ShippingAddressAdd(Request $request)
+    {        
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => 'email|required',
+            'mobile' =>  ['required','digits:10','numeric'],
+            'pin' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+        ]);
+        
+        $user_id = Auth::guard('buyer')->user()->id;
+        $shipping_add = DB::table('user_shipping_address')
+            ->insert([
+                'user_id' => $user_id,
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'mobile' =>  $request->input('mobile'),
+                'pin' => $request->input('pin'),
+                'state_id' => $request->input('state'),
+                'city_id' => $request->input('city'),
+                'address' => $request->input('address'),
+                'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($shipping_add) {
+            return redirect()->route('web.myProfile')->with('message','Shipping Address Successfully');
+        } else {
+            return redirect()->back()->with('error','Sorry Something Went Wrong Please Try Again');
+        }
+    }
+
+    public function ShippingAddressDelete($shipping_id)
+    {
+        try {
+            $shipping_id = decrypt($shipping_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        DB::table('user_shipping_address')
+            ->where('id',$shipping_id)
+            ->update([
+                'deleted_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        return redirect()->back()->with('message','Shipping Address Deleted Successfully');
     }
 }

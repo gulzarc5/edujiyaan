@@ -27,7 +27,12 @@ Route::group(['namespace'=> 'Web'], function(){
             Route::post('Profile/Update','UserController@myProfileUpdate')->name('web.myProfileUpdate');
 
             Route::get('/change/Password', 'UserController@viewChangePasswordForm')->name('web.change_password_form');
-		    Route::post('/change/Password', 'UserController@ChangePassword')->name('web.change_password');
+            Route::post('/change/Password', 'UserController@ChangePassword')->name('web.change_password');
+            
+            Route::get('/Shipping/Address/List', 'UserController@viewShippingAddressList')->name('web.view_shipping_address_list');
+            Route::get('/Shipping/Address', 'UserController@viewShippingAddressForm')->name('web.shipping_address_form');
+            Route::post('/Shipping/Address/Add', 'UserController@ShippingAddressAdd')->name('web.shipping_address_add');
+            Route::get('/Shipping/Address/Delete/{shipping_id}', 'UserController@ShippingAddressDelete')->name('web.shipping_address_delete');
         });
     });
 
@@ -97,16 +102,6 @@ Route::get('/My-Orders', function () {
 })->name('web.user.orders');
 
 // ======== Shiping Address Pages ==========
-
-Route::get('/Shipping-Address', function () {
-
-    return view('web.shipping-address.shipping-address');
-})->name('web.shipping-address.shipping-address');
-
-Route::get('/Add-Shipping-Address', function () {
-
-    return view('web.shipping-address.add-shipping-address');
-})->name('web.shipping-address.add-shipping-address');
 
 Route::get('/Edit-Shipping-Address', function () {
 
