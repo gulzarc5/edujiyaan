@@ -38,7 +38,7 @@
 									<button type="submit">login</button>
 								</div>
 							</form>
-							<a href="Signin">Login</a>
+							<a href="Signin">Already Signed up? Login</a>
 						</div>
 					</div>
 				</div>

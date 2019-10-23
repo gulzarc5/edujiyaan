@@ -43,12 +43,33 @@ Route::get('/Project', function () {
     return view('web.project');
 })->name('web.project');
 
+Route::get('/Project-Detail', function () {
+
+    return view('web.project-detail');
+
+})->name('web.project-detail');
+
+Route::get('/Magazines', function () {
+
+    return view('web.magazines');
+})->name('web.magazines');
+
+Route::get('/Checkout', function () {
+
+    return view('web.checkout');
+})->name('web.checkout');
+
 // ======== Main Pages ==========
 
 Route::get('/User-Detail', function () {
 
     return view('web.user.user-detail');
 })->name('web.user.user-detail');
+
+Route::get('/Add-User-Detail', function () {
+
+    return view('web.user.add-user-addrs');
+})->name('web.user.add-user-addrs');
 
 Route::get('/Cart', function () {
 
@@ -59,6 +80,11 @@ Route::get('/My-Orders', function () {
 
     return view('web.user.orders');
 })->name('web.user.orders');
+
+Route::get('/Change-Password', function () {
+
+    return view('web.user.change-password');
+})->name('web.user.change-password');
 
 // ======== Shiping Address Pages ==========
 

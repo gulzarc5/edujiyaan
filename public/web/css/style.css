@@ -154,6 +154,9 @@ body {
 .mtb-70 {
     margin: 70px 0;
 }
+.mb-10 {
+    margin-bottom: 10px;
+}
 .mb-25 {
     margin-bottom: 25px;
 }
@@ -213,6 +216,9 @@ body {
 }
 .mt-80 {
     margin-top: 80px;
+}
+.pt-25 {
+    padding-top: 25px;
 }
 .pt-40 {
     padding-top: 40px;
@@ -285,6 +291,9 @@ body {
 }
 .pt-154 {
     padding-top: 154px;
+}
+.pb-10 {
+    padding-bottom: 10px;
 }
 .pb-25 {
     padding-bottom: 25px;
@@ -527,10 +536,12 @@ body {
 }
 .header-mid-area .my-cart ul > li:hover a {
     color: #f07c29;
+    text-decoration: underline;
 }
 .header-mid-area .my-cart ul li > a > i {
     font-size: 40px;
     padding-right: 30px;
+    color: #000!important;
 }
 .header-mid-area .my-cart ul li > span {
     background: #f07c29 none repeat scroll 0 0;
@@ -3698,9 +3709,9 @@ nav.menu .cr-dropdown ul {
     color: #f07c29;
 }
 .left-menu ul li a:before {
-    content: "";
+    content: ">";
     display: inline-block;
-    font-family: "FontAwesome";
+    font-family: inherit;
     font-size: 16px;
     margin-right: 20px;
 }
@@ -4882,7 +4893,7 @@ nav.menu .cr-dropdown ul {
     font-weight: 400;
 }
 .login-form .single-login input {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    background: #fff;
     border: 1px solid #eceff8;
     padding: 12px 10px;
     width: 100%;
@@ -4959,7 +4970,7 @@ nav.menu .cr-dropdown ul {
     font-weight: 400;
 }
 .single-register input {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    background: #fff;
     border: 1px solid #eceff8;
     box-shadow: none;
     color: #333;
@@ -4972,7 +4983,7 @@ nav.menu .cr-dropdown ul {
 }
 .single-register .chosen-select {
     height: 45px;
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    background: #fff;
     border: 1px solid #eceff8;
     color: #626262;
     font-size: 14px;

@@ -110,7 +110,7 @@
                                                 </div>
                                             	<div class="">
                                                 <div class="product-button">
-                                                    <a href="single_project.php?project_no=38" title="Add to cart" class="btn btn-primary margin-mobile">View</a>
+                                                    <a href="{{route('web.project-detail')}}" title="Add to cart" class="btn btn-primary margin-mobile">View</a>
                                                 </div>
                                             </div>
                                             </div>

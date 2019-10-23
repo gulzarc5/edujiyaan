@@ -9,7 +9,7 @@
 						<div class="breadcrumbs-menu">
 							<ul>
 								<li><a href="#">Home</a></li>
-								<li><a href="#" class="active">Cart</a></li>
+								<li><a href="#" class="active">Checkout</a></li>
 							</ul>
 						</div>
 					</div>
@@ -23,7 +23,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="section-title-5 mb-30" style="text-align: center;">
-							<h2>Cart</h2>
+							<h2>Checkout</h2>
 						</div>
 					</div>
 				</div>
@@ -36,6 +36,7 @@
 				<div class="row">						
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<div class="checkbox-form mb-25">
+							<h5 style="text-align: center;">Cart Item</h5>
 							<div class="product-info-area">
 								<div class="tab-content">
 	                                <div class="tab-pane active" id="Books">
@@ -79,6 +80,30 @@
 	                            </div>	
 							</div>
 						</div>
+						<div class="checkbox-form mb-25">
+							<h5 style="text-align: center;">Shipping Address</h5>
+							<div class="row">
+								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 p-0">
+									<div class="row" style="padding: 8px 0;">
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 icon-content">
+											<img src="http://localhost/edujiyaan/public/web/img/icons/home.png">
+										</div>
+										<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+											<h4>Rahul Roy</h4>
+											<p>56/1, Fake Street, Bogus Place</p>
+											<p>City, State</p>
+											<p>9458678145</p>
+											<p>demo@example.com</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+									<div class="checkout-form-list">								
+										<a href="#"><button class="btn btn-info">Change Address</button></a>
+									</div>
+								</div>																	
+							</div>												
+						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="checkbox-form mb-25">
@@ -110,10 +135,29 @@
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-10">
 									<strong>₹ 182.00</strong>
-								</div>
-								<div style="margin: auto;display: table;">									
-									<a href="{{route('web.checkout')}}"><button class="btn btn-success">Proceed To Checkout</button></a>
 								</div>			
+							</div>
+						</div>
+						<div class="checkbox-form mb-25">
+							<h5 style="text-align: center;">Payment Method</h5>
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex mb-10" style="justify-content: space-around;">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+										<label class="form-check-label" for="exampleRadios1">
+										    COD
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+										<label class="form-check-label" for="exampleRadios2">
+									    CARD PAYMENT
+										</label>
+									</div>
+								</div>	
+								<div style="margin: auto;display: table;">									
+									<a href="#"><button class="btn btn-success">Proceed To Pay</button></a>
+								</div>
 							</div>
 						</div>
 					</div>

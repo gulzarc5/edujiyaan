@@ -1,9 +1,31 @@
 .p-0{
 	padding: 0
 }
+.flex{
+	display: inline-flex;
+}
 .flex-center{
 	display: inline-flex;
     justify-content: center;
+}
+.header-img img{
+    width: 17%;
+    margin-right: 10px;
+}
+.header-img a{
+    color: #444444;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 10px 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: .3s;
+}
+.header-img:hover a{
+    color: #f07c29;
+    text-decoration: underline;
 }
 .margin-mobile{
 	background-color: #f07c29;
@@ -59,7 +81,7 @@
 .project-page .margin-mobile:focus{
 	color: #000;background-color: #ffffff;border-color: #f07c29;padding: 6px 31px;font-weight: 700;
 }
-.user-detail .checkbox-form{
+.user-detail .checkbox-form, .login-form, .billing-fields{
 	padding: 28px 50px;
     background: #f6f5f5;
     border-radius: 10px;
@@ -105,6 +127,61 @@
 .single-register .check .option {
     width: 50%;
     float: left;
+.orders .checkbox-form{
+	padding: 10px 0;
+}
+.orders .checkbox-form .product-info-area .nav-tabs{
+	margin: 0 20px;
+}
+.orders .checkbox-form .product-info-area ul .ntab{
+	float: right;
+}
+.orders .checkbox-form .product-info-area .tab-content {
+	border: none;
+}
+.orders .checkbox-form .product-info-area .tab-content .valu {
+	background-color: #fff;
+	padding: 10px 0;
+	border: 1px solid #ddd;
+}
+.orders .checkbox-form .product-info-area .order-content h4{
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	font-family: 'Rufina', serif;
+}
+.orders .checkbox-form .product-info-area .order-content p span{
+	color: #000;
+}
+.orders .checkbox-form .product-info-area .price-final span{
+	color: #f07c29;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: 'Rufina', serif;
+    font-weight: 400;
+}
+.status h6{
+	display: inline-block;
+    color: #fff;
+    padding: 3px 7px;
+    border-radius: 3px;
+}
+.orders .checkbox-form .product-info-area .order-content a {
+	background-color: #e42222;
+	color: #fff;
+	padding: 4px 8px;
+    border-radius: 3px;
+}
+.del{background-color: #109e10}
+.pen{background-color: #10c19d}
+.can{background-color: #e42222}
+.orders .checkbox-form h5{
+	text-align: center;
+    margin:0 10px 20px;
+}
+.bdr{
+	border-bottom: 1px solid #8f8585;
+	margin: 10px; 
 }
 /*==================
 	Responsive

@@ -60,7 +60,7 @@
 											<ul>
 												<li><a href="{{route('web.user.cart')}}">Cart</a></li>
 												<li><a href="{{route('web.user.user-detail')}}">User Detail</a></li>
-												{{-- <li><a href="{{route('web.user-detail')}}">Checkout</a></li> --}}
+												<li><a href="{{route('web.user.change-password')}}">Change Password</a></li>
 												<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
 												<li><a href="{{route('web.shipping-address.shipping-address')}}">My Shipping Address</a></li>
 											</ul>
@@ -78,11 +78,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
-							<div class="header-search">
-								<form action="#">
-									<input type="text" placeholder="Search entire store here..." />
-									<a href="#"><i class="fa fa-search"></i></a>
-								</form>
+							<div class="header-img pt-25">
+								<img src="{{asset('web/img/icons/shop.png')}}">
+								<a href="#"></i>sell on edujiyaan</a>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
@@ -91,7 +89,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-							<div class="my-cart">
+							<div class="my-cart pt-25">
 								<ul>
 									<li><a href="#"><i class="fa fa-shopping-cart"></i>My Cart</a>
 										<span>2</span>
@@ -150,7 +148,7 @@
 										<li><a href="{{route('web.new_book_list')}}">Books</a></li>
 										<li><a href="{{route('web.old-books')}}">Old Books</a></li>
 										<li><a href="{{route('web.project')}}">Projects</a></li>
-										<li><a href="#">Magazines</a></li>
+										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
 										<li><a href="#">Quiz</a></li>
 										<li><a href="#">Tips and Tricks</a></li>
 									</ul>
