@@ -72,6 +72,21 @@ Route::get('/Add-User-Detail', function () {
     return view('web.user.add-user-addrs');
 })->name('web.user.add-user-addrs');
 
+Route::get('/Project-Cart', function () {
+
+    return view('web.project-cart');
+})->name('web.project-cart');
+
+Route::get('/Membership', function () {
+
+    return view('web.user.membership');
+})->name('web.user.membership');
+
+Route::get('/Membership-Checkout', function () {
+
+    return view('web.membership-checkout');
+})->name('web.membership-checkout');
+
 Route::get('/My-Orders', function () {
 
     return view('web.user.orders');

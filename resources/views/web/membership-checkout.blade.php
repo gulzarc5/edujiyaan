@@ -45,13 +45,12 @@
 		                                    </div>
 	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	                                      		<div class="order-content">
-	                                      			<h4>Chinmoyee Project 2</h4>
+	                                      			<h4>Gold Membership</h4>
 	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Total Pages : <span>200</span></p>
-	                                      				<p>Specialisation  : <span>Retail</span></p>
+	                                      				<p>Duration  : <span> For 3 Months</span></p>
 	                                      			</div>
 	                                      			<div class="price-final mb-10">
-														<span>₹ 2000.00</span>
+														<span>₹ 200.00</span>
 													</div>
 	                                      			<a href="#">Remove item</a>
 	                                      		</div>
@@ -67,22 +66,16 @@
 							<h5 style="text-align: center;">Checkout Amount</h5>
 							<div class="row">
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									Sub Total (2 items)
+									Sub Total
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									₹ 3500.00
+									₹ 200.00
 								</div>	
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 									GST
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									₹ 200.00
-								</div>
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									Delivery Charge
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-									₹ 30.00
+									₹ 10.00
 								</div>
 							</div>	
 							<div class="bdr"></div>
@@ -91,7 +84,7 @@
 									<strong>Grand Total</strong>
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-10">
-									<strong>₹ 3730.00</strong>
+									<strong>₹ 210.00</strong>
 								</div>	
 								<div style="margin: auto;display: table;">									
 									<a href="#"><button class="btn btn-success">Proceed To Pay</button></a>
