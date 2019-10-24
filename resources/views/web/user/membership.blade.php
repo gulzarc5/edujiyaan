@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="panel-footer">
-                                <a href="#" class="btn btn-success" role="button">Buy now</a>
+                                <a href="{{route('web.checkout.membership-checkout')}}" class="btn btn-success" role="button">Proceed To Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="panel-footer">
-                                <a href="#" class="btn btn-success" role="button">Buy now</a>
+                                <a href="{{route('web.checkout.membership-checkout')}}" class="btn btn-success" role="button">Proceed To Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="panel-footer">
-                                <a href="#" class="btn btn-success" role="button">Buy now</a>
+                                <a href="{{route('web.checkout.membership-checkout')}}" class="btn btn-success" role="button">Proceed To Checkout</a>
                             </div>
                         </div>
                     </div>

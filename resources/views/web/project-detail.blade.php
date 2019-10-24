@@ -61,7 +61,7 @@
 										</div>
 										<div class="product-add-form">
 											<form action="#">
-												<a href="{{route('web.project-cart')}}">Proceed To Checkout</a>
+												<a href="{{route('web.checkout.project-checkout')}}">Proceed To Checkout</a>
 											</form>
 										</div>
 									</div>

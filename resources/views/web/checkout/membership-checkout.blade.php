@@ -52,7 +52,6 @@
 	                                      			<div class="price-final mb-10">
 														<span>₹ 200.00</span>
 													</div>
-	                                      			<a href="#">Remove item</a>
 	                                      		</div>
 	                                      	</div>
 	                                    </div>
