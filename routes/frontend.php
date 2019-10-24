@@ -8,6 +8,14 @@ Route::group(['namespace'=> 'Web'], function(){
         Route::post('Ajax/Book/List','BookController@ajaxBookList')->name('ajax_book_list');
         Route::get('/search/pagination','BookController@ajaxBookList');
         Route::get('/Books-Detail/{book_id}', 'BookController@bookDetail')->name('web.books-detail');
+
+        ///////////////////////Old Books Route ////////////////////////////////
+        Route::get('Old/List/{academic?}','BookController@bookListOld')->name('web.old_book_list');
+        Route::get('Old/List/Category/{cat_id}','BookController@bookListCategoryOld')->name('web.old_book_list_category');
+
+        Route::post('Old/Ajax/Book/List','BookController@ajaxBookListOld')->name('ajax_book_list_old');
+        Route::get('Old/search/pagination','BookController@ajaxBookListOld');
+        Route::get('Old/Books-Detail/{book_id}', 'BookController@bookDetail')->name('web.books-detail');
     });
 
     Route::group(['prefix'=>'User'],function(){
@@ -33,6 +41,8 @@ Route::group(['namespace'=> 'Web'], function(){
             Route::get('/Shipping/Address', 'UserController@viewShippingAddressForm')->name('web.shipping_address_form');
             Route::post('/Shipping/Address/Add', 'UserController@ShippingAddressAdd')->name('web.shipping_address_add');
             Route::get('/Shipping/Address/Delete/{shipping_id}', 'UserController@ShippingAddressDelete')->name('web.shipping_address_delete');
+            Route::get('/Shipping/Address/Edit/{shipping_id}', 'UserController@ShippingAddressEdit')->name('web.shipping_address_edit');
+            Route::post('/Shipping/Address/Update', 'UserController@ShippingAddressUpdate')->name('web.shipping_address_update');
         });
     });
 
@@ -119,10 +129,4 @@ Route::get('/My-Orders', function () {
     return view('web.user.orders');
 })->name('web.user.orders');
 
-// ======== Shiping Address Pages ==========
-
-Route::get('/Edit-Shipping-Address', function () {
-
-    return view('web.shipping-address.edit-shipping-address');
-})->name('web.shipping-address.edit-shipping-address');
 

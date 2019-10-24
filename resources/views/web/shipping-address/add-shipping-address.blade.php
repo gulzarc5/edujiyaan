@@ -109,17 +109,17 @@
 											@enderror
 										</div>
 									</div>
-										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-											<div class="checkout-form-list">
-												<label>Pin Code <span class="required">*</span></label>	
-												<input type="text" placeholder="Enter Pin Code" name="pin" value="{{old('pin')}}">
-												@if($errors->has('pin'))
-													<span class="invalid-feedback" role="alert" style="color:red">
-														<strong>{{ $errors->first('pin') }}</strong>
-													</span>
-												@enderror
-											</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+										<div class="checkout-form-list">
+											<label>Pin Code <span class="required">*</span></label>	
+											<input type="text" placeholder="Enter Pin Code" name="pin" value="{{old('pin')}}">
+											@if($errors->has('pin'))
+												<span class="invalid-feedback" role="alert" style="color:red">
+													<strong>{{ $errors->first('pin') }}</strong>
+												</span>
+											@enderror
 										</div>
+									</div>
 										
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="checkout-form-list">

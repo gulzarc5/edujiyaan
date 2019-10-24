@@ -400,7 +400,7 @@
                         <div class="single-team">
                             <div class="team-img-area">
                                 <div class="team-img">
-                                    <a href="{{route('web.new_book_list')}}"><img src="{{asset('web/img/icons/1.png')}}" alt="man" /></a>
+                                    <a href="{{route('web.new_book_list',['book_condition'=>encrypt(1)])}}"><img src="{{asset('web/img/icons/1.png')}}" alt="man" /></a>
                                 </div>
                             </div>
                             <div class="team-content text-center">

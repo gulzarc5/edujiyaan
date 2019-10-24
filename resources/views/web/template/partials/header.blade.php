@@ -162,7 +162,7 @@
 									<ul style="display: flex;justify-content: center;">
 										<li class="active"><a href="{{route('web.index')}}">Home</a></li>
 										<li><a href="{{route('web.new_book_list')}}">Books</a></li>
-										<li><a href="{{route('web.old-books')}}">Old Books</a></li>
+										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project')}}">Projects</a></li>
 										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
 										<li><a href="#">Quiz</a></li>
@@ -185,7 +185,7 @@
 									<ul id="nav">
 										<li class="active"><a href="{{route('web.index')}}">Home</a></li>
 										<li><a href="{{route('web.new_book_list')}}">Books</a></li>
-										<li><a href="{{route('web.old-books')}}">Old Books</a></li>
+										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project')}}">Projects</a></li>
 										<li><a href="#">Magazines</a></li>
 										<li><a href="#">Quiz</a></li>

@@ -63,7 +63,7 @@
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 											<div class="checkout-form-list">
 												<a href="{{route('web.shipping_address_delete',['shipping_id'=>encrypt($item->id)])}}"><button class="btn btn-danger">Delete</button></a>
-												<a href="{{route('web.shipping-address.edit-shipping-address')}}"><button class="btn btn-info">Edit</button></a>
+												<a href="{{route('web.shipping_address_edit',['shipping_id'=>encrypt($item->id)])}}"><button class="btn btn-info">Edit</button></a>
 											</div>
 										</div>																	
 									</div>												
