@@ -46,6 +46,9 @@ Route::group(['namespace'=> 'Web'], function(){
 
             Route::group(['prefix'=>'Checkout'],function(){
                 Route::get('/Book', 'CheckoutController@CheckoutBook')->name('web.checkout_book');
+                Route::get('/Add/Address', 'CheckoutController@CheckoutAddAddress')->name('web.add_checkout_address');
+                Route::post('/Add/Address', 'CheckoutController@CheckoutInsertAddress')->name('web.add_checkout_insert_address');
+                Route::post('/Book/Order/Place','CheckoutController@bookOrderPlace')->name('web.book_order_place');
             }); 
         });
     });
