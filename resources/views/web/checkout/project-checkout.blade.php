@@ -51,9 +51,8 @@
 	                                      				<p>Specialisation  : <span>Retail</span></p>
 	                                      			</div>
 	                                      			<div class="price-final mb-10">
-														<span>₹ 2000.00</span>
+														Total : <span>₹ 2000.00</span>
 													</div>
-	                                      			<a href="#">Remove item</a>
 	                                      		</div>
 	                                      	</div>
 	                                    </div>
@@ -77,12 +76,6 @@
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 									₹ 200.00
-								</div>
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									Delivery Charge
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-									₹ 30.00
 								</div>
 							</div>	
 							<div class="bdr"></div>

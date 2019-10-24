@@ -55,8 +55,6 @@ Route::get('/Old-Books', function () {
     return view('web.old-books');
 })->name('web.old-books');
 
-
-
 Route::get('/Project', function () {
 
     return view('web.project');
@@ -75,16 +73,16 @@ Route::get('/Magazines', function () {
 
 Route::get('/Checkout', function () {
 
-    return view('web.checkout');
-})->name('web.checkout');
+    return view('web.checkout.checkout');
+})->name('web.checkout.checkout');
 
 // ======== Main Pages ==========
 
 
-Route::get('/Project-Cart', function () {
+Route::get('/Project-Checkout', function () {
 
-    return view('web.project-cart');
-})->name('web.project-cart');
+    return view('web.checkout.project-checkout');
+})->name('web.checkout.project-checkout');
 
 Route::get('/Membership', function () {
 
@@ -93,8 +91,8 @@ Route::get('/Membership', function () {
 
 Route::get('/Membership-Checkout', function () {
 
-    return view('web.membership-checkout');
-})->name('web.membership-checkout');
+    return view('web.checkout.membership-checkout');
+})->name('web.checkout.membership-checkout');
 
 Route::get('/My-Orders', function () {
 

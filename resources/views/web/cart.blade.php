@@ -31,7 +31,7 @@
 		</div>
 		<!-- entry-header-area-end -->
 		<!-- checkout-area-start -->
-		<div class="checkout-area select-add orders mb-70">
+		<div class="checkout-area select-add cart orders mb-70">
 			<div class="container">
 				<div class="row">						
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -51,29 +51,33 @@
 													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
 														  <img src="{{asset('images/book_image/thumb/'.$item->book_image.'')}}">
 													</div>
-													  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-														  <div class="order-content">
-															  <h4>{{$item->book_name}}</h4>
-															  <div class="flex" style="justify-content: space-between;width: 100%;">
-																  <p>Author : <span>{{$item->author_name}}</span></p>
-																  <p>Publisher : <span>{{$item->publisher_name}}</span></p>
-															  </div>
-															  	<div class="price-final mb-10">
-																	Rate: <span>₹ {{ number_format($item->price,2,".",'')}}</span>
-																</div>
-																<div class="price-final mb-10">
-																	Total: <span>₹ {{ number_format(floatval($item->quantity) * floatval($item->price),2,".",'')}}</span>
-																</div>
+													<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+														<div class="order-content">
+															<h4>{{$item->book_name}}</h4>
+															<div class="flex" style="justify-content: space-between;width: 100%;">
+																<p>Author : <span>{{$item->author_name}}</span></p>
+																<p>Publisher : <span>{{$item->publisher_name}}</span></p>
+															</div>															
 															{{ Form::open(['method' => 'post','route'=>'web.updateCart']) }}
-															<input type="hidden" name="book_id" value="{{encrypt($item->id)}}">
-															<div class="price-final mb-10">
-																<span><input type="number" min="1" name="quantity" value="{{$item->quantity}}"></span>
-															</div>
-															<button type="submit" class="btn btn-success">Update Item</button>
-															<a href="{{route('cartItemRemove',['book_id'=>encrypt($item->id)])}}" class="btn btn-danger">Remove item</a>
-															{{ Form::close() }}
-														  </div>
-													  </div>
+																<div class="flex" style="justify-content: space-between;width: 100%;">
+																  	<div class="price-final mb-10">
+																		Rate: <span>₹ {{ number_format($item->price,2,".",'')}}</span>
+																	</div>
+																	<div class="quantity">
+																		<input type="hidden" name="book_id" value="{{encrypt($item->id)}}">
+																		<div class="price-final mb-10">
+																			Quantity : <span><input type="number" min="1" name="quantity" value="{{$item->quantity}}"></span>
+																		</div>	
+																	</div>
+																	<div class="price-final mb-10">
+																		Total: <span>₹ {{ number_format(floatval($item->quantity) * floatval($item->price),2,".",'')}}</span>
+																	</div>
+																</div>
+																<button type="submit">Update Item</button>
+																<a href="{{route('cartItemRemove',['book_id'=>encrypt($item->id)])}}" class="btn btn-danger">Remove item</a>
+															{{ Form::close() }}	
+														</div>
+													</div>
 												</div>
 												@php
 													$cart_amount += (floatval($item->quantity) * floatval($item->price));
@@ -131,7 +135,7 @@
 									</strong>
 								</div>
 								<div style="margin: auto;display: table;">									
-									<a href="{{route('web.checkout')}}"><button class="btn btn-success">Proceed To Checkout</button></a>
+									<a href="{{route('web.checkout.checkout')}}"><button class="btn btn-success">Proceed To Checkout</button></a>
 								</div>			
 							</div>
 						</div>

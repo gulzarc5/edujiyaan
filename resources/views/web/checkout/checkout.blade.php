@@ -38,28 +38,68 @@
 						<div class="checkbox-form mb-25">
 							<h5 style="text-align: center;">Shipping Address</h5>
 							<div class="row">
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 p-0">
-									<div class="row" style="padding: 8px 0;">
-										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 icon-content">
-											<img src="{{asset('web/img/icons/home.png')}}">
-										</div>
-										<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
-											<h4>Rahul Roy</h4>
-											<p>56/1, Fake Street, Bogus Place</p>
-											<p>City, State</p>
-											<p>9458678145</p>
-											<p>demo@example.com</p>
-										</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
+									<div class="row" style="background-color: #fff;border:1px solid #ddd">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
+											<div class="row" style="padding: 8px 0;">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 icon-content">
+													<input type="radio" name="add">
+												</div>
+												<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+													<h4>MS Dhoni</h4>
+													<p>56/1, Fake Street, Bogus Place</p>
+													<p>City, State</p>
+													<p>9458678145</p>
+													<p>demo@example.com</p>
+												</div>
+											</div>
+										</div>																	
+									</div>									
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
+									<div class="row" style="background-color: #fff;border:1px solid #ddd">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
+											<div class="row" style="padding: 8px 0;">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 icon-content">
+													<input type="radio" name="add">
+												</div>
+												<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+													<h4>Virat Kohli</h4>
+													<p>56/1, Fake Street, Bogus Place</p>
+													<p>City, State</p>
+													<p>9458678145</p>
+													<p>demo@example.com</p>
+												</div>
+											</div>
+										</div>																	
 									</div>
 								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									<div class="checkout-form-list">								
-										<a href="#"><button class="btn btn-info">Change Address</button></a>
-									</div>
-								</div>																	
-							</div>												
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
+									<div class="row" style="background-color: #fff;border:1px solid #ddd">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-0">
+											<div class="row" style="padding: 8px 0;">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 icon-content">
+													<input type="radio" name="add">
+												</div>
+												<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
+													<h4>Josh Buttler</h4>
+													<p>56/1, Fake Street, Bogus Place</p>
+													<p>City, State</p>
+													<p>9458678145</p>
+													<p>demo@example.com</p>
+												</div>
+											</div>
+										</div>																	
+									</div>									
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
+									<div class="add-addrs">
+										<a><button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add More</button></a>
+									</div>	
+								</div>
+							</div>									
 						</div>
-						<div class="checkbox-form mb-25">
+						{{-- <div class="checkbox-form mb-25">
 							<h5 style="text-align: center;">Cart Item</h5>
 							<div class="product-info-area">
 								<div class="tab-content">
@@ -101,7 +141,7 @@
 	                                </div>
 	                            </div>	
 							</div>
-						</div>
+						</div> --}}
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="checkbox-form mb-25">
