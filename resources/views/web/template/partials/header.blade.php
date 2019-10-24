@@ -165,7 +165,7 @@
 										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project')}}">Projects</a></li>
 										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
-										<li><a href="#">Quiz</a></li>
+										<li><a href="{{route('web.quiz')}}">Quiz</a></li>
 										<li><a href="#">Tips and Tricks</a></li>
 									</ul>
 								</nav>

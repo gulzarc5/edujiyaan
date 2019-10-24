@@ -92,7 +92,7 @@
 							<a href="#"><img src="{{asset('web/img/banner/32.jpg')}}" alt="banner" /></a>
 						</div>
 						<div class="section-title-5 mb-30">
-							<h2>Project&nbsp; (42)</h2>
+							<h2>Quiz&nbsp; (42)</h2>
 						</div><hr>
 						<!-- tab-area-start -->
 						<div class="tab-content book-list">
@@ -101,26 +101,18 @@
 							        <div class="filterDiv">
 							            <!-- single-product-start -->
                                         <div class="product-wrapper mb-40 " style="">
-                                        	<h4><a href="{{route('web.project-detail')}}">Chinmoyee Project 2</a></h4>
-                                        	<div class="col-md-6">
-                                            <div class="product-details">                                                
-                                                <h4><a href="{{route('web.project-detail')}}">Project ID: CHIN124</a></h4>
-                                                <h4><a href="{{route('web.project-detail')}}">Total pages: 123</a></h4>
-                                                <h4><a href="{{route('web.project-detail')}}">Cost: Rs. 2001</a></h4>
-                                                </div>
-                                            	<div class="">
-	                                                <div class="product-button">
-	                                                    <a href="{{route('web.project-detail')}}" title="Add to cart" class="btn btn-primary margin-mobile">View</a>
-	                                                </div>
+                                        	<h4><a href="{{route('web.project-detail')}}">Science Quiz</a></h4>
+                                        	<div class="col-md-12">
+	                                            <div class="product-details">                                                
+	                                                <h4><a href="{{route('web.project-detail')}}">Catagory : CHIN124</a></h4>
+	                                                <h4><a href="{{route('web.project-detail')}}">Total pages : 123</a></h4>
 	                                            </div>
                                             </div>
-                                            <div class="col-md-6">
-	                                            <div class="product-details">
-	                                                <h4><a href="{{route('web.project-detail')}}">Specialisation: <span>Retail</span></a></h4>
-	                                            	<h4><a href="{{route('web.project-detail')}}">Package Includes:</a></h4>
-	                                            	<p>Preview/<span>Documentation</span>/<span>PPT</span>/</p>
-	                                            </div>
-                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="product-button">
+                                                    <a href="{{route('web.project-detail')}}" title="Add to cart" class="btn btn-primary margin-mobile">View</a>
+                                                </div>                                            	
+                                            </div>	
                                             <div class="clearfix"></div>
                                         </div>
                                         <!-- single-product-end -->

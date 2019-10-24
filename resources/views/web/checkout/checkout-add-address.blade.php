@@ -109,17 +109,17 @@
 											@enderror
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-										<div class="checkout-form-list">
-											<label>Pin Code <span class="required">*</span></label>	
-											<input type="text" placeholder="Enter Pin Code" name="pin" value="{{old('pin')}}">
-											@if($errors->has('pin'))
-												<span class="invalid-feedback" role="alert" style="color:red">
-													<strong>{{ $errors->first('pin') }}</strong>
-												</span>
-											@enderror
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+											<div class="checkout-form-list">
+												<label>Pin Code <span class="required">*</span></label>	
+												<input type="text" placeholder="Enter Pin Code" name="pin" value="{{old('pin')}}">
+												@if($errors->has('pin'))
+													<span class="invalid-feedback" role="alert" style="color:red">
+														<strong>{{ $errors->first('pin') }}</strong>
+													</span>
+												@enderror
+											</div>
 										</div>
-									</div>
 										
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="checkout-form-list">
@@ -150,30 +150,30 @@
 		@endsection
 
 		@section('script')
-		<script type="text/javascript">
-			var color_html = null;
-			 var size={};
-			$(document).ready(function(){
-				$("#state").change(function(){
-					var state = $(this).val();
-					$.ajaxSetup({
-						headers: {
-							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						}
-					});
-					$.ajax({
-						type:"GET",
-						url:"{{ url('City/list')}}"+"/"+state+"",
-						success:function(data){
-							$("#city").html("<option value=''>Please Select City</option>");
-
-							$.each( data, function( key, value ) {
-								$("#city").append("<option value='"+key+"'>"+value+"</option>");
-							});
-						}
-					});
-				});
+<script type="text/javascript">
+	var color_html = null;
+	 var size={};
+	$(document).ready(function(){
+		$("#state").change(function(){
+			var state = $(this).val();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
 			});
+			$.ajax({
+				type:"GET",
+				url:"{{ url('City/list')}}"+"/"+state+"",
+				success:function(data){
+					$("#city").html("<option value=''>Please Select City</option>");
 
-		</script>
+					$.each( data, function( key, value ) {
+						$("#city").append("<option value='"+key+"'>"+value+"</option>");
+					});
+				}
+			});
+		});
+	});
+
+</script>
 @endsection

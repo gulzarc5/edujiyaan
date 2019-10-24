@@ -104,17 +104,12 @@
 							            <!-- single-product-start -->
 			                            <div class="product-wrapper new-books mb-40">
 			                                <div class="product-img">
-			                                    <a href="#">
+			                                    <a href="{{route('web.magazines-detail')}}">
 			                                        <img src="{{asset('web/img/product/30.jpg')}}" alt="book" class="primary" />
 			                                    </a>
-			                                    <div class="product-flag">
-			                                        <ul>
-			                                            <li><span class="sale">new</span></li>
-			                                        </ul>
-			                                    </div>
 			                                </div>
 			                                <div class="product-details text-center">
-                                                <h4><a class="semi-name" href="product-details.php?product_id=192">BHOOK</a></h4>
+                                                <h4><a class="semi-name" href="{{route('web.magazines-detail')}}">BHOOK</a></h4>
                                                 <div class="product-price">
                                                     <ul>
                                                         <li>Rs.180</li>
@@ -124,7 +119,7 @@
                                             </div>
 			                                <div class="product-link">
 			                                    <div class="product-button">
-			                                        <a href="{{route('web.user.membership')}}" class="btn btn-primary margin-mobile">View</a>
+			                                        <a href="{{route('web.magazines-detail')}}" class="btn btn-primary margin-mobile">View</a>
 			                                    </div>                              
 			                                </div>	
 			                            </div>
@@ -134,17 +129,12 @@
 							            <!-- single-product-start -->
 			                            <div class="product-wrapper new-books mb-40">
 			                                <div class="product-img">
-			                                    <a href="#">
+			                                    <a href="{{route('web.magazines-detail')}}">
 			                                        <img src="{{asset('web/img/product/32.jpg')}}" alt="book" class="primary" />
 			                                    </a>
-			                                    <div class="product-flag">
-			                                        <ul>
-			                                            <li><span class="sale">new</span></li>
-			                                        </ul>
-			                                    </div>
 			                                </div>
 			                                <div class="product-details text-center">
-                                                <h4><a class="semi-name" href="product-details.php?product_id=192">BHOOK</a></h4>
+                                                <h4><a class="semi-name" href="{{route('web.magazines-detail')}}">BHOOK</a></h4>
                                                 <div class="product-price">
                                                     <ul>
                                                         <li>Rs.180</li>
@@ -154,7 +144,7 @@
                                             </div>
 			                                <div class="product-link">
 			                                    <div class="product-button">
-			                                        <a href="{{route('web.user.membership')}}" class="btn btn-primary margin-mobile">View</a>
+			                                        <a href="{{route('web.magazines-detail')}}" class="btn btn-primary margin-mobile">View</a>
 			                                    </div>                              
 			                                </div>	
 			                            </div>
@@ -164,17 +154,12 @@
 							            <!-- single-product-start -->
 			                            <div class="product-wrapper new-books mb-40">
 			                                <div class="product-img">
-			                                    <a href="#">
+			                                    <a href="{{route('web.magazines-detail')}}">
 			                                        <img src="{{asset('web/img/product/31.jpg')}}" alt="book" class="primary" />
 			                                    </a>
-			                                    <div class="product-flag">
-			                                        <ul>
-			                                            <li><span class="sale">new</span></li>
-			                                        </ul>
-			                                    </div>
 			                                </div>
 			                                <div class="product-details text-center">
-                                                <h4><a class="semi-name" href="product-details.php?product_id=192">BHOOK</a></h4>
+                                                <h4><a class="semi-name" href="{{route('web.magazines-detail')}}">BHOOK</a></h4>
                                                 <div class="product-price">
                                                     <ul>
                                                         <li>Rs.180</li>
@@ -184,7 +169,7 @@
                                             </div>
 			                                <div class="product-link">
 			                                    <div class="product-button">
-			                                        <a href="{{route('web.user.membership')}}" class="btn btn-primary margin-mobile">View</a>
+			                                        <a href="{{route('web.magazines-detail')}}" class="btn btn-primary margin-mobile">View</a>
 			                                    </div>                              
 			                                </div>	
 			                            </div>

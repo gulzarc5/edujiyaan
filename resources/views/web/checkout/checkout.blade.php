@@ -94,7 +94,7 @@
 								</div>
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
 									<div class="add-addrs">
-										<a><button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add More</button></a>
+										<a href="{{route('web.checkout.checkout-add-address')}}"><button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Add More</button></a>
 									</div>	
 								</div>
 							</div>									
