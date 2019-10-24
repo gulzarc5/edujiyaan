@@ -43,7 +43,7 @@
 					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<div class="checkbox-form mb-25">
-							{{ Form::open(['method' => 'post','route'=>'web.shipping_address_add']) }}
+							{{ Form::open(['method' => 'post','route'=>'web.add_checkout_insert_address']) }}
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 										<div class="checkout-form-list">
