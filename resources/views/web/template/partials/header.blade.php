@@ -70,7 +70,7 @@
 												<li><a href="{{route('web.myProfile')}}">My Profile</a></li>
 												<li><a href="{{route('web.change_password_form')}}">Change Password</a></li>
 												<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
-												<li><a href="{{route('web.shipping-address.shipping-address')}}">My Shipping Address</a></li>
+												<li><a href="{{route('web.view_shipping_address_list')}}">My Shipping Address</a></li>
 											</ul>
 										</div>
 									</li>

@@ -31,7 +31,7 @@ class CartController extends Controller
             }else{
                 $cart_data = false;
             }
-            return view('web.user.cart',compact('cart_data'));
+            return view('web.cart',compact('cart_data'));
         }else{
             if (Session::has('cart') && !empty(Session::get('cart'))) {
                 $cart = Session::get('cart');
@@ -53,7 +53,7 @@ class CartController extends Controller
                 $cart_data = false;
             }
             // dd($cart_data);
-            return view('web.user.cart',compact('cart_data'));
+            return view('web.cart',compact('cart_data'));
         }
          
     }

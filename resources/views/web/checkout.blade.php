@@ -36,57 +36,12 @@
 				<div class="row">						
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<div class="checkbox-form mb-25">
-							<h5 style="text-align: center;">Cart Item</h5>
-							<div class="product-info-area">
-								<div class="tab-content">
-	                                <div class="tab-pane active" id="Books">
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/10.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>Savvy Shoulder Tote</h4>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
-	                                      				<p>Publisher : <span>BANALATA</span></p>
-	                                      			</div>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 34.00</span>
-													</div>
-	                                      			<a href="#">Remove item</a>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/20.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>The Girl Without a Name</h4>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
-	                                      				<p>Publisher : <span>BANALATA</span></p>
-	                                      			</div>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 104.00</span>
-													</div>
-	                                      			<a href="#">Remove item</a>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
-	                                </div>
-	                            </div>	
-							</div>
-						</div>
-						<div class="checkbox-form mb-25">
 							<h5 style="text-align: center;">Shipping Address</h5>
 							<div class="row">
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 p-0">
 									<div class="row" style="padding: 8px 0;">
 										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 icon-content">
-											<img src="http://localhost/edujiyaan/public/web/img/icons/home.png">
+											<img src="{{asset('web/img/icons/home.png')}}">
 										</div>
 										<div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
 											<h4>Rahul Roy</h4>
@@ -103,6 +58,49 @@
 									</div>
 								</div>																	
 							</div>												
+						</div>
+						<div class="checkbox-form mb-25">
+							<h5 style="text-align: center;">Cart Item</h5>
+							<div class="product-info-area">
+								<div class="tab-content">
+	                                <div class="tab-pane active" id="Books">
+	                                    <div class="row valu" style="margin-bottom: 20px ">
+		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+	                                      		<img src="{{asset('web/img/product/10.jpg')}}">
+		                                    </div>
+	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+	                                      		<div class="order-content">
+	                                      			<h4>Savvy Shoulder Tote</h4>
+	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
+	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
+	                                      				<p>Publisher : <span>BANALATA</span></p>
+	                                      			</div>
+	                                      			<div class="price-final mb-10">
+														3 x <span>₹ 34.00</span>
+													</div>
+	                                      		</div>
+	                                      	</div>
+	                                    </div>
+	                                    <div class="row valu" style="margin-bottom: 20px ">
+		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+	                                      		<img src="{{asset('web/img/product/20.jpg')}}">
+		                                    </div>
+	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+	                                      		<div class="order-content">
+	                                      			<h4>The Girl Without a Name</h4>
+	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
+	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
+	                                      				<p>Publisher : <span>BANALATA</span></p>
+	                                      			</div>
+	                                      			<div class="price-final mb-10">
+														2 x<span>₹ 104.00</span>
+													</div>
+	                                      		</div>
+	                                      	</div>
+	                                    </div>
+	                                </div>
+	                            </div>	
+							</div>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
