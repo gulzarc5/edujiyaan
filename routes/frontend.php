@@ -43,6 +43,10 @@ Route::group(['namespace'=> 'Web'], function(){
             Route::get('/Shipping/Address/Delete/{shipping_id}', 'UserController@ShippingAddressDelete')->name('web.shipping_address_delete');
             Route::get('/Shipping/Address/Edit/{shipping_id}', 'UserController@ShippingAddressEdit')->name('web.shipping_address_edit');
             Route::post('/Shipping/Address/Update', 'UserController@ShippingAddressUpdate')->name('web.shipping_address_update');
+
+            Route::group(['prefix'=>'Checkout'],function(){
+                Route::get('/Book', 'CheckoutController@CheckoutBook')->name('web.checkout_book');
+            }); 
         });
     });
 

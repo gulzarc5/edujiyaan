@@ -113,7 +113,7 @@ class CartController extends Controller
             return redirect()->route('web.viewCart');
         }
     }
-
+    
     public function cartItemRemove($book_id)
     {
         try{

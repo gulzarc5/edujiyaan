@@ -37,6 +37,11 @@
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<div class="checkbox-form mb-25">
 							<h5 style="text-align: center;">Shipping Address</h5>
+							@if (isset($shipping_address) && !empty($shipping_address))
+								
+							@else
+								
+							@endif
 							<div class="row">
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
 									<div class="row" style="background-color: #fff;border:1px solid #ddd">
@@ -99,49 +104,6 @@
 								</div>
 							</div>									
 						</div>
-						{{-- <div class="checkbox-form mb-25">
-							<h5 style="text-align: center;">Cart Item</h5>
-							<div class="product-info-area">
-								<div class="tab-content">
-	                                <div class="tab-pane active" id="Books">
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/10.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>Savvy Shoulder Tote</h4>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
-	                                      				<p>Publisher : <span>BANALATA</span></p>
-	                                      			</div>
-	                                      			<div class="price-final mb-10">
-														3 x <span>₹ 34.00</span>
-													</div>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/20.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>The Girl Without a Name</h4>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Author : <span>MONALISA SAIKIA</span></p>
-	                                      				<p>Publisher : <span>BANALATA</span></p>
-	                                      			</div>
-	                                      			<div class="price-final mb-10">
-														2 x<span>₹ 104.00</span>
-													</div>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
-	                                </div>
-	                            </div>	
-							</div>
-						</div> --}}
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="checkbox-form mb-25">

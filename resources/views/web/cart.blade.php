@@ -135,7 +135,7 @@
 									</strong>
 								</div>
 								<div style="margin: auto;display: table;">									
-									<a href="{{route('web.checkout.checkout')}}"><button class="btn btn-success">Proceed To Checkout</button></a>
+									<a href="{{route('web.checkout_book')}}"><button class="btn btn-success">Proceed To Checkout</button></a>
 								</div>			
 							</div>
 						</div>
