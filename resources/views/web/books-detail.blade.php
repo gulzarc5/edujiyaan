@@ -61,6 +61,13 @@
 														@endif
 													</a>
 													<a class="view">{{$book_detail->cat_name}}</a>
+													<a class="view">
+														@if ($book_detail->book_condition == '1')
+															New
+														@else
+															Old
+														@endif
+													</a>
 												</div>
 											</div>
 											<div class="product-info-price">

@@ -28,7 +28,8 @@
 							</div>
 							<div class="left-menu mb-30">
 								<ul>
-									<li><a href="{{route('web.new_book_list')}}"><i class="fas fa-book"></i>&nbsp;&nbsp;Books<span>(29)</span></a></li>									
+									<li><a href="{{route('web.new_book_list')}}"><i class="fas fa-book"></i>&nbsp;&nbsp;New Books<span>(29)</span></a></li>									
+									<li><a href="{{route('web.old_book_list')}}"><i class="fas fa-book"></i>&nbsp;&nbsp;Old Books<span>(29)</span></a></li>									
 									<li><a href="project.php"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
 									<li><a href="megazine.php"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
 									<li><a href="ebook.php"><i class="far fa-file"></i>&nbsp;&nbsp;Documents<span>(14))</span></a></li>
@@ -85,8 +86,14 @@
 						<div class="category-image mb-30">
 							<a href="#"><img src="{{asset('web/img/banner/32.jpg')}}" alt="banner" /></a>
 						</div>
-						<div class="section-title-5 mb-30">
-							<h2>Books&nbsp; (42)</h2>
+						<div class="section-title-5 mb-30" id="book_number">
+							<h2>Books&nbsp; 
+								{{-- @if (isset($book_total))
+									({{$book_total}})
+								@else
+									(0)
+								@endif --}}
+							</h2>
 						</div>
 
 						<div class="toolbar mb-30">
@@ -121,8 +128,7 @@
 						<div class="tab-content book-list">
 							<div class="tab-pane active" id="th">
 							    <div class="row" id="pagination_data">
-									@include('web.pagination.book_search')
-									
+									@include('web.pagination.book_search')									
 							    </div>
 							</div>
 						</div>
@@ -143,6 +149,7 @@
 					var language = $("#language").val();
 					var book_title = $("#book_title").val();
 					var publisher = $("#publisher").val();
+					var book_condition = "1";
 					// alert(publisher);
 					$.ajaxSetup({
 						headers: {
@@ -159,6 +166,7 @@
 							language:language,
 							book_title:book_title,
 							publisher:publisher,
+							book_condition:book_condition,
 						},
 						beforeSend: function() {
 					        // setting a timeout
@@ -189,6 +197,7 @@
 						type:"GET",
 						url:"{{asset('Book/search/pagination?page=')}}"+page,
 						success:function(data){
+							console.log(data)
 							$("#pagination_data").html(data);
 						}
 					});

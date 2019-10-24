@@ -171,7 +171,7 @@ class UserController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         if ($shipping_add) {
-            return redirect()->route('web.myProfile')->with('message','Shipping Address Successfully');
+            return redirect()->route('web.view_shipping_address_list')->with('message','Shipping Address Added Successfully');
         } else {
             return redirect()->back()->with('error','Sorry Something Went Wrong Please Try Again');
         }
@@ -191,5 +191,68 @@ class UserController extends Controller
                 'deleted_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         return redirect()->back()->with('message','Shipping Address Deleted Successfully');
+    }
+
+    public function ShippingAddressEdit($shipping_id)
+    {
+        try {
+            $shipping_id = decrypt($shipping_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $shipping_address = DB::table('user_shipping_address')
+            ->where('id',$shipping_id)
+            ->whereNull('deleted_at')
+            ->first();
+        
+        $states = DB::table('state')
+            ->whereNull('deleted_at')
+            ->get();
+        $city = null;
+            if (!empty($shipping_address->state_id)) {
+                $city = DB::table('city')
+                ->where('state_id',$shipping_address->state_id)
+                ->get();
+            }
+        return view('web.shipping-address.edit-shipping-address',compact('shipping_address','states','city'));
+        
+    }
+
+    public function ShippingAddressUpdate(Request $request)
+    {
+        try {
+            $shipping_id = decrypt($request->input('shipping_id'));
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => 'email|required',
+            'mobile' =>  ['required','digits:10','numeric'],
+            'pin' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+        ]);
+
+        $shipping_update = DB::table('user_shipping_address')
+            ->where('id',$shipping_id)
+            ->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'mobile' =>  $request->input('mobile'),
+                'pin' => $request->input('pin'),
+                'state_id' => $request->input('state'),
+                'city_id' => $request->input('city'),
+                'address' => $request->input('address'),
+                'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+            ]);
+        if ($shipping_update) {
+            return redirect()->route('web.view_shipping_address_list')->with('message','Shipping Address Updated Successfully');
+        } else {
+            return redirect()->back()->with('error','Sorry Something Went Wrong Please Try Again');
+        }
     }
 }
