@@ -71,10 +71,25 @@ Route::get('/Magazines', function () {
     return view('web.magazines');
 })->name('web.magazines');
 
+Route::get('/Magazines-Detail', function () {
+
+    return view('web.magazines-detail');
+})->name('web.magazines-detail');
+
+Route::get('/quiz', function () {
+
+    return view('web.quiz');
+})->name('web.quiz');
+
 Route::get('/Checkout', function () {
 
     return view('web.checkout.checkout');
 })->name('web.checkout.checkout');
+
+Route::get('/Add-Address', function () {
+
+    return view('web.checkout.checkout-add-address');
+})->name('web.checkout.checkout-add-address');
 
 // ======== Main Pages ==========
 
@@ -83,6 +98,11 @@ Route::get('/Project-Checkout', function () {
 
     return view('web.checkout.project-checkout');
 })->name('web.checkout.project-checkout');
+
+Route::get('/Magazine-Checkout', function () {
+
+    return view('web.checkout.magazine-checkout');
+})->name('web.checkout.magazine-checkout');
 
 Route::get('/Membership', function () {
 
