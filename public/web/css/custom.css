@@ -206,7 +206,9 @@
     padding: 20px;
     margin: 0;
 }
-
+.membership .panel-primary {
+    border-color: #ddd;
+}
 .membership .the-price h1
 {
     line-height: 1em;

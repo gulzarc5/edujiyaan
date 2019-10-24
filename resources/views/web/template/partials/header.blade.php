@@ -51,7 +51,7 @@
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 							<div class="account-area language-area text-right">
 								<ul>
-									<li><a href="membership.php">Membership</a></li>
+									<li><a href="{{route('web.user.membership')}}">Membership</a></li>
 									@auth('buyer')
 										<li><a href="#">{{ Auth::guard('buyer')->user()->name }}</a></li>
 										<li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>

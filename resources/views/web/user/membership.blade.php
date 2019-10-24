@@ -31,7 +31,7 @@
         </div>
         <!-- entry-header-area-end -->
         <!-- checkout-area-start -->
-        <div class="checkout-area membership user-detail mb-70">
+        <div class="checkout-area membership user-detail pt-20 mb-70">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-3 card_main bronze">
