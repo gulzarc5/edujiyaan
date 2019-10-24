@@ -86,10 +86,15 @@ Route::get('/Magazines-Detail', function () {
     return view('web.magazines-detail');
 })->name('web.magazines-detail');
 
-Route::get('/quiz', function () {
+Route::get('/Quiz', function () {
 
     return view('web.quiz');
 })->name('web.quiz');
+
+Route::get('/Quiz-Detail', function () {
+
+    return view('web.quiz-detail');
+})->name('web.quiz-detail');
 
 Route::get('/Checkout', function () {
 

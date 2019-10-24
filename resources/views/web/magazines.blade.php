@@ -9,7 +9,7 @@
 						<div class="breadcrumbs-menu">
 							<ul>
 								<li><a href="#">Home</a></li>
-								<li><a href="#" class="active">shop</a></li>
+								<li><a href="#" class="active">Magazine</a></li>
 							</ul>
 						</div>
 					</div>
@@ -91,11 +91,19 @@
 						<div class="category-image mb-30">
 							<a href="#"><img src="{{asset('web/img/banner/32.jpg')}}" alt="banner" /></a>
 						</div>
-						<div class="section-title-5">
-							<h2>magazines&nbsp; (3)</h2>
-						</div>
-						<div class="toolbar mb-30">
-						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="section-title-5 mb-10">
+									<h2>Magazine&nbsp; (42)</h2>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="header-search">
+									<a href="#"><i class="fa fa-search"></i></a>
+									<input type="text" placeholder="Search magazine here...">
+								</div>
+							</div>	
+						</div><hr>
 						<!-- tab-area-start -->
 						<div class="tab-content book-list">
 							<div class="tab-pane active" id="th">

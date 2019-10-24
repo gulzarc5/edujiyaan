@@ -464,12 +464,9 @@ body {
 /*----------------------------------------*/
 
 .header-search {
-    margin-top: 7px;
-}
-.header-search form {
     position: relative;
 }
-.header-search form input {
+.header-search input {
     background: #ededed none repeat scroll 0 0;
     border: 0 none;
     color: #333;
@@ -482,7 +479,7 @@ body {
     border-radius: 5px;
     padding-right: 47px;
 }
-.header-search form a {
+.header-search a {
     background: #f07c29 none repeat scroll 0 0;
     color: #fff;
     display: inline-block;
@@ -496,7 +493,7 @@ body {
     width: 42px;
     border-radius: 0 5px 5px 0px;
 }
-.header-search form a:hover {
+.header-search a:hover {
     background: #232323 none repeat scroll 0 0;
 }
 .header-mid-area .mini-cart {

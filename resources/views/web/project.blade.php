@@ -91,9 +91,20 @@
 						<div class="category-image mb-30">
 							<a href="#"><img src="{{asset('web/img/banner/32.jpg')}}" alt="banner" /></a>
 						</div>
-						<div class="section-title-5 mb-30">
-							<h2>Project&nbsp; (42)</h2>
-						</div><hr>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="section-title-5 mb-10">
+									<h2>Project&nbsp; (42)</h2>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="header-search">
+									<a href="#"><i class="fa fa-search"></i></a>
+									<input type="text" placeholder="Search project here...">
+								</div>
+							</div>	
+						</div>
+						<hr>
 						<!-- tab-area-start -->
 						<div class="tab-content book-list">
 							<div class="tab-pane active" id="th">

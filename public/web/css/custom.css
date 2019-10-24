@@ -79,7 +79,7 @@
 .project-page .margin-mobile:hover,
 .project-page .margin-mobile:active,
 .project-page .margin-mobile:focus{
-	color: #000;background-color: #ffffff;border-color: #f07c29;padding: 6px 31px;font-weight: 700;
+	color: #000;background-color: #ffffff;border-color: #f07c29;padding: 6px 31px;
 }
 .user-detail .checkbox-form, .login-form, .billing-fields{
 	padding: 28px 50px;
@@ -332,6 +332,27 @@
     display: table;
     margin: auto;
     margin-top: 40px;	
+}
+.quiz-content{
+	border-bottom: 1px solid #ddd;
+}
+.quiz-content h4{
+	margin: 10px;
+}
+.line-clamp2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+.line-clamp3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+.header-mid-area .my-cart ul > li .cart-product .single-cart .cart-info h5 a,.header-mid-area .my-cart ul > li .cart-product .single-cart .cart-info h5 a{
+	text-decoration: none;
 }
 /*==================
 	Responsive
