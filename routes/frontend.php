@@ -63,10 +63,8 @@ Route::group(['namespace'=> 'Web'], function(){
     Route::group(['prefix'=>'project'],function(){
         Route::get('List','ProjectController@projectList')->name('web.project_list');
         Route::get('List/Category/{cat_id}','ProjectController@projectListCategory')->name('web.project_list_category');
-        Route::post('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');
-        // Route::get('/Add/{book_id}', 'CartController@AddCart')->name('web.add_cart');
-        // Route::post('/Update', 'CartController@updateCart')->name('web.updateCart');
-        // Route::get('/item/remove/{p_id}','CartController@cartItemRemove')->name('cartItemRemove');
+        Route::any('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');
+        Route::get('Detail/{project_id}','ProjectController@projectDetail')->name('web.project_detail');
     });
 });
 
@@ -86,11 +84,11 @@ Route::get('/Old-Books', function () {
 //     return view('web.project');
 // })->name('web.project');
 
-Route::get('/Project-Detail', function () {
+// Route::get('/Project-Detail', function () {
 
-    return view('web.project-detail');
+//     return view('web.project-detail');
 
-})->name('web.project-detail');
+// })->name('web.project-detail');
 
 Route::get('/Magazines', function () {
 

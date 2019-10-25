@@ -17,7 +17,7 @@ class ProjectsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i=0; $i < 1; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             $sourceDir_ppt = storage_path('app/public/testfile/ppt');
             $sourceDir_word = storage_path('app/public/testfile/word');
             $sourceDir_pdf = storage_path('app/public/testfile/pdf');

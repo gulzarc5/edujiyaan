@@ -17,7 +17,8 @@ class ProjectController extends Controller
                         ->select('projects.*', 'project_spalization.name as ps_name')
         				->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
         				->whereNull('projects.deleted_at')
-        				->where('projects.status',1)
+                        ->where('projects.status',1)
+                        ->where('projects.approval_status',1)
         				->paginate(3);
         $specialization = DB::table('project_spalization')
                                 ->get();
@@ -39,6 +40,7 @@ class ProjectController extends Controller
                         ->select('projects.*', 'project_spalization.name as ps_name')
                         ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
                         ->whereNull('projects.deleted_at')
+                        ->where('projects.approval_status',1)
                         ->where('projects.status',1);
         $specialization = DB::table('project_spalization')
                                 ->get();
@@ -55,7 +57,7 @@ class ProjectController extends Controller
         $category = Session::get('project_category');
         $project_search_value = $request->input('project_search_value');
        
-        DB::connection()->enableQueryLog();
+        // DB::connection()->enableQueryLog();
         $project = DB::table('projects')
         ->select('projects.*', 'project_spalization.name as ps_name')
         ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
@@ -74,5 +76,21 @@ class ProjectController extends Controller
         // dd(str_replace_array('?', \DB::getQueryLog()[0]['bindings'], 
         // \DB::getQueryLog()[0]['query']));
         return view('web.pagination.project_search',compact('project'));
+    }
+
+    public function projectDetail($project_id) {
+
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $project = DB::table('projects')
+                        ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
+                        ->select('projects.*', 'project_spalization.name as ps_name')
+                        ->where('projects.id', $project_id)
+                        ->get();
+        return view('web.project-detail', ['project' =>$project]);
     }
 }
