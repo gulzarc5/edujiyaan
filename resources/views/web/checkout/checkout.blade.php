@@ -51,9 +51,9 @@
 														<div class="row" style="padding: 8px 0;">
 															<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 icon-content">
 																@if (count((array)$shipping_address) == $count_ship)
-																	<input type="radio" name="shippint_id" value="{{$addr->id}}" checked>
+																	<input type="radio" name="shipping_id" value="{{$addr->id}}" checked>
 																@else
-																	<input type="radio" name="shippint_id" value="{{$addr->id}}" >
+																	<input type="radio" name="shipping_id" value="{{$addr->id}}" >
 																@endif
 															
 															</div>
@@ -71,8 +71,7 @@
 											@php
 												$count_ship++;
 											@endphp
-										@endforeach									
-									@else
+										@endforeach				
 									@endif
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
 										<div class="add-addrs">
@@ -82,62 +81,67 @@
 								</div>									
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-							<div class="checkbox-form mb-25">
-								<h5 style="text-align: center;">Cart Amount</h5>
-								<div class="row">
-									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-										Sub Total (2 items)
+						
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+								@if (isset($cart) && !empty($cart))
+									<div class="checkbox-form mb-25">
+										<h5 style="text-align: center;">Cart Amount</h5>
+										<div class="row">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+												Sub Total ({{ $cart->total_quantity }} items)
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+												₹ {{ number_format($cart->total_cart_amount,2,".",'')}}
+											</div>	
+											{{-- <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+												GST
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+												₹ 14.00
+											</div> --}}
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+												Delivery Charge
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+												₹ {{ number_format($cart->total_shipping_charge,2,".",'')}}
+											</div>
+										</div>	
+										<div class="bdr"></div>
+										<div class="row">									
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+												<strong>Grand Total</strong>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-10">
+												<strong>₹ {{ number_format(($cart->total_shipping_charge+$cart->total_cart_amount),2,".",'')}}</strong>
+											</div>			
+										</div>
 									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-										₹ 138.00
-									</div>	
-									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-										GST
+								@endif
+								<div class="checkbox-form mb-25">
+									<h5 style="text-align: center;">Payment Method</h5>
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex mb-10" style="justify-content: space-around;">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="payment_method" id="exampleRadios1" value="1" checked>
+												<label class="form-check-label" for="exampleRadios1">
+													COD
+												</label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="payment_method" id="exampleRadios2" value="2">
+												<label class="form-check-label" for="exampleRadios2">
+												CARD PAYMENT
+												</label>
+											</div>
+										</div>	
+										<div style="margin: auto;display: table;">									
+											<a href="#"><button class="btn btn-success">Proceed To Pay</button></a>
+										</div>
 									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-										₹ 14.00
-									</div>
-									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-										Delivery Charge
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-										₹ 30.00
-									</div>
-								</div>	
-								<div class="bdr"></div>
-								<div class="row">									
-									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-										<strong>Grand Total</strong>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-10">
-										<strong>₹ 182.00</strong>
-									</div>			
 								</div>
 							</div>
-							<div class="checkbox-form mb-25">
-								<h5 style="text-align: center;">Payment Method</h5>
-								<div class="row">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flex mb-10" style="justify-content: space-around;">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-											<label class="form-check-label" for="exampleRadios1">
-												COD
-											</label>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-											<label class="form-check-label" for="exampleRadios2">
-											CARD PAYMENT
-											</label>
-										</div>
-									</div>	
-									<div style="margin: auto;display: table;">									
-										<a href="#"><button class="btn btn-success">Proceed To Pay</button></a>
-									</div>
-								</div>
-							</div>
-						</div>
+						
+
 					</div>
 				{{ Form::close() }}
 			</div>
