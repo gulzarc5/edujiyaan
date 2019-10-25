@@ -59,6 +59,15 @@ Route::group(['namespace'=> 'Web'], function(){
         Route::post('/Update', 'CartController@updateCart')->name('web.updateCart');
         Route::get('/item/remove/{p_id}','CartController@cartItemRemove')->name('cartItemRemove');
     }); 
+
+    Route::group(['prefix'=>'project'],function(){
+        Route::get('List','ProjectController@projectList')->name('web.project_list');
+        Route::get('List/Category/{cat_id}','ProjectController@projectListCategory')->name('web.project_list_category');
+        Route::post('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');
+        // Route::get('/Add/{book_id}', 'CartController@AddCart')->name('web.add_cart');
+        // Route::post('/Update', 'CartController@updateCart')->name('web.updateCart');
+        // Route::get('/item/remove/{p_id}','CartController@cartItemRemove')->name('cartItemRemove');
+    });
 });
 
 Route::get('seller/login','Seller\SellerController@sellerLoginForm')->name('seller_login');
@@ -72,10 +81,10 @@ Route::get('/Old-Books', function () {
     return view('web.old-books');
 })->name('web.old-books');
 
-Route::get('/Project', function () {
+// Route::get('/Project', function () {
 
-    return view('web.project');
-})->name('web.project');
+//     return view('web.project');
+// })->name('web.project');
 
 Route::get('/Project-Detail', function () {
 

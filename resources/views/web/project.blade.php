@@ -28,8 +28,8 @@
 							</div>
 							<div class="left-menu mb-30">
 								<ul>
-									<li><a href="shop.php"><i class="fas fa-book"></i>&nbsp;&nbsp;Books<span>(29)</span></a></li>									
-									<li><a href="project.php"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
+									<li><a href="{{route('web.new_book_list')}}"><i class="fas fa-book"></i>&nbsp;&nbsp;New Books<span>(29)</span></a></li>											
+									<li><a href="{{route('web.project_list')}}"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
 									<li><a href="megazine.php"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
 									<li><a href="ebook.php"><i class="far fa-file"></i>&nbsp;&nbsp;Documents<span>(14))</span></a></li>
 								</ul>
@@ -42,41 +42,17 @@
 								<div class="product-active-2 owl-carousel">
 									<div class="product-total-2">
 										
-										<div class="single-most-product bd mb-18">
+										@if(count($specialization) > 0)
+											@foreach($specialization as $key => $value)
+												<div class="single-most-product bd mb-18">
 											
-											<div class="most-product-content">
-												
-												<h4><a href="#">ACADEMIC</a></h4>
-											</div>
-										</div>
-										<div class="single-most-product bd mb-18">
-											
-											<div class="most-product-content">
-												
-												<h4><a href="#">NON-ACADEMIC</a></h4>
-											</div>
-										</div>
-										<div class="single-most-product bd mb-18">
-											
-											<div class="most-product-content">
-												
-												<h4><a href="#">NOVELS</a></h4>
-											</div>
-										</div>
-										<div class="single-most-product bd mb-18">
-											
-											<div class="most-product-content">
-												
-												<h4><a href="#">FAIRY TALE</a></h4>
-											</div>
-										</div>
-										<div class="single-most-product bd mb-18">
-											
-											<div class="most-product-content">
-												
-												<h4><a href="#">POEMS</a></h4>
-											</div>
-										</div>
+													<div class="most-product-content">
+														
+														<h4><a href="{{route('web.project_list_category',['category_id'=>encrypt($value->id)])}}">{{ $value->name }}</a></h4>
+													</div>
+												</div>
+											@endforeach
+										@endif
 									</div>										
 								</div>
 							</div>
@@ -100,7 +76,7 @@
 							<div class="col-md-6">
 								<div class="header-search">
 									<a href="#"><i class="fa fa-search"></i></a>
-									<input type="text" placeholder="Search project here...">
+									<input type="text" placeholder="Search project here..." onkeyup="getBook()" name="project_search_box" id="project_search_box">
 								</div>
 							</div>	
 						</div>
@@ -109,31 +85,9 @@
 						<div class="tab-content book-list">
 							<div class="tab-pane active" id="th">
 							    <div class="row">
-							        <div class="filterDiv">
+							        <div class="filterDiv" id="pagination_data">
 							            <!-- single-product-start -->
-                                        <div class="product-wrapper mb-40 " style="">
-                                        	<h4><a href="{{route('web.project-detail')}}">Chinmoyee Project 2</a></h4>
-                                        	<div class="col-md-6">
-                                            <div class="product-details">                                                
-                                                <h4><a href="{{route('web.project-detail')}}">Project ID: CHIN124</a></h4>
-                                                <h4><a href="{{route('web.project-detail')}}">Total pages: 123</a></h4>
-                                                <h4><a href="{{route('web.project-detail')}}">Cost: Rs. 2001</a></h4>
-                                                </div>
-                                            	<div class="">
-	                                                <div class="product-button">
-	                                                    <a href="{{route('web.project-detail')}}" title="Add to cart" class="btn btn-primary margin-mobile">View</a>
-	                                                </div>
-	                                            </div>
-                                            </div>
-                                            <div class="col-md-6">
-	                                            <div class="product-details">
-	                                                <h4><a href="{{route('web.project-detail')}}">Specialisation: <span>Retail</span></a></h4>
-	                                            	<h4><a href="{{route('web.project-detail')}}">Package Includes:</a></h4>
-	                                            	<p>Preview/<span>Documentation</span>/<span>PPT</span>/</p>
-	                                            </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
+                                        @include('web.pagination.project_search')
                                         <!-- single-product-end -->
 							        </div>
 							    </div>
@@ -147,3 +101,57 @@
 		<!-- shop-main-area-end -->
 		<!-- footer-area-start -->
 		@endsection
+
+		@section('script')
+			<script>
+				function getBook() {
+					var project_search_value= $("#project_search_box").val();
+					$.ajaxSetup({
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						}
+					});
+					$.ajax({
+						type:"POST",
+						url:"{{ route('ajax_project_list') }}",
+						data:{
+							"_token": "{{ csrf_token() }}",
+							project_search_value:project_search_value
+						},
+						beforeSend: function() {
+					        // setting a timeout
+					        $("#pagination_data").html('<i class="fa fa-spinner fa-spin loader-spin"></i>');
+					    },
+						success:function(data){
+							$("#pagination_data").html(data);
+						}
+					});
+				}
+
+				$(document).ready(function () {
+					$(document).on('click','.pagination a',function(event){
+						event.preventDefault();
+						var page = $(this).attr('href').split('page=')[1];
+						fetchData(page);
+					});
+				});
+
+				function fetchData(page) {
+					$.ajaxSetup({
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						}
+					});
+
+					$.ajax({
+						type:"GET",
+						url:"{{asset('project/Ajax/Project/List?page=')}}"+page,
+						success:function(data){
+							console.log(data)
+							$("#pagination_data").html(data);
+						}
+					});
+
+				}
+			</script>
+		@endsection	
