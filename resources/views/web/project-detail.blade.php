@@ -33,27 +33,52 @@
 								<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
 									<div class="product-info-main">
 										<div class="page-title">
-											<h1>Chinmoyee Project 2</h1>
-											<h5>Specialisation : Retail</h5>
+											<h1>{{ $project[0]->name }}</h1>
+											<h5>Specialisation : {{ $project[0]->ps_name }}</h5>
 										</div>
-										<div class="product-info-stock-sku">
+										{{-- <div class="product-info-stock-sku">
                                             <span>Project ID : </span>
                                             <div class="product-attribute">
                                                  <span>CHIN124</span>
                                             </div>
-                                        </div>
+                                        </div> --}}
 										<div class="product-info-stock-sku">
 											<span>Total Pages : </span>
 											<div class="product-attribute">
-												<span>123</span>
+												<span>{{ $project[0]->pages }}</span>
 											</div>
 										</div>
 										<div class="product-reviews-summary">
 											<div class="reviews-actions">
 												<a><strong>Package Includes :</strong></a>
-												<a> Preview/Documentation/PPT/</a>
+												<a> 
+													@if (!empty($project[0]->preview))
+														Preview/
+													@endif													
+													@if (!empty($project[0]->synopsis))
+														Synopsis/
+													@endif
+													@if (!empty($project[0]->documentation))
+														Documentation/
+													@endif							
+													@if (!empty($project[0]->documentation))
+														PPT
+													@endif
+												</a>
 											</div>
 										</div>
+										@if (!empty($project[0]->preview))
+											<a href="#">Preview/</a>
+										@endif
+										@if (!empty($project[0]->synopsis))
+											<a href="#">Synopsis/</a>
+										@endif
+										@if (!empty($project[0]->documentation))
+											<a href="#">Documentation/</a>
+										@endif							
+										@if (!empty($project[0]->documentation))
+											<a href="#">PPT</a>
+										@endif
 										<div class="product-info-price">
 											<div class="price-final">
 												<span>₹ 2000.00</span>
@@ -78,13 +103,7 @@
 							<div class="tab-content">
                                 <div class="tab-pane active" id="Details">
                                     <div class="valu">
-                                      <p><strong>Chinmoyee Project 2 :</strong> The sporty Joust Duffle Bag can't be beat - not in the gym, not on the luggage carousel, not anywhere. Big enough to haul a basketball or soccer ball and some sneakers with plenty of room to spare, it's ideal for athletes with places to go.</p>
-                                      <ul>
-                                        <li><i class="fa fa-circle"></i>Dual top handles.</li>
-                                        <li><i class="fa fa-circle"></i>Adjustable shoulder strap.</li>
-                                        <li><i class="fa fa-circle"></i>Full-length zipper.</li>
-                                        <li><i class="fa fa-circle"></i>L 29" x W 13" x H 11".</li>
-                                      </ul>
+											{{ $project[0]->description }}
                                     </div>
                                 </div>
                             </div>	
@@ -98,10 +117,10 @@
 							</div>
 							<div class="left-menu mb-30">
 								<ul>
-									<li><a href="shop.php"><i class="fas fa-book"></i>&nbsp;&nbsp;Books<span>(29)</span></a></li>									
-									<li><a href="project.php"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
-									<li><a href="megazine.php"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
-									<li><a href="ebook.php"><i class="far fa-file"></i>&nbsp;&nbsp;Documents<span>(14))</span></a></li>
+										<li><a href="{{route('web.new_book_list')}}"><i class="fas fa-book"></i>&nbsp;&nbsp;Books<span>(29)</span></a></li>											
+										<li><a href="{{route('web.project_list')}}"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
+										<li><a href="megazine.php"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
+										<li><a href="ebook.php"><i class="far fa-file"></i>&nbsp;&nbsp;Documents<span>(14))</span></a></li>
 								</ul>
 							</div>
 							<div class="banner-area mb-30">

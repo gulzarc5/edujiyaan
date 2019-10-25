@@ -111,7 +111,7 @@
 											@php
 												$cart_amount = 0;
 											@endphp
-											@if (isset($cart_data_header['cart_data']) && count((array)$cart_data_header['cart_data']) > 0 )
+											@if (isset($cart_data_header['cart_data']) && !empty($cart_data_header['cart_data']) )
 											
 												<div class="cart-product">
 													@foreach ($cart_data_header['cart_data'] as $item)

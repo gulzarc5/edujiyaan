@@ -77,4 +77,20 @@ class ProjectController extends Controller
         // \DB::getQueryLog()[0]['query']));
         return view('web.pagination.project_search',compact('project'));
     }
+
+    public function projectDetail($project_id) {
+
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $project = DB::table('projects')
+                        ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
+                        ->select('projects.*', 'project_spalization.name as ps_name')
+                        ->where('projects.id', $project_id)
+                        ->get();
+        return view('web.project-detail', ['project' =>$project]);
+    }
 }

@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
                 $user_id = Auth::guard('buyer')->user()->id;
                 $cart_count = DB::table('cart')->where('user_id',$user_id)->count();
                 $cart = DB::table('cart')->where('user_id',$user_id)->get();
+                // dd($cart_count);
                 if (count($cart) > 0) {
                     foreach ($cart as $key => $item) {
                         $cart = DB::table('books')->where('id',$item->book_id)
