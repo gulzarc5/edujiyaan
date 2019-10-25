@@ -17,7 +17,8 @@ class ProjectController extends Controller
                         ->select('projects.*', 'project_spalization.name as ps_name')
         				->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
         				->whereNull('projects.deleted_at')
-        				->where('projects.status',1)
+                        ->where('projects.status',1)
+                        ->where('projects.approval_status',1)
         				->paginate(3);
         $specialization = DB::table('project_spalization')
                                 ->get();
@@ -39,6 +40,7 @@ class ProjectController extends Controller
                         ->select('projects.*', 'project_spalization.name as ps_name')
                         ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
                         ->whereNull('projects.deleted_at')
+                        ->where('projects.approval_status',1)
                         ->where('projects.status',1);
         $specialization = DB::table('project_spalization')
                                 ->get();
@@ -55,7 +57,7 @@ class ProjectController extends Controller
         $category = Session::get('project_category');
         $project_search_value = $request->input('project_search_value');
        
-        DB::connection()->enableQueryLog();
+        // DB::connection()->enableQueryLog();
         $project = DB::table('projects')
         ->select('projects.*', 'project_spalization.name as ps_name')
         ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')

@@ -63,7 +63,8 @@ Route::group(['namespace'=> 'Web'], function(){
     Route::group(['prefix'=>'project'],function(){
         Route::get('List','ProjectController@projectList')->name('web.project_list');
         Route::get('List/Category/{cat_id}','ProjectController@projectListCategory')->name('web.project_list_category');
-        Route::post('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');
+        Route::any('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');
+        // Route::get('Ajax/Project/List/search','ProjectController@ajaxProjectList')->name('ajax_project_list_search');
         // Route::get('/Add/{book_id}', 'CartController@AddCart')->name('web.add_cart');
         // Route::post('/Update', 'CartController@updateCart')->name('web.updateCart');
         // Route::get('/item/remove/{p_id}','CartController@cartItemRemove')->name('cartItemRemove');
