@@ -53,6 +53,9 @@ Route::group(['namespace'=> 'Web'], function(){
                 Route::post('/Add/Address', 'CheckoutController@CheckoutInsertAddress')->name('web.add_checkout_insert_address');
                 Route::post('/Book/Order/Place','CheckoutController@bookOrderPlace')->name('web.book_order_place');
             }); 
+
+            //Quiz View Route for logged user
+            Route::get('quiz/pdf/view/{quiz_id}','QuizController@quizPdfView')->name('web.quiz_pdf');
         });
     });
 
@@ -67,7 +70,13 @@ Route::group(['namespace'=> 'Web'], function(){
         Route::get('List','ProjectController@projectList')->name('web.project_list');
         Route::get('List/Category/{cat_id}','ProjectController@projectListCategory')->name('web.project_list_category');
         Route::any('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');
-        Route::get('Detail/{project_id}','ProjectController@projectDetail')->name('web.project_detail');
+        Route::get('Detail/{project_id}','ProjectController@quizDetail')->name('web.project_detail');
+    });
+
+    Route::group(['prefix'=>'Quiz'],function(){
+        Route::get('List/{category_id?}','QuizController@quizList')->name('web.quiz_list');
+        Route::any('Ajax/Quiz/List','QuizController@ajaxQuizList')->name('web.ajax_quiz_list');
+        Route::get('Detail/{quiz_id}','QuizController@quizDetail')->name('web.quiz_detail');
     });
 });
 
@@ -103,15 +112,10 @@ Route::get('/Magazines-Detail', function () {
     return view('web.magazines-detail');
 })->name('web.magazines-detail');
 
-Route::get('/Quiz', function () {
+// Route::get('/Quiz-Detail', function () {
 
-    return view('web.quiz');
-})->name('web.quiz');
-
-Route::get('/Quiz-Detail', function () {
-
-    return view('web.quiz-detail');
-})->name('web.quiz-detail');
+//     return view('web.quiz-detail');
+// })->name('web.quiz-detail');
 
 // Route::get('/Checkout', function () {
 

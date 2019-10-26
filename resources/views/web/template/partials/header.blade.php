@@ -165,7 +165,7 @@
 										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project_list')}}">Projects</a></li>
 										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
-										<li><a href="{{route('web.quiz')}}">Quiz</a></li>
+										<li><a href="{{route('web.quiz_list')}}">Quiz</a></li>
 										<li><a href="#">Tips and Tricks</a></li>
 									</ul>
 								</nav>
@@ -191,7 +191,7 @@
 										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project_list')}}">Projects</a></li>
 										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
-										<li><a href="{{route('web.quiz')}}">Quiz</a></li>
+										<li><a href="{{route('web.quiz_list')}}">Quiz</a></li>
 										<li class="pb-5"><a href="#">Tips and Tricks</a></li>
 										<!-- main-menu-area-end -->
 										<li class="bdr-top"><a href="index.html">My Account</a>
