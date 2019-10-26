@@ -28,6 +28,7 @@ Route::group(['namespace'=> 'Web'], function(){
         Route::get('/Forgot/Password', 'PagesController@forgotPasswordForm')->name('web.forgot_password_form');
         Route::post('/Register/User', 'RegisterController@userRegister')->name('web.register');
         Route::get('Cart','CartController@viewCart')->name('web.view_cart');
+       
 
         Route::group(['middleware'=>'auth:buyer'], function(){
             Route::get('Profile','UserController@myProfile')->name('web.myProfile');
@@ -36,6 +37,8 @@ Route::group(['namespace'=> 'Web'], function(){
 
             Route::get('/change/Password', 'UserController@viewChangePasswordForm')->name('web.change_password_form');
             Route::post('/change/Password', 'UserController@ChangePassword')->name('web.change_password');
+
+            Route::get('Orders','OrderController@viewOrders')->name('web.view_orders');
             
             Route::get('/Shipping/Address/List', 'UserController@viewShippingAddressList')->name('web.view_shipping_address_list');
             Route::get('/Shipping/Address', 'UserController@viewShippingAddressForm')->name('web.shipping_address_form');
@@ -74,10 +77,10 @@ Route::get('/', function () {
 })->name('web.index');
 
 
-Route::get('/Old-Books', function () {
+// Route::get('/Old-Books', function () {
 
-    return view('web.old-books');
-})->name('web.old-books');
+//     return view('web.old-books');
+// })->name('web.old-books');
 
 // Route::get('/Project', function () {
 
@@ -110,15 +113,15 @@ Route::get('/Quiz-Detail', function () {
     return view('web.quiz-detail');
 })->name('web.quiz-detail');
 
-Route::get('/Checkout', function () {
+// Route::get('/Checkout', function () {
 
-    return view('web.checkout.checkout');
-})->name('web.checkout.checkout');
+//     return view('web.checkout.checkout');
+// })->name('web.checkout.checkout');
 
-Route::get('/Add-Address', function () {
+// Route::get('/Add-Address', function () {
 
-    return view('web.checkout.checkout-add-address');
-})->name('web.checkout.checkout-add-address');
+//     return view('web.checkout.checkout-add-address');
+// })->name('web.checkout.checkout-add-address');
 
 // ======== Main Pages ==========
 
@@ -142,10 +145,5 @@ Route::get('/Membership-Checkout', function () {
 
     return view('web.checkout.membership-checkout');
 })->name('web.checkout.membership-checkout');
-
-Route::get('/My-Orders', function () {
-
-    return view('web.user.orders');
-})->name('web.user.orders');
 
 
