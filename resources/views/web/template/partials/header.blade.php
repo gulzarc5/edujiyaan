@@ -160,12 +160,12 @@
 							<div class="menu-area">
 								<nav>
 									<ul style="display: flex;justify-content: center;">
-										<li class="active"><a href="{{route('web.index')}}">Home</a></li>
-										<li><a href="{{route('web.new_book_list')}}">Books</a></li>
-										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
-										<li><a href="{{route('web.project_list')}}">Projects</a></li>
-										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
-										<li><a href="{{route('web.quiz_list')}}">Quiz</a></li>
+										<li class="{{ Request::path() == '/' ? 'active' : '' }}"><a href="{{route('web.index')}}">Home</a></li>
+										<li class="{{  (request()->is('Book/List*')) ? 'active' : '' }}"><a href="{{route('web.new_book_list')}}">Books</a></li>
+										<li class="{{  (request()->is('Book/Old*')) ? 'active' : '' }}""><a href="{{route('web.old_book_list')}}">Old Books</a></li>
+										<li class=""><a href="{{route('web.project_list')}}">Projects</a></li>
+										<li class=""><a href="{{route('web.magazines')}}">Magazines</a></li>
+										<li class=""><a href="{{route('web.quiz_list')}}">Quiz</a></li>
 										<li><a href="#">Tips and Tricks</a></li>
 									</ul>
 								</nav>
@@ -186,7 +186,7 @@
 										@auth('buyer')
 											<li><a class="user-wel">{{ Auth::guard('buyer')->user()->name }}</a></li>
 										@endauth
-										<li class="active"><a href="{{route('web.index')}}">Home</a></li>
+									<li class="active"><a href="{{route('web.index')}}">Home</a></li>
 										<li><a href="{{route('web.new_book_list')}}">Books</a></li>
 										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project_list')}}">Projects</a></li>

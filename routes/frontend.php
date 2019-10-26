@@ -7,7 +7,7 @@ Route::group(['namespace'=> 'Web'], function(){
 
         Route::post('Ajax/Book/List','BookController@ajaxBookList')->name('ajax_book_list');
         Route::get('/search/pagination','BookController@ajaxBookList');
-        Route::get('/Books-Detail/{book_id}', 'BookController@bookDetail')->name('web.books-detail');
+        Route::get('/Books/Detail/{book_id}', 'BookController@bookDetail')->name('web.books-detail');
 
         ///////////////////////Old Books Route ////////////////////////////////
         Route::get('Old/List/{academic?}','BookController@bookListOld')->name('web.old_book_list');

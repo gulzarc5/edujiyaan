@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-12">
                 <div class="product-button">
-                    <a href="#" title="Add to cart" class="btn btn-primary margin-mobile">View Quiz</a>
+                    <a target="_blank" href="{{route('web.quiz_pdf',['quiz_id'=>encrypt($quizs->id)])}}" title="Add to cart" class="btn btn-primary margin-mobile">View Quiz</a>
                     <a href="{{route('web.quiz_detail',['quiz_id'=>encrypt($quizs->id)])}}" title="Add to cart" class="btn btn-primary margin-mobile">View Detail</a>
                 </div>                                            	
             </div>	
