@@ -235,6 +235,9 @@ body {
 .pt-170 {
     padding-top: 170px;
 }
+.ptb-90 {
+    padding-top: 90px;
+}
 .ptb-10 {
     padding: 10px 0;
 }
@@ -279,6 +282,9 @@ body {
 }
 .pt-70 {
     padding-top: 70px;
+}
+.pt-100 {
+    padding-top: 100px;
 }
 .pl-100 {
     padding-left: 100px;
@@ -1253,7 +1259,7 @@ body {
 .product-wrapper {
    position: relative;
     overflow: hidden;
-    border: solid grey 1px;
+    border: solid #fb520782  1px;
     border-radius: 10px;
     padding: 10px;
     height: auto;

@@ -15,7 +15,7 @@ a.meanmenu-reveal{display:none}
     top:0;
     right:0;
     cursor:pointer;
-    color:#fff;
+    color:#f07c29;
     text-decoration:none;
     font-size:16px;
     text-indent:-9999em;
@@ -26,7 +26,7 @@ a.meanmenu-reveal{display:none}
     font-weight:700;float: right;
     overflow: hidden;
 }
-.mean-container a.meanmenu-reveal span{display:block;background:#fff;height:3px;margin-top:3px}
+.mean-container a.meanmenu-reveal span{display:block;background:#f07c29;height:3px;margin-top:3px}
 .mean-container .mean-nav{float:left;width:100%;background:#0c1923}
 .mean-container .mean-nav ul{padding:0;margin:0;width:100%;list-style-type:none}
 .mean-container .mean-nav ul li {
@@ -34,7 +34,6 @@ a.meanmenu-reveal{display:none}
   float: left;
   position: relative;
   width: 100%;
-  border-top: 1px solid#ddd;
 }
 .mean-container .mean-nav ul li a {
   background: #f8f8f8 none repeat scroll 0 0;
@@ -43,20 +42,37 @@ a.meanmenu-reveal{display:none}
   float: left;
   font-size: 12px;
   margin: 0;
-  padding: 1em 5%;
+  padding: .5em 5%;
   text-align: left;
   text-decoration: none;
   text-transform: uppercase;
   width: 90%;
   font-weight: bold;
 }
+.bdr-top{
+  border-top: 1px solid #e06b177a;
+  padding-top: 5px; 
+}
+.pb-5{
+  padding-bottom: 5px;
+}
 .mobile-menu-area {
-  background: #262626;
+  background: #06182a;
+}
+.user-wel{
+  font-size: 16px!important;
+  text-transform: none!important;
+  color: #e06b17!important;
+  border-bottom: 1px solid #e06b177a!important;
+  font-family: 'Rufina', serif!important;
+}
+.head-img img{
+  width: 35%;
 }
 .mean-container .mean-nav ul li li a {
   border-top: 1px solid rgba(255, 255, 255, 0.25);
   opacity: 0.75;
-  padding: 1em 10%;
+  padding: .5em 10%;
   text-shadow: none !important;
   visibility: visible;
   width: 80%;
@@ -95,7 +111,7 @@ a.meanmenu-reveal{display:none}
 .mean-remove{display:none!important}
 .mean-container .mean-bar::after {
   color: #ffffff;
-  content: "MENU";
+  content: "EDUJIYAAN";
   font-size: 21px;
   left: 0;
   position: absolute;

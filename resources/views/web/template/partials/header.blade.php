@@ -38,7 +38,7 @@
 		<!-- header-area-start -->
         <header>
 			<!-- header-top-area-start -->
-			<div class="header-top-area">
+			<div class="header-top-area hidden-xs">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -85,7 +85,7 @@
 			<div class="header-mid-area ptb-10">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-3 col-md-3 col-sm-5 col-xs-12">
+						<div class="col-lg-3 col-md-3 col-sm-5 hidden-xs">
 							<div class="header-img pt-25">
 								<img src="{{asset('web/img/icons/shop.png')}}">
 								<a href="#"></i>sell on edujiyaan</a>
@@ -93,10 +93,10 @@
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
 							<div class="logo-area text-center logo-xs-mrg">
-								<a href="index.html"><img src="{{asset('web/img/logo/logo.png')}}" alt="logo" /></a>
+								<a class="head-img" href="index.html"><img src="{{asset('web/img/logo/logo.png')}}" alt="logo" /></a>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+						<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
 							<div class="my-cart pt-25">
 								<ul>
 									<li><a href="{{route('web.view_cart')}}"><i class="fa fa-shopping-cart"></i>My Cart</a>
@@ -178,18 +178,43 @@
 			<!-- mobile-menu-area-start -->
 			<div class="mobile-menu-area hidden-md hidden-lg">
 				<div class="container">
-					<div class="row">
+					<div class="row" style="">
 						<div class="col-lg-12">
 							<div class="mobile-menu">
 								<nav id="mobile-menu-active">
 									<ul id="nav">
+										@auth('buyer')
+											<li><a class="user-wel">{{ Auth::guard('buyer')->user()->name }}</a></li>
+										@endauth
 										<li class="active"><a href="{{route('web.index')}}">Home</a></li>
 										<li><a href="{{route('web.new_book_list')}}">Books</a></li>
 										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project_list')}}">Projects</a></li>
-										<li><a href="#">Magazines</a></li>
-										<li><a href="#">Quiz</a></li>
-										<li><a href="#">Tips and Tricks</a></li>
+										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
+										<li><a href="{{route('web.quiz')}}">Quiz</a></li>
+										<li class="pb-5"><a href="#">Tips and Tricks</a></li>
+										<!-- main-menu-area-end -->
+										<li class="bdr-top"><a href="index.html">My Account</a>
+											<div class="sub-menu">
+												<ul>
+													<li><a href="{{route('web.myProfile')}}">My Profile</a></li>
+													<li><a href="{{route('web.change_password_form')}}">Change Password</a></li>
+													<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
+													<li><a href="{{route('web.view_shipping_address_list')}}">My Shipping Address</a></li>
+												</ul>
+											</div>
+										</li>
+										<li><a href="{{route('web.user.membership')}}">Membership</a></li>
+										@auth('buyer')
+											<li><a href="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
+											<form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+												@csrf
+											</form>
+										@else
+											<li><a href="{{route('web.user_login')}}">Sign in</a></li>
+											<li><a href="{{route('web.signup')}}">Sign Up</a></li>
+											<li><a href="{{route('seller_login')}}">Seller Sign in</a></li>
+										@endauth
 									</ul>
 								</nav>
 							</div>

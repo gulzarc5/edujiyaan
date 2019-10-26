@@ -4,7 +4,7 @@
 		<!-- slider-area-start -->
 		<div class="slider-area">
 			<div class="slider-active owl-carousel">
-                <div class="single-slider slider-h1-2 pt-215 pb-100 bg-img" style="background-image:url({{asset('web/img/slider/2.jpg')}});">
+                <div class="single-slider slider-h1-2 pt-90 pb-100 bg-img" style="background-image:url({{asset('web/img/slider/2.jpg')}});">
                     <div class="container">
                         <div class="slider-content slider-content-2 slider-animated-1">
                             <h1>We can help get your</h1>
@@ -14,11 +14,11 @@
                         </div>
                     </div>
                 </div>
-				<div class="single-slider pt-125 pb-130 bg-img new-pos1" style="background-image:url({{asset('web/img/slider/1.jpg')}});">
+				<div class="single-slider pt-90 pb-100 bg-img new-pos1" style="background-image:url({{asset('web/img/slider/1.jpg')}});">
 				    <div class="container">
                         <div class="row">
                             <div class="col-md-5">
-                                <div class="slider-content slider-animated-1 text-center">
+                                <div class="slider-content slider-content-2 slider-animated-1 text-center">
                                     <h1>Huge Sale</h1>
                                     <h2>Projects</h2>
                                     <h3>Now starting at RS.99.00</h3>
@@ -28,14 +28,14 @@
                         </div>
 				    </div>
 				</div>
-                <div class="single-slider pt-125 pb-130 bg-img new-pos" style="background-image:url({{asset('web/img/slider/3.jpg')}});">
+                <div class="single-slider pt-90 pb-100 bg-img new-pos" style="background-image:url({{asset('web/img/slider/3.jpg')}});">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-5">
-                                <div class="slider-content slider-animated-1 text-center">
+                                <div class="slider-content slider-content-2 slider-animated-1 text-center">
                                     <h1>Huge Sale</h1>
-                                    <h2>Documents</h2>
-                                    <h3>Magazines</h3>
+                                    <h2>Magazines</h2>
+                                    <h3>Now starting at RS.99.00</h3>
                                     <a href="shop.php">Shop now</a>
                                 </div>
                             </div>
@@ -46,10 +46,10 @@
 		</div>
 		<!-- slider-area-end -->
 		<!-- banner-area-end -->
-        <div class="banner-area-4">
+        <div class="banner-area-4 hidden-xs">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 hidden-xs">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
                         <div class="banner-img-2 mt-30">
                             <a href="shop.php"><img src="{{asset('web/img/banner/14.jpg')}}" alt="banner"></a>
                         </div>
@@ -85,23 +85,14 @@
         </div>
         <!-- product-area-start -->
 		<!-- product-area-start -->
-		<div class="product-area xs-mb">
+		<div class="product-area xs-mb pt-25">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="section-title text-center mb-50">
 							<h2>Top interesting</h2>
-							<p>Browse the collection of our best selling and top interresting products. <br /> ll definitely find what you are looking for..</p>
+							<p>Browse the collection of our best selling and top interresting products. <br /> You definitely find what you are looking for..</p>
 						</div>
-					</div>
-					<div class="col-lg-12">
-						<!-- tab-menu-start -->
-						<div class="tab-menu mb-40 text-center">
-							<ul>
-								<li class="active"><a href="#Audiobooks" data-toggle="tab">New Arrival	</a></li>
-							</ul>
-						</div>
-						<!-- tab-menu-end -->
 					</div>
 				</div>
 				<!-- tab-area-start -->
@@ -387,12 +378,13 @@
 		</div>
 		<!-- product-area-end -->
         <!-- team-area-start -->
-        <div class="team-area" style="padding-bottom: 0px">
+        <div class="team-area pt-25" style="padding-bottom: 0px">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="team-title text-center mb-50">
+                        <div class="section-title text-center mb-50">
                             <h2>Our Products</h2>
+                            <p>Browse the collection of our top catagory of products. <br /> You definitely find what you are looking for..</p>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-2 hidden-sm col-xs-12"></div>
@@ -450,7 +442,7 @@
         </div>
         <!-- team-area-end -->
 		<!-- banner-area-start -->
-		<div class="banner-area-5 mtb-95">
+		<div class="banner-area-5 mtb-70">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -562,15 +554,15 @@
 		</div>
 		<!-- bestseller-area-end -->
 		<!-- banner-static-area-start -->
-		<div class="banner-static-area bg ptb-100">
+		<div class="banner-static-area bg ptb-50">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="banner-shadow-hover xs-mb">
 							<a href="#"><img src="{{asset('web/img/banner/8.jpg')}}" alt="banner" /></a>
 						</div>
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="banner-shadow-hover">
 							<a href="#"><img src="{{asset('web/img/banner/9.jpg')}}" alt="banner" /></a>
 						</div>
