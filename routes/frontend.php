@@ -126,6 +126,11 @@ Route::get('/Magazines-Detail', function () {
 //     return view('web.checkout.checkout-add-address');
 // })->name('web.checkout.checkout-add-address');
 
+Route::get('/Thank-You', function () {
+
+    return view('web.thankyou.thank');
+})->name('web.thankyou.thank');
+
 // ======== Main Pages ==========
 
 
