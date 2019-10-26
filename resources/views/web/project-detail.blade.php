@@ -68,27 +68,33 @@
 											</div>
 										</div>
 										@if (!empty($project[0]->preview))
-											<a href="#">Preview/</a>
+											<a href="{{ route('web.project_preview', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">Preview</a>
 										@endif
-										@if (!empty($project[0]->synopsis))
-											<a href="#">Synopsis/</a>
-										@endif
-										@if (!empty($project[0]->documentation))
-											<a href="#">Documentation/</a>
-										@endif							
-										@if (!empty($project[0]->documentation))
-											<a href="#">PPT</a>
-										@endif
+										@auth('buyer')
+											@if ($purchase_status == 2)
+												@if (!empty($project[0]->synopsis))
+													<a href="{{ route('web.project_synopsis', ['project_id' => encrypt($project[0]->id)]) }}">/Synopsis</a>
+												@endif
+												@if (!empty($project[0]->documentation))
+													<a href="{{ route('web.project_documentation', ['project_id' => encrypt($project[0]->id)]) }}">/Documentation</a>
+												@endif							
+												@if (!empty($project[0]->documentation))
+													<a href="{{ route('web.project_ppt', ['project_id' => encrypt($project[0]->id)]) }}">/PPT</a>
+												@endif
+											@endif
+										@endauth
 										<div class="product-info-price">
 											<div class="price-final">
-												<span>₹ 2000.00</span>
+												<span>₹ {{ $project[0]->cost }}</span>
 											</div>
 										</div>
-										<div class="product-add-form">
-											<form action="#">
-												<a href="{{route('web.checkout.project-checkout')}}">Proceed To Checkout</a>
-											</form>
-										</div>
+										@if ($purchase_status == 1)
+											<div class="product-add-form">
+												<form action="#">
+													<a href="{{ route('web.checkout_project', ['project_id' => encrypt($project[0]->id)]) }}">Proceed To Checkout</a>
+												</form>
+											</div>
+										@endif
 									</div>
 								</div>
 							</div>	

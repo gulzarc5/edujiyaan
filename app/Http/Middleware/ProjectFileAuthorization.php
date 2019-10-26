@@ -39,9 +39,29 @@ class ProjectFileAuthorization
                 }
             }elseif(Auth::guard('buyer')->check()){
 
-            }            
+                try {
+                    $project_id = decrypt($request->route('project_id'));
+                }catch(DecryptException $e) {
+                    abort(404);
+                }
+                $user_id = Auth::guard('buyer')->user()->id;
+                
+                $check_data = DB::table('project_orders')
+                                        ->where('project_id', $project_id)
+                                        ->where('user_id', $user_id)
+                                        ->where('payment_status', 1)
+                                        ->count();
+                if ($check_data > 0) {
+                    return $next($request);
+                }else{
+                    return redirect()->route('web.project_detail', ['project_id' => $project_id]);
+                }
+            } else {
+                //Guest redirect to project view page
+                return redirect()->route('web.index');
+            }           
         }else{
-         return redirect()->route('we.index');
+         return redirect()->route('web.index');
         }
     }
 }

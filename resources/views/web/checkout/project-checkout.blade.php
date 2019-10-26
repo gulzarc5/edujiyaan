@@ -45,13 +45,13 @@
 		                                    </div>
 	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	                                      		<div class="order-content">
-	                                      			<h4>Chinmoyee Project 2</h4>
+	                                      			<h4>{{ $project[0]->name }}</h4>
 	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Total Pages : <span>200</span></p>
-	                                      				<p>Specialisation  : <span>Retail</span></p>
+	                                      				<p>Total Pages : <span>{{ $project[0]->pages }}</span></p>
+	                                      				<p>Specialisation  : <span>{{ $project[0]->ps_name }}</span></p>
 	                                      			</div>
 	                                      			<div class="price-final mb-10">
-														Total : <span>₹ 2000.00</span>
+														Total : <span>₹ {{ $project[0]->cost }}</span>
 													</div>
 	                                      		</div>
 	                                      	</div>
@@ -66,17 +66,17 @@
 							<h5 style="text-align: center;">Checkout Amount</h5>
 							<div class="row">
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									Sub Total (2 items)
+									{{-- Sub Total (2 items) --}} Total
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									₹ 3500.00
+									₹ {{ $project[0]->cost }}
 								</div>	
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+								{{-- <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 									GST
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 									₹ 200.00
-								</div>
+								</div> --}}
 							</div>	
 							<div class="bdr"></div>
 							<div class="row">									
@@ -84,10 +84,10 @@
 									<strong>Grand Total</strong>
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-10">
-									<strong>₹ 3730.00</strong>
+									<strong>₹ {{ $project[0]->cost }}</strong>
 								</div>	
 								<div style="margin: auto;display: table;">									
-									<a href="#"><button class="btn btn-success">Proceed To Pay</button></a>
+									<a href="{{ route('project_pay', ['project_id' => $project[0]->id]) }}"><button class="btn btn-success">Proceed To Pay</button></a>
 								</div>		
 							</div>
 						</div>

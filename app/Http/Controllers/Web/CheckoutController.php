@@ -145,4 +145,99 @@ class CheckoutController extends Controller
         
     }
 
+    public function CheckoutProject($project_id)
+    {
+        try {
+            $project_id = decrypt($project_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $project = DB::table('projects')
+                        ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
+                        ->select('projects.*', 'project_spalization.name as ps_name')
+                        ->where('projects.id', $project_id)
+                        ->get();
+        
+        return view('web.checkout.project-checkout', ['project' => $project]);
+    }
+
+    public function payProject($project_id){
+
+        $project = DB::table('projects')
+                        ->where('projects.id', $project_id)
+                        ->get();
+
+        $user_id = Auth::guard('buyer')->user()->id;
+        $user_info = DB::table('users')
+                        ->where('id', $user_id)
+                        ->get();
+ 
+        $api = new \Instamojo\Instamojo(
+               config('services.instamojo.api_key'),
+               config('services.instamojo.auth_token'),
+               config('services.instamojo.url')
+           );
+    
+       try {
+           $response = $api->paymentRequestCreate(array(
+               "purpose" => "Project Payment",
+               "amount" => $project[0]->cost,
+               "buyer_name" => $project[0]->name,
+               "send_email" => true,
+               "email" => $user_info[0]->email,
+               "phone" => $user_info[0]->mobile,
+               "redirect_url" => "http://127.0.0.1:8000/User/Checkout/project/pay_success/".$project_id
+               ));
+
+               DB::table('project_orders')
+                    ->insert([
+                        'user_id'    => $user_id,
+                        'project_id' => $project_id,
+                        'seller_id'  => $project[0]->user_id,
+                        'price'      => $project[0]->cost,
+                        'payment_request_id' => $response['id'],
+                        'payment_status' => 2,
+                        'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    ]);
+                
+               header('Location: ' . $response['longurl']);
+               exit();
+       }catch (Exception $e) {
+           print('Error: ' . $e->getMessage());
+       }      
+    }
+
+    public function successProject(Request $request, $project_id){
+        try {
+    
+           $api = new \Instamojo\Instamojo(
+               config('services.instamojo.api_key'),
+               config('services.instamojo.auth_token'),
+               config('services.instamojo.url')
+           );
+    
+           $response = $api->paymentRequestStatus(request('payment_request_id'));
+    
+           if( !isset($response['payments'][0]['status']) ) {
+            return redirect('web.checkout_project', ['project_id' => $project_id]);
+           } else if($response['payments'][0]['status'] != 'Credit') {
+            return redirect('web.checkout_project', ['project_id' => $project_id]);
+           } 
+         }catch (\Exception $e) {
+            return redirect('web.checkout_project', ['project_id' => $project_id]);
+        }
+       
+        if($response['payments'][0]['status'] == 'Credit') {
+
+            $user_id = Auth::guard('buyer')->user()->id;
+            DB::table('project_orders')
+                    ->where('project_id', $project_id)
+                    ->where('user_id', $user_id)
+                    ->where('payment_request_id', $response['id'])
+                    ->update(['payment_id' => $response['payments'][0]['payment_id'], 'payment_status' => '1']);
+
+           	return view('web.checkout.thankyou');
+       	} 
+     }
 }
