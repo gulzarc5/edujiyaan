@@ -236,6 +236,17 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-row mb-3">
+                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                  <label for="shipping_charge">Shipping Charge</label>
+                                  <input type="text" class="form-control" name="shipping_charge"  placeholder="Enter Shipping Charge" value="{{ $book->shipping_charge }}">
+                                    @if($errors->has('shipping_charge'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('shipping_charge') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-row mb-10">
                                 <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                     <label for="size">Image</label>

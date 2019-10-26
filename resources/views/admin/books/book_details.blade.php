@@ -79,6 +79,10 @@
                       <td>{{ number_format($book->price,2,".",'') }}</td>
                     </tr>
                     <tr>
+                      <th>Shipping Charge : </th>
+                      <td>{{ number_format($book->shipping_charge,2,".",'') }}</td>
+                    </tr>
+                    <tr>
                       <th>Status : </th>
                       <td>
                         @if ($book->status == 1)
@@ -143,7 +147,7 @@
                       <caption>Book Image</caption>                     
                         <tr>
                           <td colspan="2">
-                            <img src="{{asset('images/book_image/'.$book->book_image.'')}}">
+                            <img src="{{asset('images/book_image/'.$book->book_image.'')}}" style="max-width:400px;" >
                           </td>
                         </tr>                   
                     </table>

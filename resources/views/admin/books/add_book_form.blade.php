@@ -28,7 +28,7 @@
     	            	
                         <div class="well" style="overflow: auto">
                             <div class="form-row mb-10">
-                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                {{-- <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                   <label for="book_id_prefix">Book ID Prefix</label>
                                   <input type="text" class="form-control" name="book_id_prefix" value="{{ old('book_id_prefix') }}"  placeholder="Enter Book Id Prefix Only Text" >
                                     @if($errors->has('book_id_prefix'))
@@ -36,7 +36,7 @@
                                             <strong>{{ $errors->first('book_id_prefix') }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
                                   <label for="book_name">Book Name</label>
                                   <input type="text" class="form-control" name="book_name"  placeholder="Enter Book Name"  value="{{ old('book_name') }}">
@@ -202,6 +202,17 @@
                                     @if($errors->has('price'))
                                         <span class="invalid-feedback" role="alert" style="color:red">
                                             <strong>{{ $errors->first('price') }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="col-md-4 col-sm-12 col-xs-12 mb-3">
+                                  <label for="shipping_charge">Shipping Charge</label>
+                                  <input type="text" class="form-control" name="shipping_charge"  placeholder="Enter Shipping Charge" value="{{ old('shipping_charge') }}">
+                                    @if($errors->has('shipping_charge'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('shipping_charge') }}</strong>
                                         </span>
                                     @enderror
                                 </div>

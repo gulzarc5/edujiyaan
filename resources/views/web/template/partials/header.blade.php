@@ -69,7 +69,7 @@
 											<ul>
 												<li><a href="{{route('web.myProfile')}}">My Profile</a></li>
 												<li><a href="{{route('web.change_password_form')}}">Change Password</a></li>
-												<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
+												<li><a href="{{route('web.view_orders')}}">My Orders</a></li>
 												<li><a href="{{route('web.view_shipping_address_list')}}">My Shipping Address</a></li>
 											</ul>
 										</div>
@@ -138,7 +138,7 @@
 												</div>
 												<div class="cart-bottom">
 													<a class="view-cart" href="{{route('web.view_cart')}}">view cart</a>
-													<a href="checkout.html">Check out</a>
+													{{-- <a href="checkout.html">Check out</a> --}}
 												</div>
 											@else
 												
@@ -199,7 +199,7 @@
 												<ul>
 													<li><a href="{{route('web.myProfile')}}">My Profile</a></li>
 													<li><a href="{{route('web.change_password_form')}}">Change Password</a></li>
-													<li><a href="{{route('web.user.orders')}}">My Orders</a></li>
+													<li><a href="{{route('web.view_orders')}}">My Orders</a></li>
 													<li><a href="{{route('web.view_shipping_address_list')}}">My Shipping Address</a></li>
 												</ul>
 											</div>
