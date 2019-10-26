@@ -16,7 +16,35 @@ class ProjectController extends Controller
 {
     public function projectList()
     {   
-         Session::forget('project_category');     
+         Session::forget('project_category');    
+        
+         $new_books_count = DB::table('books')
+         ->where('book_condition',1)
+         ->where('status',1)
+         ->where('approve_status',1)
+         ->whereNull('deleted_at')
+         ->count();
+        $old_books_count = DB::table('books')
+            ->where('book_condition',2)
+            ->where('status',1)
+            ->where('approve_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $projects_count = DB::table('projects')
+            ->where('status',1)
+            ->where('approval_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $megazines_count = DB::table('megazines')
+            ->where('status',1)
+            ->where('approval_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $quiz_count = DB::table('quiz')
+            ->where('status',1)
+            ->where('approve_status',1)
+            ->whereNull('deleted_at')
+            ->count();
         $project = DB::table('projects')
                         ->select('projects.*', 'project_spalization.name as ps_name')
         				->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
@@ -26,7 +54,8 @@ class ProjectController extends Controller
         				->paginate(3);
         $specialization = DB::table('project_spalization')
                                 ->get();
-        return view('web.project',compact('project', 'specialization'));
+                            
+        return view('web.project',compact('project', 'specialization','new_books_count','old_books_count','projects_count','megazines_count','quiz_count'));
     }
 
     public function projectListCategory($category_id)
@@ -40,6 +69,34 @@ class ProjectController extends Controller
             }
             Session::put('project_category', $category_id); 
         }
+
+        $new_books_count = DB::table('books')
+         ->where('book_condition',1)
+         ->where('status',1)
+         ->where('approve_status',1)
+         ->whereNull('deleted_at')
+         ->count();
+        $old_books_count = DB::table('books')
+            ->where('book_condition',2)
+            ->where('status',1)
+            ->where('approve_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $projects_count = DB::table('projects')
+            ->where('status',1)
+            ->where('approval_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $megazines_count = DB::table('megazines')
+            ->where('status',1)
+            ->where('approval_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $quiz_count = DB::table('quiz')
+            ->where('status',1)
+            ->where('approve_status',1)
+            ->whereNull('deleted_at')
+            ->count();
         $project = DB::table('projects')
                         ->select('projects.*', 'project_spalization.name as ps_name')
                         ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
@@ -53,7 +110,7 @@ class ProjectController extends Controller
             $project->where('specialization_id',$category_id);
         }
         $project = $project->paginate(3);
-        return view('web.project',compact('project', 'specialization'));
+        return view('web.project',compact('project', 'specialization','specialization','new_books_count','old_books_count','projects_count','megazines_count','quiz_count'));
     }
 
     public function ajaxProjectList(Request $request)
@@ -90,6 +147,34 @@ class ProjectController extends Controller
             return redirect()->back();
         }
 
+        $new_books_count = DB::table('books')
+        ->where('book_condition',1)
+        ->where('status',1)
+        ->where('approve_status',1)
+        ->whereNull('deleted_at')
+        ->count();
+        $old_books_count = DB::table('books')
+            ->where('book_condition',2)
+            ->where('status',1)
+            ->where('approve_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $projects_count = DB::table('projects')
+            ->where('status',1)
+            ->where('approval_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $megazines_count = DB::table('megazines')
+            ->where('status',1)
+            ->where('approval_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+        $quiz_count = DB::table('quiz')
+            ->where('status',1)
+            ->where('approve_status',1)
+            ->whereNull('deleted_at')
+            ->count();
+
         $project = DB::table('projects')
                         ->leftJoin('project_spalization', 'projects.specialization_id', '=', 'project_spalization.id')
                         ->select('projects.*', 'project_spalization.name as ps_name')
@@ -97,21 +182,20 @@ class ProjectController extends Controller
                         ->get();
 
         $purchase_status = 1;
-        if (Auth::check()) {
-            if (Auth::guard('buyer')->check()) {
-                if($project){
-                    $order_check_count = DB::table('project_orders')
-                                        ->where('user_id', Auth::guard('buyer')->user()->id)
-                                        ->where('payment_status', 1)
-                                        ->count();
-                
-                    if(!empty($order_check_count))                    
-                        $purchase_status = 2;
-                }
+        if (Auth::guard('buyer')->check()) {
+            if($project){
+                $order_check_count = DB::table('project_orders')
+                                    ->where('user_id', Auth::guard('buyer')->user()->id)
+                                    ->where('project_id',$project_id)
+                                    ->where('payment_status', 1)
+                                    ->count();
+            
+                if(!empty($order_check_count))                    
+                    $purchase_status = 2;
             }
         }
         
-        return view('web.project-detail', ['project' =>$project, 'purchase_status' => $purchase_status]);
+        return view('web.project-detail', compact('project','purchase_status','new_books_count','old_books_count','projects_count','megazines_count','quiz_count'));
     }
 
     public function previewFileDownload($project_id) {
