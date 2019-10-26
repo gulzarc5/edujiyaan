@@ -120,7 +120,7 @@
                                             </div>
                                         	<div class="col-md-12">
 	                                            <div class="product-details">                                                
-	                                                <h4><a href="{{route('web.project-detail')}}">Description :</a></h4>
+	                                                <h4><a href="{{route('web.quiz-detail')}}">Description :</a></h4>
 	                                                <p class="line-clamp2">Apr 6, 2019 - datatables is a javascript library and that provide search, pagination, ordering, sorting and etc. we will use yajra composer package for datatables in laravel 5.8 project. yajra provide method to send data and filter using ajax. You have to just follow few step for implement datatables in your laravel application.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 	                                            </div>
                                             </div>
@@ -144,7 +144,7 @@
                                             </div>
                                         	<div class="col-md-12">
 	                                            <div class="product-details">                                                
-	                                                <h4><a href="{{route('web.project-detail')}}">Description :</a></h4>
+	                                                <h4><a href="{{route('web.quiz-detail')}}">Description :</a></h4>
 	                                                <p class="line-clamp2">Oct 6, 2019 - Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.datatables is a javascript library and that provide search, pagination, ordering, sorting and etc. we will use yajra composer package for datatables in laravel 5.8 project. yajra provide method to send data and filter using ajax. You have to just follow few step for implement datatables in your laravel application.Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
 	                                            </div>
                                             </div>
