@@ -200,6 +200,39 @@
 	border-bottom: 1px solid #8f8585;
 	margin: 10px; 
 }
+.thanks h1{
+    font-size: 72px;
+    text-align: center;
+    font-family: 'Rufina', serif;
+}
+.thanks button{
+    border-radius: 0;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 30px;
+    text-transform: capitalize;
+    font-family: 'Rufina', serif;
+    font-weight: 400;
+    transition: .3s;
+    background-color: #f07c29;
+    border-color:  #f07c29;
+    border: 1px solid;
+    padding: 6px 14px;
+}
+.thanks button:hover {
+    background-color: #333;
+    border-color: #333;
+}
+.thanks p{
+     font-size: 13.7px;
+}
+.thanks i{
+     font-size: 75px;
+     color: #0055a5b0;
+     width: 100%;
+}
 /*=====================================
 				Menbership
 =======================================*/

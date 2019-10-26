@@ -52,6 +52,11 @@ Route::group(['namespace'=> 'Web'], function(){
                 Route::get('/Add/Address', 'CheckoutController@CheckoutAddAddress')->name('web.add_checkout_address');
                 Route::post('/Add/Address', 'CheckoutController@CheckoutInsertAddress')->name('web.add_checkout_insert_address');
                 Route::post('/Book/Order/Place','CheckoutController@bookOrderPlace')->name('web.book_order_place');
+
+                /** Project Buying Route **/
+                Route::get('/Project/{project_id}', 'CheckoutController@CheckoutProject')->name('web.checkout_project');
+                Route::get('project/pay/{project_id}', 'CheckoutController@payProject')->name('project_pay');
+                Route::get('project/pay_success/{project_id}', 'CheckoutController@successProject')->name('project_success');
             }); 
 
             //Quiz View Route for logged user
@@ -69,8 +74,13 @@ Route::group(['namespace'=> 'Web'], function(){
     Route::group(['prefix'=>'project'],function(){
         Route::get('List','ProjectController@projectList')->name('web.project_list');
         Route::get('List/Category/{cat_id}','ProjectController@projectListCategory')->name('web.project_list_category');
-        Route::any('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');
-        Route::get('Detail/{project_id}','ProjectController@quizDetail')->name('web.project_detail');
+        Route::any('Ajax/Project/List','ProjectController@ajaxProjectList')->name('ajax_project_list');        
+        Route::get('Detail/{project_id}','ProjectController@projectDetail')->name('web.project_detail');
+
+        Route::get('Preview/{project_id}','ProjectController@previewFileDownload')->name('web.project_preview');
+        Route::get('Synopsis/{project_id}','ProjectController@synopsisFileDownload')->name('web.project_synopsis')->middleware('projectFileAuthorization');
+        Route::get('Documentation/{project_id}','ProjectController@documentationFileDownload')->name('web.project_documentation')->middleware('projectFileAuthorization');
+        Route::get('PPT/{project_id}','ProjectController@pptFileDownload')->name('web.project_ppt')->middleware('projectFileAuthorization');
     });
 
     Route::group(['prefix'=>'Quiz'],function(){
@@ -90,17 +100,6 @@ Route::get('/', function () {
 
 //     return view('web.old-books');
 // })->name('web.old-books');
-
-// Route::get('/Project', function () {
-
-//     return view('web.project');
-// })->name('web.project');
-
-// Route::get('/Project-Detail', function () {
-
-//     return view('web.project-detail');
-
-// })->name('web.project-detail');
 
 Route::get('/Magazines', function () {
 
@@ -127,13 +126,14 @@ Route::get('/Magazines-Detail', function () {
 //     return view('web.checkout.checkout-add-address');
 // })->name('web.checkout.checkout-add-address');
 
+Route::get('/Thank-You', function () {
+
+    return view('web.thankyou.thank');
+})->name('web.thankyou.thank');
+
 // ======== Main Pages ==========
 
 
-Route::get('/Project-Checkout', function () {
-
-    return view('web.checkout.project-checkout');
-})->name('web.checkout.project-checkout');
 
 Route::get('/Magazine-Checkout', function () {
 
