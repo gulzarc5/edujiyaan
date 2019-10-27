@@ -13,6 +13,16 @@ Route::group(['namespace'=> 'Books','prefix'=>'Book'], function(){
 	Route::get('list/','BookController@bookList')->name('admin.book_list');
 	Route::get('ajax/list/','BookController@ajaxBookList')->name('admin.ajax_book_list');
 
+	Route::get('orders/','BookController@bookOrderList')->name('admin.book_order_list');
+	Route::get('orders/ajax','BookController@bookOrderAjaxList')->name('admin.book_order_ajax_list');
+	Route::get('Order/Detail/{order_id}','BookController@bookOrderDetail')->name('admin.book_order_detail');
+
+});
+
+Route::group(['namespace' => 'Order', 'prefix' => 'Order'],function(){
+	Route::get('Status/Update/{order_id}/{status}','OrderController@bookOrderStatus')->name('admin.book_order_status');
+	Route::get('Dispatch/Form/{order_id}','OrderController@BookOrderDispatchedForm')->name('admin.book_order_dispatch_form');
+	Route::post('Dispatch/Submit','OrderController@BookOrderDispatched')->name('admin.book_order_dispatch');
 });
 
 Route::group(['namespace'=> 'Quiz','prefix'=>'Quiz'], function(){

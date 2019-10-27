@@ -97,6 +97,7 @@ class CheckoutController extends Controller
         $book_order = DB::table('book_orders')
             ->insertGetId([
                 'user_id' => $user_id,
+                'shipping_address_id' => $shipping_id,
                 'payment_method' => $payment_method,
                 'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
@@ -119,6 +120,7 @@ class CheckoutController extends Controller
                         'book_id' => $book->id,
                         'order_id' => $book_order,
                         'seller_id' => $book->user_id,
+                        'shipping_address_id' => $shipping_id,
                         'rate' => $book->price,
                         'shipping_charge' => $book->shipping_charge,
                         'quantity' => $value->quantity,

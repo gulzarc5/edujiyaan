@@ -4,10 +4,6 @@ namespace App\Http\Controllers\Admin\Configuration;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
-use App\FirstCategory;
-use App\SecondCategory;
-use App\Model\Configuration\Sizes;
 use Validator;
 use DataTables;
 use Illuminate\Support\Facades\DB;
