@@ -18,7 +18,6 @@ class MegazineFileAuthorization
      */
     public function handle($request, Closure $next)
     {
-        dd(Auth::check());
         if (Auth::check()) {
             if (Auth::guard('admin')->check()) {
                 return $next($request);

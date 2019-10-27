@@ -55,7 +55,7 @@
 										@auth('buyer')
 											@if ($purchase_status == 2)
 												@if (!empty($megazine[0]->file_name))
-													<a href="{{ route('web.megazine_file', ['megazine_id' => encrypt($megazine[0]->id)]) }}">File</a>
+													<a href="{{ route('web.megazine_file', ['megazine_id' => encrypt($megazine[0]->id)]) }}" target="_blank">File</a>
 												@endif
 											@endif
 										@endauth

@@ -73,13 +73,13 @@
 										@auth('buyer')
 											@if ($purchase_status == 2)
 												@if (!empty($project[0]->synopsis))
-													<a href="{{ route('web.project_synopsis', ['project_id' => encrypt($project[0]->id)]) }}">/Synopsis</a>
+													<a href="{{ route('web.project_synopsis', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/Synopsis</a>
 												@endif
 												@if (!empty($project[0]->documentation))
-													<a href="{{ route('web.project_documentation', ['project_id' => encrypt($project[0]->id)]) }}">/Documentation</a>
+													<a href="{{ route('web.project_documentation', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/Documentation</a>
 												@endif							
 												@if (!empty($project[0]->documentation))
-													<a href="{{ route('web.project_ppt', ['project_id' => encrypt($project[0]->id)]) }}">/PPT</a>
+													<a href="{{ route('web.project_ppt', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/PPT</a>
 												@endif
 											@endif
 										@endauth

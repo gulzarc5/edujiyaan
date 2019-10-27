@@ -226,7 +226,7 @@ class ProjectController extends Controller
             abort(404);
         }
 
-        $project_file = DB::table('projects')->select('preview')->where('id', $project_id)->first();    
+        $project_file = DB::table('projects')->select('synopsis')->where('id', $project_id)->first();    
         $path = storage_path('app\files\projects\synopsis\\'.$project_file->synopsis);
         if (!File::exists($path)){
             $response = 404;

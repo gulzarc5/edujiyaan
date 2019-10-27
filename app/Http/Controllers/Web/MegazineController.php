@@ -199,7 +199,7 @@ class MegazineController extends Controller
         return view('web.megazine-detail', compact('megazine','purchase_status','new_books_count','old_books_count','projects_count','megazines_count','quiz_count'));
     }
 
-     public function megazineFileAuthorization($megazine_id) {
+     public function megazineFileDownload($megazine_id) {
         try {
             $megazine_id = decrypt($megazine_id);
         }catch(DecryptException $e) {
