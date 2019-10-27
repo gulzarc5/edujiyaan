@@ -85,9 +85,11 @@ Route::group(['namespace'=> 'Web','middleware'=>'web'], function(){
         Route::get('Detail/{project_id}','ProjectController@projectDetail')->name('web.project_detail');
 
         Route::get('Preview/{project_id}','ProjectController@previewFileDownload')->name('web.project_preview');
+        Route::group(['middleware'=>'auth:buyer'], function(){
         Route::get('Synopsis/{project_id}','ProjectController@synopsisFileDownload')->name('web.project_synopsis')->middleware('projectFileAuthorization');
         Route::get('Documentation/{project_id}','ProjectController@documentationFileDownload')->name('web.project_documentation')->middleware('projectFileAuthorization');
         Route::get('PPT/{project_id}','ProjectController@pptFileDownload')->name('web.project_ppt')->middleware('projectFileAuthorization');
+        });
     });
 
     Route::group(['prefix'=>'megazine'],function(){
@@ -95,8 +97,9 @@ Route::group(['namespace'=> 'Web','middleware'=>'web'], function(){
         Route::get('List/Category/{cat_id}','MegazineController@megazineListCategory')->name('web.megazine_list_category');
         Route::any('Ajax/Megazine/List','MegazineController@ajaxMegazineList')->name('ajax_megazine_list');        
         Route::get('Detail/{megazine_id}','MegazineController@megazineDetail')->name('web.megazine_detail');
-
+        Route::group(['middleware'=>'auth:buyer'], function(){
         Route::get('File/{megazine_id}','MegazineController@megazineFileDownload')->name('web.megazine_file')->middleware('megazineFileAuthorization');
+        });
     });
 
 

@@ -119,17 +119,16 @@
                     </ul>
                   </li>
 
+                  <li><a><i class="fa fa-desktop"></i>Orders<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{route('admin.book_order_list')}}">Book Orders</a></li>
+                      <li><a href="#">Project Orders</a></li>
+                      <li><a href="#">Megazine Orders</a></li>
+                    </ul>
+                  </li>
+
                   <li><a><i class="fa fa-bar-chart-o"></i> Configuration <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      {{-- <li><a><i class="fa fa-bar-chart-o"></i>Category <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                          <li><a href="{{route('admin.add_main_category_form')}}">Add Category</a></li>
-                          <li><a href="{{route('admin.add_first_category_form')}}">Add First Category</a></li>
-                          <li><a href="{{route('admin.add_second_category_form')}}">Add Second Category</a></li>
-                        </ul>
-                      </li> --}}
-
-
                       <li><a><i class="fa fa-bar-chart-o"></i>State <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="{{route('admin.view_state_form')}}">Add New State</a></li>
@@ -145,7 +144,6 @@
 
                     </ul>
                   </li>
-
 
                 </ul>
               </div>
@@ -164,7 +162,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="#">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>

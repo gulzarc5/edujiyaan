@@ -273,4 +273,88 @@ class BookController extends Controller
         }
         return view('admin.books.book_details',compact('book'));
     }
+
+
+    public function bookOrderList()
+    {
+        return view('admin.orders.book_orders.book_orders');
+    }
+
+    public function bookOrderAjaxList()
+    {
+        $query = DB::table('book_orders')
+            ->select('book_orders.*','users.name as u_name')
+            ->leftjoin('users','users.id','=','book_orders.user_id')
+            ->whereNull('book_orders.deleted_at')
+            ->orderBy('book_orders.id','desc');
+       
+            return datatables()->of($query->get())
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                   $btn = '<a href="'.route('admin.book_order_detail',['order_id'=>encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank">View</a>';
+                //    if ($row->status == '1') {
+                //        $btn .= '<a href="'.route('admin.book_status_update',['order_id'=>encrypt($row->id),'status' => encrypt(2)]).'" class="btn btn-danger btn-sm">Dispatched</a>
+                //        <a href="'.route('admin.book_status_update',['order_id'=>encrypt($row->id),'status' => encrypt(4)]).'" class="btn btn-danger btn-sm">Cancel</a>';
+                //         return $btn;
+                //     }elseif($row->status == '2'){
+                //         $btn .= '<a href="'.route('admin.book_status_update',['order_id'=>encrypt($row->id),'status' => encrypt(3)]).'" class="btn btn-danger btn-sm">Delivered</a>';
+                //          return $btn;
+                //     }
+                    return $btn;
+            })
+            ->editColumn('created_at', function($row){
+               return Carbon::parse($row->created_at)->toDayDateTimeString();
+            })
+            ->addColumn('status_tab', function($row){
+                if ($row->status == '1') {
+                    $btn = '<a href="#" class="btn btn-success btn-sm">Pending</a>';
+                 }elseif($row->status == '2'){
+                    $btn = '<a href="#" class="btn btn-danger btn-sm">Dispatched</a>';
+                 }elseif($row->status == '3'){
+                    $btn = '<a href="#" class="btn btn-danger btn-sm">Delivered</a>';
+                 }elseif($row->status == '4'){
+                    $btn = '<a href="#" class="btn btn-danger btn-sm">Cancelled</a>';
+                 }
+                 return $btn;
+            })
+            ->rawColumns(['action','status_tab','created_at'])
+            ->make(true);
+    }
+
+    public function bookOrderDetail($order_id)
+    {
+        try {
+            $order_id = decrypt($order_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $order = DB::table('book_orders')
+            ->select('book_orders.*','users.name as u_name')
+            ->leftjoin('users','users.id','=','book_orders.user_id')
+            ->where('book_orders.id',$order_id)
+            ->whereNull('book_orders.deleted_at')
+            ->first();
+        $shipping_address = DB::table('user_shipping_address')
+            ->select('user_shipping_address.*','state.name as s_name','city.name as c_name')
+            ->leftjoin('state','state.id','=','user_shipping_address.state_id')
+            ->leftjoin('city','city.id','=','user_shipping_address.city_id')
+            ->where('user_shipping_address.id',$order->shipping_address_id)->first();
+        $order_details = DB::table('book_order_details')
+            ->select('book_order_details.*','books.book_name as book_name','book_language.name as language')
+            ->leftjoin('books','books.id','=','book_order_details.book_id')
+            ->leftjoin('book_language','book_language.id','=','books.language_id')
+            ->where('book_order_details.order_id',$order_id)
+            ->get();
+        foreach ($order_details as $key => $value) {
+            if ($value->seller_id != "A") {
+                $seller_name = DB::table('users')->where('id',$value->seller_id)->first();
+                $value->seller_name = $seller_name->name;
+            }else{
+                $value->seller_name = 'Admin';
+            }
+        }
+        // dd($order_details);
+        return view('admin.orders.book_orders.details',compact('order_details','order','shipping_address'));
+    }
 }
