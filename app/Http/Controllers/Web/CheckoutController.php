@@ -143,6 +143,7 @@ class CheckoutController extends Controller
             DB::table('cart')->where('user_id',$user_id)->delete();
             return redirect()->route('web.book_order_thanks',['order_id'=>encrypt($book_order),'payment_method'=>encrypt($payment_method)]);
         }else {
+            DB::table('cart')->where('user_id',$user_id)->delete();
             $total_cost = $total_shipping_charge+$total_order_amount;
             $user_name = Auth::guard('buyer')->user()->name;
             $user_email = Auth::guard('buyer')->user()->email;

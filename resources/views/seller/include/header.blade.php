@@ -126,12 +126,11 @@
                     </ul>
                   </li>
 
-                  <li><a><i class="fa fa-table"></i> Orders <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i>Orders<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Book Orders</a></li>
+                      <li><a href="{{route('seller.book_order_list')}}">Book Orders</a></li>
                       <li><a href="#">Project Orders</a></li>
                       <li><a href="#">Megazine Orders</a></li>
-                      <li><a href="#">Project Orders</a></li>
                     </ul>
                   </li>
                 </ul>

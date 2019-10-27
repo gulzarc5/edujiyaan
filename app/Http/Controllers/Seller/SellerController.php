@@ -22,7 +22,19 @@ class SellerController extends Controller
     }
     
     public function index(){
-        return view('seller.seller_deshboard');
+        $seller_id = Auth::guard('seller')->user()->id;
+        $last_ten_orders = DB::table('book_order_details')
+            ->select('book_order_details.*','users.name as u_name','book_orders.payment_status as payment_status','book_orders.payment_method as payment_method')
+            ->leftjoin('users','users.id','=','book_order_details.user_id')
+            ->leftjoin('book_orders','book_orders.id','=','book_order_details.order_id')
+            ->where('book_order_details.seller_id',$seller_id)
+            ->orderBy('book_order_details.id','desc')
+            ->limit(10)
+            ->get();
+        $deshboard_data = [
+            'last_ten_orders' => $last_ten_orders,
+        ];
+        return view('seller.seller_deshboard',compact('deshboard_data'));
     }
 
     public function myProfileForm()
