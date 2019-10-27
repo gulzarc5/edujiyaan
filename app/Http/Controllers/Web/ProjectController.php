@@ -109,7 +109,7 @@ class ProjectController extends Controller
         if (!empty($category_id)) {
             $project->where('specialization_id',$category_id);
         }
-        $project = $project->paginate(3);
+        $project = $project->paginate(12);
         return view('web.project',compact('project', 'specialization','specialization','new_books_count','old_books_count','projects_count','megazines_count','quiz_count'));
     }
 
@@ -133,7 +133,7 @@ class ProjectController extends Controller
         if (!empty($category)) {
             $project->where('projects.specialization_id',$category);
         }
-        $project = $project->paginate(3);
+        $project = $project->paginate(12);
         // dd(str_replace_array('?', \DB::getQueryLog()[0]['bindings'], 
         // \DB::getQueryLog()[0]['query']));
         return view('web.pagination.project_search',compact('project'));

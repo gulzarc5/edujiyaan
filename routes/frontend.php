@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['namespace'=> 'Web'], function(){   
+Route::group(['namespace'=> 'Web','middleware'=>'web'], function(){   
     Route::group(['prefix'=>'Book'],function(){
         Route::get('List/{academic?}','BookController@bookList')->name('web.new_book_list');
         Route::get('List/Category/{cat_id}','BookController@bookListCategory')->name('web.new_book_list_category');
@@ -38,7 +38,7 @@ Route::group(['namespace'=> 'Web'], function(){
             Route::get('/change/Password', 'UserController@viewChangePasswordForm')->name('web.change_password_form');
             Route::post('/change/Password', 'UserController@ChangePassword')->name('web.change_password');
 
-            Route::get('Orders','OrderController@viewOrders')->name('web.view_orders');
+            Route::get('Orders/{tab_status}','OrderController@viewOrders')->name('web.view_orders');
             
             Route::get('/Shipping/Address/List', 'UserController@viewShippingAddressList')->name('web.view_shipping_address_list');
             Route::get('/Shipping/Address', 'UserController@viewShippingAddressForm')->name('web.shipping_address_form');
@@ -58,6 +58,11 @@ Route::group(['namespace'=> 'Web'], function(){
                 Route::get('/Project/{project_id}', 'CheckoutController@CheckoutProject')->name('web.checkout_project');
                 Route::get('project/pay/{project_id}', 'CheckoutController@payProject')->name('project_pay');
                 Route::get('project/pay_success/{project_id}', 'CheckoutController@successProject')->name('project_success');
+
+                /** Megazine Buying Route **/
+                Route::get('/Megazine/{megazine_id}', 'CheckoutController@CheckoutMegazine')->name('web.checkout_megazine');
+                Route::get('megazine/pay/{megazine_id}', 'CheckoutController@payMegazine')->name('megazine_pay');
+                Route::get('megazine/pay_success/{megazine_id}', 'CheckoutController@successMegazine')->name('megazine_success');
             }); 
 
             //Quiz View Route for logged user
@@ -85,6 +90,16 @@ Route::group(['namespace'=> 'Web'], function(){
         Route::get('PPT/{project_id}','ProjectController@pptFileDownload')->name('web.project_ppt')->middleware('projectFileAuthorization');
     });
 
+    Route::group(['prefix'=>'megazine'],function(){
+        Route::get('List','MegazineController@megazineList')->name('web.megazine_list');
+        Route::get('List/Category/{cat_id}','MegazineController@megazineListCategory')->name('web.megazine_list_category');
+        Route::any('Ajax/Megazine/List','MegazineController@ajaxMegazineList')->name('ajax_megazine_list');        
+        Route::get('Detail/{megazine_id}','MegazineController@megazineDetail')->name('web.megazine_detail');
+
+        Route::get('File/{megazine_id}','MegazineController@megazineFileDownload')->name('web.megazine_file')->middleware('megazineFileAuthorization');
+    });
+
+
     Route::group(['prefix'=>'Quiz'],function(){
         Route::get('List/{category_id?}','QuizController@quizList')->name('web.quiz_list');
         Route::any('Ajax/Quiz/List','QuizController@ajaxQuizList')->name('web.ajax_quiz_list');
@@ -103,15 +118,15 @@ Route::get('/', function () {
 //     return view('web.old-books');
 // })->name('web.old-books');
 
-Route::get('/Magazines', function () {
+// Route::get('/Magazines', function () {
 
-    return view('web.magazines');
-})->name('web.magazines');
+//     return view('web.magazines');
+// })->name('web.magazines');
 
-Route::get('/Magazines-Detail', function () {
+// Route::get('/Magazines-Detail', function () {
 
-    return view('web.magazines-detail');
-})->name('web.magazines-detail');
+//     return view('web.magazines-detail');
+// })->name('web.magazines-detail');
 
 // Route::get('/Quiz-Detail', function () {
 
@@ -128,19 +143,19 @@ Route::get('/Magazines-Detail', function () {
 //     return view('web.checkout.checkout-add-address');
 // })->name('web.checkout.checkout-add-address');
 
-Route::get('/Thank-You', function () {
+// Route::get('/Thank-You', function () {
 
-    return view('web.thankyou.thank');
-})->name('web.thankyou.thank');
+//     return view('web.thankyou.thank');
+// })->name('web.thankyou.thank');
 
 // ======== Main Pages ==========
 
 
 
-Route::get('/Magazine-Checkout', function () {
+// Route::get('/Magazine-Checkout', function () {
 
-    return view('web.checkout.magazine-checkout');
-})->name('web.checkout.magazine-checkout');
+//     return view('web.checkout.magazine-checkout');
+// })->name('web.checkout.magazine-checkout');
 
 Route::get('/Membership', function () {
 

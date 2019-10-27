@@ -28,7 +28,7 @@
 									<h1>THANK YOU</h1>
 									<i class="fa fa-check-circle flex-center" aria-hidden="true"></i>
 									<p class="mt-20">Your order has been placed. You will soon receive a confirmation Mail</p>
-								<div class="flex-center mt-20" style="width: 100%"><a href="{{route('web.view_orders')}}"><button>click here to see order history</button></a></div>
+								<div class="flex-center mt-20" style="width: 100%"><a href="{{route('web.view_orders', ['tab_status' => encrypt(1)])}}"><button>click here to see order history</button></a></div>
 								</div>								
 							</div>
 						</div>

@@ -98,96 +98,78 @@
 										@endif
 	                                </div>
 	                                <div class="tab-pane {{ $status == 2 ? 'active' : '' }}" id="Project">
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/10.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>Savvy Shoulder Tote</h4>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 34.00</span>
-													</div>
-													<div class="status">
-														<h6 class="del">Delivered</h6>
-														<h6 class="pen">Pending</h6>
-														<h6 class="can">Canceled</h6>
-													</div>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%">
-	                                      				<p>Order ID : <span>0154FG7864HD</span></p>
-	                                      				<p>Order On : <span>0154FG7864HD</span></p>
-	                                      			</div>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/20.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>The Girl Without a Name</h4>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 104.00</span>
-													</div>
-													<div class="status">
-														<h6 class="del">Delivered</h6>
-														<h6 class="pen">Pending</h6>
-														<h6 class="can">Canceled</h6>
-													</div>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%">
-	                                      				<p>Order ID : <span>4154FG7457HD</span></p>
-	                                      				<p>Order On : <span>0154FG7864HD</span></p>
-	                                      			</div>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
+	                                	@if(count($project_orders) > 0)
+	                                		@foreach($project_orders as $key => $value)
+	                                			<div class="row valu" style="margin-bottom: 20px ">
+				                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+			                                      		<img src="{{asset('web/img/icons/4.png')}}">
+				                                    </div>
+			                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+			                                      		<div class="order-content">
+			                                      			<h4>{{ $value->name }}</h4>
+			                                      			<div class="price-final mb-10">
+																<span>₹ {{ $value->price }}</span>
+															</div>
+															<div class="status" style="display:flex;justify-content:space-between">
+																<div>
+																	<h6 class="del">Delivered</h6>
+																</div>
+																<div>
+																	Payment Status : 
+																	@if ($value->payment_status == 2)
+																		<h6 class="can">Pending</h6> 
+																	@else
+																		<h6 class="del">Paid</h6>
+																	@endif
+																		
+																</div>
+															</div>
+			                                      			<div class="flex" style="justify-content: space-between;width: 100%">
+			                                      				<p>Order ID : <span>{{ $value->id }}</span></p>
+			                                      				<p>Order On : <span>{{ \Carbon\Carbon::parse($value->created_at)->toDayDateTimeString()}}</span></p>
+			                                      			</div>
+			                                      		</div>
+			                                      	</div>
+			                                    </div>
+	                                		@endforeach
+	                                	@endif
 	                                </div>
 	                                <div class="tab-pane {{ $status == 3 ? 'active' : '' }}" id="Magazine">
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/14.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>Savvy Shoulder Tote</h4>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 34.00</span>
-													</div>
-													<div class="status">
-														<h6 class="del">Delivered</h6>
-														<h6 class="pen">Pending</h6>
-														<h6 class="can">Canceled</h6>
-													</div>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%">
-	                                      				<p>Order ID : <span>0154FG7864HD</span></p>
-	                                      				<p>Order On : <span>0154FG7864HD</span></p>
-	                                      			</div>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
-	                                    <div class="row valu" style="margin-bottom: 20px ">
-		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/29.jpg')}}">
-		                                    </div>
-	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-	                                      		<div class="order-content">
-	                                      			<h4>The Girl Without a Name</h4>
-	                                      			<div class="price-final mb-10">
-														<span>₹ 104.00</span>
-													</div>
-													<div class="status">
-														<h6 class="del">Delivered</h6>
-														<h6 class="pen">Pending</h6>
-														<h6 class="can">Canceled</h6>
-													</div>
-	                                      			<div class="flex" style="justify-content: space-between;width: 100%">
-	                                      				<p>Order ID : <span>4154FG7457HD</span></p>
-	                                      				<p>Order On : <span>0154FG7864HD</span></p>
-	                                      			</div>
-	                                      		</div>
-	                                      	</div>
-	                                    </div>
+	                                    @if(count($megazine_orders) > 0)
+	                                		@foreach($megazine_orders as $key => $value)
+	                                			<div class="row valu" style="margin-bottom: 20px ">
+				                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+			                                      		<img src="{{asset('images/megazines/thumb/'.$value->cover_image.'')}}">
+				                                    </div>
+			                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+			                                      		<div class="order-content">
+			                                      			<h4>{{ $value->name }}</h4>
+			                                      			<div class="price-final mb-10">
+																<span>₹ {{ $value->price }}</span>
+															</div>
+															<div class="status" style="display:flex;justify-content:space-between">
+																<div>
+																	<h6 class="del">Delivered</h6>
+																</div>
+																<div>
+																	Payment Status : 
+																	@if ($value->payment_status == 2)
+																		<h6 class="can">Pending</h6> 
+																	@else
+																		<h6 class="del">Paid</h6>
+																	@endif
+																		
+																</div>
+															</div>
+			                                      			<div class="flex" style="justify-content: space-between;width: 100%">
+			                                      				<p>Order ID : <span>{{ $value->id }}</span></p>
+			                                      				<p>Order On : <span>{{ \Carbon\Carbon::parse($value->created_at)->toDayDateTimeString()}}</span></p>
+			                                      			</div>
+			                                      		</div>
+			                                      	</div>
+			                                    </div>
+	                                		@endforeach
+	                                	@endif
 	                                </div>
 	                            </div>	
 							</div>

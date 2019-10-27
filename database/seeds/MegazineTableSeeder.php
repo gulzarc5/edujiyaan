@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Faker\Factory as Faker;
+use Carbon\Carbon;
 
 class MegazineTableSeeder extends Seeder
 {
@@ -14,16 +16,17 @@ class MegazineTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i=0; $i < 1; $i++) { 
-            $sourceDir = UploadedFile::fake()->create('1.pdf');
-            $uploadDir = Storage('app/files/projects/documentation/');
-	    	DB::table('books')->insert([
+        for ($i=0; $i < 50; $i++) { 
+            $sourceDir_pdf = storage_path('app/public/testfile/pdf');
+            $uploadDir = storage_path('app/files/megazines/');
+	    	DB::table('megazines')->insert([
                 'user_id' => 'A',
-                'specialization_id' => rand(1,13),
+                'category_id' => rand(1,7),
                 'name' => $faker->name,
                 'cost' => rand(100,1200),
                 'pages' =>rand(5,60),
-                'documentation' => $faker->file($sourceDir, $targetDir, false) ,
+                'file_name' => $faker->file($sourceDir_pdf, $uploadDir, false) ,
+                'cover_image' => $faker->image('public/images/megazines/',300,400, null, false),
                 // 'synopsis' => $faker->file($sourceDir, $targetDir, false) ,
                 // 'preview' => $faker->file($sourceDir, $targetDir, false) ,
                 // 'ppt' => $faker->file($sourceDir, $targetDir, false) ,

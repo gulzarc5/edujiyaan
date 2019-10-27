@@ -329,7 +329,103 @@ class CheckoutController extends Controller
                     ->where('payment_request_id', $response['id'])
                     ->update(['payment_id' => $response['payments'][0]['payment_id'], 'payment_status' => '1']);
 
-           	return view('web.checkout.thankyou');
+           	return view('web.thankyou.project_thank');
        	} 
+    }
+
+    public function CheckoutMegazine($megazine_id)
+    {
+        try {
+            $megazine_id = decrypt($megazine_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $megazine = DB::table('megazines')
+                        ->leftJoin('magazine_category', 'megazines.category_id', '=', 'magazine_category.id')
+                        ->select('megazines.*', 'magazine_category.name as m_name')
+                        ->where('megazines.id', $megazine_id)
+                        ->get();
+        
+        return view('web.checkout.megazine-checkout', ['megazine' => $megazine]);
+    }
+
+    public function payMegazine($megazine_id){
+
+        $megazine = DB::table('megazines')
+                        ->where('megazines.id', $megazine_id)
+                        ->get();
+
+        $user_id = Auth::guard('buyer')->user()->id;
+        $user_info = DB::table('users')
+                        ->where('id', $user_id)
+                        ->get();
+ 
+        $api = new \Instamojo\Instamojo(
+               config('services.instamojo.api_key'),
+               config('services.instamojo.auth_token'),
+               config('services.instamojo.url')
+           );
+    
+       try {
+           $response = $api->paymentRequestCreate(array(
+               "purpose" => "Megazine Payment",
+               "amount" => $megazine[0]->cost,
+               "buyer_name" => $megazine[0]->name,
+               "send_email" => true,
+               "email" => $user_info[0]->email,
+               "phone" => $user_info[0]->mobile,
+               "redirect_url" => "http://127.0.0.1:8000/User/Checkout/megazine/pay_success/".$megazine_id
+               ));
+
+               DB::table('megazine_orders')
+                    ->insert([
+                        'user_id'    => $user_id,                        
+                        'seller_id'  => $megazine[0]->user_id,
+                        'megazine_id' => $megazine_id,
+                        'price'      => $megazine[0]->cost,
+                        'payment_request_id' => $response['id'],
+                        'payment_status' => 2,
+                        'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                    ]);
+                
+               header('Location: ' . $response['longurl']);
+               exit();
+       }catch (Exception $e) {
+           print('Error: ' . $e->getMessage());
+       }      
+    }
+
+    public function successMegazine(Request $request, $megazine_id){
+        try {
+    
+           $api = new \Instamojo\Instamojo(
+               config('services.instamojo.api_key'),
+               config('services.instamojo.auth_token'),
+               config('services.instamojo.url')
+           );
+    
+           $response = $api->paymentRequestStatus(request('payment_request_id'));
+    
+           if( !isset($response['payments'][0]['status']) ) {
+            return redirect('web.checkout_megazine', ['megazine_id' => $megazine_id]);
+           } else if($response['payments'][0]['status'] != 'Credit') {
+            return redirect('web.checkout_megazine', ['megazine_id' => $megazine_id]);
+           } 
+         }catch (\Exception $e) {
+            return redirect('web.checkout_megazine', ['megazine_id' => $megazine_id]);
+        }
+       
+        if($response['payments'][0]['status'] == 'Credit') {
+
+            $user_id = Auth::guard('buyer')->user()->id;
+            DB::table('megazine_orders')
+                    ->where('megazine_id', $megazine_id)
+                    ->where('user_id', $user_id)
+                    ->where('payment_request_id', $response['id'])
+                    ->update(['payment_id' => $response['payments'][0]['payment_id'], 'payment_status' => '1']);
+
+            return view('web.thankyou.megazine_thank');
+        } 
     }
 }

@@ -69,7 +69,7 @@
 											<ul>
 												<li><a href="{{route('web.myProfile')}}">My Profile</a></li>
 												<li><a href="{{route('web.change_password_form')}}">Change Password</a></li>
-												<li><a href="{{route('web.view_orders')}}">My Orders</a></li>
+												<li><a href="{{route('web.view_orders', ['tab_status' => encrypt(1)])}}">My Orders</a></li>
 												<li><a href="{{route('web.view_shipping_address_list')}}">My Shipping Address</a></li>
 											</ul>
 										</div>
@@ -164,7 +164,7 @@
 										<li class="{{  (request()->is('Book/List*')) ? 'active' : '' }}"><a href="{{route('web.new_book_list')}}">Books</a></li>
 										<li class="{{  (request()->is('Book/Old*')) ? 'active' : '' }}"><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li class="{{  (request()->is('project*')) ? 'active' : '' }}"><a href="{{route('web.project_list')}}">Projects</a></li>
-										<li class="{{  (request()->is('Magazines*')) ? 'active' : '' }}"><a href="{{route('web.magazines')}}">Magazines</a></li>
+										<li class="{{  (request()->is('Magazines*')) ? 'active' : '' }}"><a href="{{route('web.megazine_list')}}">Magazines</a></li>
 										<li class="{{  (request()->is('Quiz*')) ? 'active' : '' }}"><a href="{{route('web.quiz_list')}}">Quiz</a></li>
 										<li><a href="#">Tips and Tricks</a></li>
 									</ul>
@@ -190,7 +190,7 @@
 										<li><a href="{{route('web.new_book_list')}}">Books</a></li>
 										<li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li><a href="{{route('web.project_list')}}">Projects</a></li>
-										<li><a href="{{route('web.magazines')}}">Magazines</a></li>
+										<li><a href="{{route('web.megazine_list')}}">Magazines</a></li>
 										<li><a href="{{route('web.quiz_list')}}">Quiz</a></li>
 										<li class="pb-5"><a href="#">Tips and Tricks</a></li>
 										<!-- main-menu-area-end -->
@@ -199,7 +199,7 @@
 												<ul>
 													<li><a href="{{route('web.myProfile')}}">My Profile</a></li>
 													<li><a href="{{route('web.change_password_form')}}">Change Password</a></li>
-													<li><a href="{{route('web.view_orders')}}">My Orders</a></li>
+													<li><a href="{{route('web.view_orders', ['tab_status' => encrypt(1)])}}">My Orders</a></li>
 													<li><a href="{{route('web.view_shipping_address_list')}}">My Shipping Address</a></li>
 												</ul>
 											</div>

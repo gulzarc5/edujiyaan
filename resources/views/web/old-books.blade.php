@@ -30,8 +30,8 @@
 								<ul>
 										<li><a href="{{route('web.new_book_list')}}"><i class="fas fa-book"></i>&nbsp;&nbsp;New Books<span>(29)</span></a></li>									
 										<li><a href="{{route('web.old_book_list')}}"><i class="fas fa-book"></i>&nbsp;&nbsp;Old Books<span>(29)</span></a></li>								
-									<li><a href="project.php"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
-									<li><a href="megazine.php"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
+									<li><a href="{{route('web.project_list')}}"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
+									<li><a href="{{route('web.megazine_list')}}"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
 									<li><a href="ebook.php"><i class="far fa-file"></i>&nbsp;&nbsp;Documents<span>(14))</span></a></li>
 								</ul>
 							</div>

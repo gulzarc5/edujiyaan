@@ -55,7 +55,7 @@
 									@endif
 								</span>
 							</a></li>
-							<li><a href="megazine.php">&nbsp;&nbsp;Magazines
+							<li><a href="{{route('web.megazine_list')}}">&nbsp;&nbsp;Magazines
 								<span>
 									@if (isset($megazines_count))
 										({{$megazines_count}})

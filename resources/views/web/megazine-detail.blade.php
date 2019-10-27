@@ -27,36 +27,45 @@
 							<div class="row">
 								<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
 									<div class="flexslider">
-										<img src="{{asset('web/img/product/32.jpg')}}">
+										<img src="{{asset('images/megazines/thumb/'.$megazine[0]->cover_image.'')}}">
 									</div>
 								</div>
 								<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
 									<div class="product-info-main">
 										<div class="page-title">
-											<h1>Time</h1>
+											<h1>{{ $megazine[0]->name }}</h1>
 										</div>
 										<div class="product-info-stock-sku">
-                                            <span>Megazine ID : </span>
+                                            {{-- <span>Megazine ID : </span>
                                             <div class="product-attribute">
                                                  <span>CHIN124</span>
-                                            </div>
+                                            </div> --}}
                                         </div>
 										<div class="product-info-stock-sku">
 											<span>Total Pages : </span>
 											<div class="product-attribute">
-												<span>123</span>
+												<span>{{ $megazine[0]->pages }}</span>
 											</div>
 										</div>
 										<div class="product-info-price">
 											<div class="price-final">
-												<span>₹ 200.00</span>
+												<span>₹ {{ $megazine[0]->cost }}</span>
 											</div>
 										</div>
-										<div class="product-add-form">
-											<form action="#">
-												<a href="{{route('web.checkout.magazine-checkout')}}">Proceed To Checkout</a>
-											</form>
-										</div>
+										@auth('buyer')
+											@if ($purchase_status == 2)
+												@if (!empty($megazine[0]->file_name))
+													<a href="{{ route('web.megazine_file', ['megazine_id' => encrypt($megazine[0]->id)]) }}">File</a>
+												@endif
+											@endif
+										@endauth
+										@if ($purchase_status == 1)
+											<div class="product-add-form">
+												<form action="#">
+													<a href="{{ route('web.checkout_megazine', ['megazine_id' => encrypt($megazine[0]->id)]) }}">Proceed To Checkout</a>
+												</form>
+											</div>
+										@endif
 									</div>
 								</div>
 							</div>	
@@ -71,13 +80,7 @@
 							<div class="tab-content">
                                 <div class="tab-pane active" id="Details">
                                     <div class="valu">
-                                      <p><strong>Time :</strong> The sporty Joust Duffle Bag can't be beat - not in the gym, not on the luggage carousel, not anywhere. Big enough to haul a basketball or soccer ball and some sneakers with plenty of room to spare, it's ideal for athletes with places to go.</p>
-                                      <ul>
-                                        <li><i class="fa fa-circle"></i>Dual top handles.</li>
-                                        <li><i class="fa fa-circle"></i>Adjustable shoulder strap.</li>
-                                        <li><i class="fa fa-circle"></i>Full-length zipper.</li>
-                                        <li><i class="fa fa-circle"></i>L 29" x W 13" x H 11".</li>
-                                      </ul>
+                                     {{ $megazine[0]->description }}
                                     </div>
                                 </div>
                             </div>	
@@ -91,10 +94,51 @@
 							</div>
 							<div class="left-menu mb-30">
 								<ul>
-									<li><a href="shop.php"><i class="fas fa-book"></i>&nbsp;&nbsp;Books<span>(29)</span></a></li>									
-									<li><a href="project.php"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
-									<li><a href="megazine.php"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
-									<li><a href="ebook.php"><i class="far fa-file"></i>&nbsp;&nbsp;Documents<span>(14))</span></a></li>
+									<li><a href="{{route('web.new_book_list')}}">&nbsp;&nbsp;New Books
+										<span>
+											@if (isset($new_books_count))
+												({{$new_books_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>	
+									<li><a href="{{route('web.old_book_list')}}">&nbsp;&nbsp;Old Books
+										<span>
+											@if (isset($old_books_count))
+												({{$old_books_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>									
+									<li><a href="{{route('web.project_list')}}">&nbsp;&nbsp;Projects
+										<span>
+											@if (isset($projects_count))
+												({{$projects_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>
+									<li><a href="megazine.php">&nbsp;&nbsp;Magazines
+										<span>
+											@if (isset($megazines_count))
+												({{$megazines_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>
+									<li><a href="{{route('web.quiz_list')}}">&nbsp;&nbsp;Quiz
+										<span>
+											@if (isset($quiz_count))
+												({{$quiz_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>
 								</ul>
 							</div>
 							<div class="banner-area mb-30">

@@ -41,16 +41,16 @@
 	                                <div class="tab-pane active" id="Books">
 	                                    <div class="row valu" style="margin-bottom: 20px ">
 		                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-	                                      		<img src="{{asset('web/img/product/32.jpg')}}">
+	                                      		<img src="{{asset('images/megazines/thumb/'.$megazine[0]->cover_image.'')}}">
 		                                    </div>
 	                                      	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
 	                                      		<div class="order-content">
-	                                      			<h4>Chinmoyee Project 2</h4>
+	                                      			<h4>{{ $megazine[0]->name }}</h4>
 	                                      			<div class="flex" style="justify-content: space-between;width: 100%;">
-	                                      				<p>Total Pages : <span>200</span></p>
+	                                      				<p>Total Pages : <span>{{ $megazine[0]->pages }}</span></p>
 	                                      			</div>
 	                                      			<div class="price-final mb-10">
-														Total : <span>₹ 2000.00</span>
+														Total : <span>₹ {{ $megazine[0]->cost }}</span>
 													</div>
 	                                      		</div>
 	                                      	</div>
@@ -65,17 +65,11 @@
 							<h5 style="text-align: center;">Checkout Amount</h5>
 							<div class="row">
 								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									Sub Total (2 items)
+									Total
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									₹ 3500.00
+									₹ {{ $megazine[0]->cost }}
 								</div>	
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-									GST
-								</div>
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-									₹ 200.00
-								</div>
 							</div>	
 							<div class="bdr"></div>
 							<div class="row">									
@@ -83,10 +77,10 @@
 									<strong>Grand Total</strong>
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb-10">
-									<strong>₹ 3730.00</strong>
+									<strong>₹ {{ $megazine[0]->cost }}</strong>
 								</div>	
 								<div style="margin: auto;display: table;">									
-									<a href="#"><button class="btn btn-success">Proceed To Pay</button></a>
+									<a href="{{ route('megazine_pay', ['megazine_id' => $megazine[0]->id]) }}"><button class="btn btn-success">Proceed To Pay</button></a>
 								</div>		
 							</div>
 						</div>
