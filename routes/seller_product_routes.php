@@ -56,3 +56,16 @@ Route::group(['prefix'=>'Quiz'], function(){
 	Route::get('list/','QuizController@quizList')->name('seller.quiz_list');
 	Route::get('ajax/list/','QuizController@ajaxQuizList')->name('seller.ajax_quiz_list');
 });
+
+Route::group(['prefix'=>'Order'],function(){
+
+	Route::group(['prefix'=>'Books'],function(){
+		Route::get('List/','OrderController@bookOrderList')->name('seller.book_order_list');
+		Route::get('/ajax/list','OrderController@bookOrderAjaxList')->name('seller.book_order_ajax_list');
+		Route::get('Detail/{order_id}','OrderController@bookOrderDetail')->name('seller.book_order_detail');
+
+		Route::get('Status/Update/{order_id}/{status}','OrderController@bookOrderStatus')->name('seller.book_order_status');
+		Route::get('Dispatch/Form/{order_id}','OrderController@BookOrderDispatchedForm')->name('seller.book_order_dispatch_form');
+		Route::post('Dispatch/Submit','OrderController@BookOrderDispatched')->name('seller.book_order_dispatch');
+	});
+});

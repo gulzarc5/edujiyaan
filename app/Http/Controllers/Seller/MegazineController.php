@@ -17,7 +17,7 @@ class MegazineController extends Controller
     public function addMegazineForm()
     {
     	$magazine_category = DB::table('magazine_category')
-    									->get();
+    		->get();
 
     	return view('seller.megazines.add_megazine_form',compact('magazine_category'));
     }

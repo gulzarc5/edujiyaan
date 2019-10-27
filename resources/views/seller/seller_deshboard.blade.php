@@ -81,7 +81,6 @@
                                         <thead>
                                             <tr class="headings">                
                                                 <th class="column-title">Sl No. </th>
-                                                <th class="column-title">Order id</th>
                                                 <th class="column-title">Order By</th>
                                                 <th class="column-title">Total Quantity</th>
                                                 <th class="column-title">Total Amount</th>
@@ -91,17 +90,16 @@
                                         </thead>
               
                                         <tbody>
-                                          @if (isset($dashboard_data['last_ten_orders']) && count($dashboard_data['last_ten_orders']))
+                                          @if (isset($deshboard_data['last_ten_orders']) && count($deshboard_data['last_ten_orders']))
                                             @php
                                                 $count = 1;
                                             @endphp
-                                              @foreach ($dashboard_data['last_ten_orders'] as $item)
+                                              @foreach ($deshboard_data['last_ten_orders'] as $item)
                                                   <tr>
                                                     <td>{{ $count++ }}</td>
-                                                    <td>{{ $item->id }}</td>
                                                     <td>{{ $item->u_name }}</td>
                                                     <td>{{ $item->quantity }}</td>
-                                                    <td>{{ number_format($item->total,2,".",'')}}</td>
+                                                    <td>{{ number_format(($item->rate*$item->quantity),2,".",'')}}</td>
                                                     <td>
                                                       @if ($item->payment_method == '1')
                                                         <a class="btn btn-info">Cash On Delivery</a>
