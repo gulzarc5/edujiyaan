@@ -19,7 +19,7 @@ class OrderController extends Controller
             ->leftjoin('book_orders','book_orders.id','=','book_order_details.order_id')
             ->leftjoin('books','books.id','=','book_order_details.book_id')
             ->where('book_order_details.user_id',$user_id)
-            ->orderBy('book_order_details.id')
+            ->orderBy('book_order_details.id','desc')
             ->get();
         $status = 1;
         return view('web.user.orders',compact('book_orders','status'));

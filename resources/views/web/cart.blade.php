@@ -33,7 +33,8 @@
 		<!-- checkout-area-start -->
 		<div class="checkout-area select-add cart orders mb-70">
 			<div class="container">
-				<div class="row">						
+				<div class="row">	
+					@if (isset($cart_data) && !empty($cart_data) && count((array)$cart_data) > 0)					
 					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 						<div class="checkbox-form mb-25">
 							<div class="product-info-area">
@@ -44,7 +45,7 @@
 											$shipping_charge = 0;
 											$total_item = 0;
 										@endphp
-										@if (isset($cart_data) && !empty($cart_data) && count((array)$cart_data) > 0)
+										
 											
 											@foreach ($cart_data as $item)
 												<div class="row valu" style="margin-bottom: 20px ">
@@ -85,9 +86,7 @@
 													$total_item++;
 												@endphp
 											@endforeach
-										@else
-											<h1>Cart Is Empty</h1>
-										@endif										
+																			
 
 	                                </div>
 	                            </div>	
@@ -140,6 +139,10 @@
 							</div>
 						</div>
 					</div>
+					@else
+						<h1 style="display: flex;justify-content: center;">Cart Is Empty</h1>
+					@endif	
+
 				</div>
 			</div>
 		</div>

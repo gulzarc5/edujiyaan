@@ -100,10 +100,14 @@
 												₹ 14.00
 											</div> --}}
 											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-												Delivery Charge
+												Shipping Charge
 											</div>
 											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-												₹ {{ number_format($cart->total_shipping_charge,2,".",'')}}
+												@if ($cart->total_shipping_charge > 0)
+													₹ {{ number_format($cart->total_shipping_charge,2,".",'')}}
+												@else
+													Free
+												@endif												
 											</div>
 										</div>	
 										<div class="bdr"></div>

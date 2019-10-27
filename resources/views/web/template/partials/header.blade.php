@@ -141,7 +141,7 @@
 													{{-- <a href="checkout.html">Check out</a> --}}
 												</div>
 											@else
-												
+												<h5 style="display:flex;justify-content:center">Cart Is Empty</h5>
 											@endif
 										</div>
 									</li>

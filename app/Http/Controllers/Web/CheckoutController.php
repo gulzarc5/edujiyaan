@@ -138,11 +138,103 @@ class CheckoutController extends Controller
                 'updated_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
             ]);
         if ($payment_method == '1') {
-            return redirect()->route('web.index');
+            DB::table('cart')->where('user_id',$user_id)->delete();
+            return redirect()->route('web.book_order_thanks',['order_id'=>encrypt($book_order),'payment_method'=>encrypt($payment_method)]);
         }else {
-            return redirect()->route('web.index');
+            $total_cost = $total_shipping_charge+$total_order_amount;
+            $user_name = Auth::guard('buyer')->user()->name;
+            $user_email = Auth::guard('buyer')->user()->email;
+            $user_mobile = Auth::guard('buyer')->user()->mobile;
+            $api = new \Instamojo\Instamojo(
+                config('services.instamojo.api_key'),
+                config('services.instamojo.auth_token'),
+                config('services.instamojo.url')
+            );     
+            try {
+                $response = $api->paymentRequestCreate(array(
+                    "purpose" => "Book Purchase Payment",
+                    "amount" => $total_cost,
+                    "buyer_name" => $user_name,
+                    "send_email" => true,
+                    "email" => $user_email,
+                    "phone" => $user_mobile,
+                    "redirect_url" => "http://127.0.0.1:8000/User/Checkout/Book/Online/Pay/Success/".encrypt($book_order)
+                    ));
+    
+                    DB::table('book_orders')
+                        ->where('id',$book_order)
+                        ->update([
+                            'payment_request_id' => $response['id'],
+                            'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
+                        ]);
+                    
+                    header('Location: ' . $response['longurl']);
+                    exit();
+            }catch (Exception $e) {
+                print('Error: ' . $e->getMessage());
+            }
         }
         
+    }
+
+    public function bookPaySuccess(Request $request,$order_id)
+    {
+        try {
+            $order_id = decrypt($order_id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        try {
+    
+            $api = new \Instamojo\Instamojo(
+                config('services.instamojo.api_key'),
+                config('services.instamojo.auth_token'),
+                config('services.instamojo.url')
+            );
+     
+            $response = $api->paymentRequestStatus(request('payment_request_id'));
+     
+            if( !isset($response['payments'][0]['status']) ) {
+             return redirect('web.checkout_book');
+            } else if($response['payments'][0]['status'] != 'Credit') {
+             return redirect('web.checkout_book');
+            } 
+          }catch (\Exception $e) {
+             return redirect('web.checkout_book');
+         }
+        
+         if($response['payments'][0]['status'] == 'Credit') {
+ 
+             $user_id = Auth::guard('buyer')->user()->id;
+             DB::table('book_orders')
+                     ->where('id', $order_id)
+                     ->where('user_id', $user_id)
+                     ->where('payment_request_id', $response['id'])
+                     ->update(['payment_id' => $response['payments'][0]['payment_id'], 'payment_status' => '1']);
+ 
+                return view('web.thankyou.book_thank');
+            } 
+    }
+    public function bookOrderThanks( $order_id,$payment_method, $payment_id = null)
+    {
+        try {
+            $order_id = decrypt($order_id);
+            $payment_method = decrypt($payment_method);
+            if (!empty($payment_id)) {
+                $payment_id = decrypt($payment_id);
+            }
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $data = [
+            'order_id' => $order_id,
+            'payment_method' => $payment_method,
+            'payment_id' => $payment_id,
+        ];
+
+        return view('web.thankyou.book_thank',compact('data'));
     }
 
     public function CheckoutProject($project_id)
@@ -239,5 +331,5 @@ class CheckoutController extends Controller
 
            	return view('web.checkout.thankyou');
        	} 
-     }
+    }
 }

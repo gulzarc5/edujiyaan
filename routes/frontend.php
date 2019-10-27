@@ -52,6 +52,7 @@ Route::group(['namespace'=> 'Web'], function(){
                 Route::get('/Add/Address', 'CheckoutController@CheckoutAddAddress')->name('web.add_checkout_address');
                 Route::post('/Add/Address', 'CheckoutController@CheckoutInsertAddress')->name('web.add_checkout_insert_address');
                 Route::post('/Book/Order/Place','CheckoutController@bookOrderPlace')->name('web.book_order_place');
+                Route::get('Book/Online/Pay/Success/{order_id}','CheckoutController@bookPaySuccess')->name('book_pay_success');
 
                 /** Project Buying Route **/
                 Route::get('/Project/{project_id}', 'CheckoutController@CheckoutProject')->name('web.checkout_project');
@@ -61,6 +62,7 @@ Route::group(['namespace'=> 'Web'], function(){
 
             //Quiz View Route for logged user
             Route::get('quiz/pdf/view/{quiz_id}','QuizController@quizPdfView')->name('web.quiz_pdf');
+            Route::get('Book/Order/Thanks/{order_id}/{payment_method}/{payment_id?}','CheckoutController@bookOrderThanks')->name('web.book_order_thanks');
         });
     });
 
