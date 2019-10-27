@@ -102,4 +102,84 @@ class OrderController extends Controller
             return redirect()->back()->with('error','Something Went Wrong Please Try Again');
         }
     }
+
+    public function projectOrderList()
+    {
+        return view('admin.orders.project_orders.project_orders');
+    }
+
+    public function projectOrderAjaxList()
+    {
+        $query = DB::table('project_orders')
+            ->select('project_orders.*','users.name as u_name', 'projects.name')
+            ->leftJoin ('projects', 'project_orders.project_id', '=', 'projects.id')
+            ->leftjoin('users','users.id','=','project_orders.user_id')
+            ->orderBy('project_orders.id','desc');
+       
+            return datatables()->of($query->get())
+            ->addIndexColumn()
+            ->editColumn('created_at', function($row){
+               return Carbon::parse($row->created_at)->toDayDateTimeString();
+            })
+            ->editColumn('name', function($row){
+               
+               $btn = '<a href="'.route('admin.project_detail_view', ['project_id' => encrypt($row->project_id)]).'" class="link" target="_blank" style="color:red">'.$row->name.'</a>';
+
+               return $btn;
+            })
+            ->addColumn('seller_name', function($row){
+               if ($row->seller_id != 'A') {
+
+                    $user_data = DB::table('users')->select('name')->where('id', $row->seller_id)->first();
+                    $btn = '<a class="link" href="'.route('admin.seller_view', ['seller_id' => encrypt($row->seller_id)]).'" target="_blank" style="color:red">'.$user_data->name.'</a>';
+
+               } else {
+                    $btn = '<a class="link">Admin</a>';
+
+               }
+                return $btn;
+            })
+            ->rawColumns(['seller_name', 'name','created_at'])
+            ->make(true);
+    }
+
+     public function megazineOrderList()
+    {
+        return view('admin.orders.megazine_orders.megazine_orders');
+    }
+
+    public function megazineOrderAjaxList()
+    {
+        $query = DB::table('megazine_orders')
+            ->select('megazine_orders.*','users.name as u_name', 'megazines.name')
+            ->leftJoin ('megazines', 'megazine_orders.megazine_id', '=', 'megazines.id')
+            ->leftjoin('users','users.id','=','megazine_orders.user_id')
+            ->orderBy('megazine_orders.id','desc');
+       
+            return datatables()->of($query->get())
+            ->addIndexColumn()
+            ->editColumn('created_at', function($row){
+               return Carbon::parse($row->created_at)->toDayDateTimeString();
+            })
+            ->editColumn('name', function($row){
+               
+               $btn = '<a href="'.route('admin.megazine_detail_view', ['megazine_id' => encrypt($row->megazine_id)]).'" class="link" target="_blank" style="color:red">'.$row->name.'</a>';
+
+               return $btn;
+            })
+            ->addColumn('seller_name', function($row){
+               if ($row->seller_id != 'A') {
+
+                    $user_data = DB::table('users')->select('name')->where('id', $row->seller_id)->first();
+                    $btn = '<a class="link" href="'.route('admin.seller_view', ['seller_id' => encrypt($row->seller_id)]).'" target="_blank" style="color:red">'.$user_data->name.'</a>';
+
+               } else {
+                    $btn = '<a class="link">Admin</a>';
+
+               }
+                return $btn;
+            })
+            ->rawColumns(['seller_name', 'name','created_at'])
+            ->make(true);
+    }
 }

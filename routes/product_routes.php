@@ -23,6 +23,14 @@ Route::group(['namespace' => 'Order', 'prefix' => 'Order'],function(){
 	Route::get('Status/Update/{order_id}/{status}','OrderController@bookOrderStatus')->name('admin.book_order_status');
 	Route::get('Dispatch/Form/{order_id}','OrderController@BookOrderDispatchedForm')->name('admin.book_order_dispatch_form');
 	Route::post('Dispatch/Submit','OrderController@BookOrderDispatched')->name('admin.book_order_dispatch');
+
+	/** Project Orders **/
+	Route::get('project/','OrderController@projectOrderList')->name('admin.project_order_list');
+	Route::get('project/ajax','OrderController@projectOrderAjaxList')->name('admin.project_order_ajax_list');
+
+	/** Megazine Orders **/
+	Route::get('megazine/','OrderController@megazineOrderList')->name('admin.megazine_order_list');
+	Route::get('megazine/ajax','OrderController@megazineOrderAjaxList')->name('admin.megazine_order_ajax_list');
 });
 
 Route::group(['namespace'=> 'Quiz','prefix'=>'Quiz'], function(){

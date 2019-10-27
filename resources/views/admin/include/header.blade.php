@@ -122,8 +122,8 @@
                   <li><a><i class="fa fa-desktop"></i>Orders<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('admin.book_order_list')}}">Book Orders</a></li>
-                      <li><a href="#">Project Orders</a></li>
-                      <li><a href="#">Megazine Orders</a></li>
+                      <li><a href="{{route('admin.project_order_list')}}">Project Orders</a></li>
+                      <li><a href="{{route('admin.megazine_order_list')}}">Megazine Orders</a></li>
                     </ul>
                   </li>
 
