@@ -18,7 +18,7 @@ class MegazineController extends Controller
     {   
          Session::forget('megazine_category');    
         
-         $new_books_count = DB::table('books')
+        $new_books_count = DB::table('books')
          ->where('book_condition',1)
          ->where('status',1)
          ->where('approve_status',1)

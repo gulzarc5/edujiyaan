@@ -61,7 +61,7 @@
 													@if (!empty($project[0]->documentation))
 														Documentation/
 													@endif							
-													@if (!empty($project[0]->documentation))
+													@if (!empty($project[0]->ppt))
 														PPT
 													@endif
 												</a>
@@ -78,7 +78,7 @@
 												@if (!empty($project[0]->documentation))
 													<a href="{{ route('web.project_documentation', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/Documentation</a>
 												@endif							
-												@if (!empty($project[0]->documentation))
+												@if (!empty($project[0]->ppt))
 													<a href="{{ route('web.project_ppt', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/PPT</a>
 												@endif
 											@endif

@@ -22,7 +22,7 @@
                                     <h1>Huge Sale</h1>
                                     <h2>Projects</h2>
                                     <h3>Now starting at RS.99.00</h3>
-                                    <a href="shop.php">Shop now</a>
+                                    <a href="{{route('web.project_list')}}">Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                                     <h1>Huge Sale</h1>
                                     <h2>Magazines</h2>
                                     <h3>Now starting at RS.99.00</h3>
-                                    <a href="shop.php">Shop now</a>
+                                    <a href="{{route('web.megazine_list')}}">Shop now</a>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
                         <div class="banner-img-2 mt-30">
-                            <a href="shop.php"><img src="{{asset('web/img/banner/14.jpg')}}" alt="banner"></a>
+                            <a href="{{route('web.new_book_list',['academic'=>encrypt(1)])}}"><img src="{{asset('web/img/banner/14.jpg')}}" alt="banner"></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -70,12 +70,12 @@
                         <div class="banner-total-2">
                             <div class="single-banner-4 hidden-xs">
                                 <div class="banner-img-2">
-                                    <a href="shop.php"><img src="{{asset('web/img/banner/17.jpg')}}" alt="banner"></a>
+                                    <a href="{{route('web.new_book_list_category',['category_id'=>encrypt(15)])}}"><img src="{{asset('web/img/banner/17.jpg')}}" alt="banner"></a>
                                 </div>
                             </div>
                             <div class="single-banner-5">
                                 <div class="banner-img-2">
-                                    <a href="shop.php"><img src="{{asset('web/img/banner/18.jpg')}}" alt="banner"></a>
+                                    <a href="{{route('web.new_book_list_category',['category_id'=>encrypt(8)])}}"><img src="{{asset('web/img/banner/18.jpg')}}" alt="banner"></a>
                                 </div>
                             </div>
                         </div>
@@ -90,289 +90,59 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="section-title text-center mb-50">
-							<h2>Top interesting</h2>
+							<h2>New Arrival Books</h2>
 							<p>Browse the collection of our best selling and top interresting products. <br /> You definitely find what you are looking for..</p>
 						</div>
 					</div>
 				</div>
-				<!-- tab-area-start -->
-				<div class="tab-content">
-					<div class="tab-pane active" id="Audiobooks">
-                        <div class="tab-active owl-carousel">
-                            <!-- single-product-start -->
-                            <div class="product-wrapper">
-                                <div class="product-img">
-                                    <a href="#">
-                                        <img src="{{asset('web/img/product/1.jpg')}}" alt="book" class="primary" />
-                                    </a>
-                                    <div class="product-flag">
-                                        <ul>
-                                            <li><span class="sale">new</span></li>
-                                        </ul>
+                <!-- tab-area-start -->
+                @if (isset($new_books) && !empty($new_books))
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="Audiobooks">
+                            <div class="tab-active owl-carousel">
+                                <!-- single-product-start -->
+                                @foreach ($new_books as $item)
+                                    <div class="product-wrapper">
+                                        <div class="product-img">
+                                            <a href="{{route('web.books-detail',['book_id'=>encrypt($item->id)])}}">
+                                                <img src="{{asset('images/book_image/thumb/'.$item->book_image.'')}}" alt="book" class="primary" />
+                                            </a>
+                                            {{-- <div class="product-flag">
+                                                <ul>
+                                                    <li><span class="sale">new</span></li>
+                                                </ul>
+                                            </div> --}}
+                                        </div>
+                                        <div class="product-details text-center">
+                                            {{-- <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div> --}}
+                                            <h4><a class="semi-name" href="{{route('web.books-detail',['book_id'=>encrypt($item->id)])}}">J{{$item->book_name}}</a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li>₹ {{ number_format($item->price,2,".",'')}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-link">
+                                            <div class="product-button">
+                                                <a href="{{route('web.books-detail',['book_id'=>encrypt($item->id)])}}" class="btn btn-primary margin-mobile">View</a>
+                                            </div>                              
+                                        </div>	
                                     </div>
-                                </div>
-                                <div class="product-details text-center">
-                                    <div class="product-rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4><a class="semi-name" href="#">Joust Duffle Bag</a></h4>
-                                    <div class="product-price">
-                                        <ul>
-                                            <li>$60.00</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-link">
-                                    <div class="product-button">
-                                        <a href="#" class="btn btn-primary margin-mobile">View</a>
-                                    </div>                              
-                                </div>	
+                                @endforeach
+                               
+                                
                             </div>
-                            <!-- single-product-end -->
-                            <!-- single-product-start -->
-                            <div class="product-wrapper">
-                                <div class="product-img">
-                                    <a href="#">
-                                        <img src="{{asset('web/img/product/3.jpg')}}" alt="book" class="primary" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
-                                            <i class="fa fa-search-plus"></i>
-                                        </a>
-                                    </div>
-                                    <div class="product-flag">
-                                        <ul>
-                                            <li><span class="sale">new</span> <br></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-details text-center">
-                                    <div class="product-rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4><a href="#">Chaz Kangeroo Hoodie</a></h4>
-                                    <div class="product-price">
-                                        <ul>
-                                            <li>$52.00</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-link">
-                                    <div class="product-button">
-                                        <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                    <div class="add-to-link">
-                                        <ul>
-                                            <li><a href="product-details.html" title="Details"><i class="fa fa-external-link"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>	
-                            </div>
-                            <!-- single-product-end -->
-                            <!-- single-product-start -->
-                            <div class="product-wrapper">
-                                <div class="product-img">
-                                    <a href="#">
-                                        <img src="{{asset('web/img/product/5.jpg')}}" alt="book" class="primary" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
-                                            <i class="fa fa-search-plus"></i>
-                                        </a>
-                                    </div>
-                                    <div class="product-flag">
-                                        <ul>
-                                            <li><span class="sale">new</span> <br></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-details text-center">
-                                    <div class="product-rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4><a href="#">Set of Sprite Yoga Straps</a></h4>
-                                    <div class="product-price">
-                                        <ul>
-                                            <li>$34.00</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-link">
-                                    <div class="product-button">
-                                        <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                    <div class="add-to-link">
-                                        <ul>
-                                            <li><a href="product-details.html" title="Details"><i class="fa fa-external-link"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>	
-                            </div>
-                            <!-- single-product-end -->
-                            <!-- single-product-start -->
-                            <div class="product-wrapper">
-                                <div class="product-img">
-                                    <a href="#">
-                                        <img src="{{asset('web/img/product/7.jpg')}}" alt="book" class="primary" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
-                                            <i class="fa fa-search-plus"></i>
-                                        </a>
-                                    </div>
-                                    <div class="product-flag">
-                                        <ul>
-                                            <li><span class="sale">new</span> <br></li>
-                                            <li><span class="discount-percentage">-5%</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-details text-center">
-                                    <div class="product-rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4><a href="#">Strive Shoulder Pack</a></h4>
-                                    <div class="product-price">
-                                        <ul>
-                                            <li>$30.00</li>
-                                            <li class="old-price">$32.00</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-link">
-                                    <div class="product-button">
-                                        <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                    <div class="add-to-link">
-                                        <ul>
-                                            <li><a href="product-details.html" title="Details"><i class="fa fa-external-link"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>	
-                            </div>
-                            <!-- single-product-end -->
-                            <!-- single-product-start -->
-                            <div class="product-wrapper">
-                                <div class="product-img">
-                                    <a href="#">
-                                        <img src="{{asset('web/img/product/9.jpg')}}" alt="book" class="primary" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
-                                            <i class="fa fa-search-plus"></i>
-                                        </a>
-                                    </div>
-                                    <div class="product-flag">
-                                        <ul>
-                                            <li><span class="discount-percentage">-5%</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-details text-center">
-                                    <div class="product-rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4><a href="#">Wayfarer Messenger Bag</a></h4>
-                                    <div class="product-price">
-                                        <ul>
-                                            <li>$35.00</li>
-                                            <li class="old-price">40.00</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-link">
-                                    <div class="product-button">
-                                        <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                    <div class="add-to-link">
-                                        <ul>
-                                            <li><a href="product-details.html" title="Details"><i class="fa fa-external-link"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>	
-                            </div>
-                            <!-- single-product-end -->
-                            <!-- single-product-start -->
-                            <div class="product-wrapper">
-                                <div class="product-img">
-                                    <a href="#">
-                                        <img src="{{asset('web/img/product/11.jpg')}}" alt="book" class="primary" />
-                                    </a>
-                                    <div class="quick-view">
-                                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
-                                            <i class="fa fa-search-plus"></i>
-                                        </a>
-                                    </div>
-                                    <div class="product-flag">
-                                        <ul>
-                                            <li><span class="sale">new</span> <br></li>
-                                            <li><span class="discount-percentage">-5%</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-details text-center">
-                                    <div class="product-rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4><a href="#">Impulse Duffle</a></h4>
-                                    <div class="product-price">
-                                        <ul>
-                                            <li>$74.00</li>
-                                            <li class="old-price">78.00</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-link">
-                                    <div class="product-button">
-                                        <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                    </div>
-                                    <div class="add-to-link">
-                                        <ul>
-                                            <li><a href="product-details.html" title="Details"><i class="fa fa-external-link"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>	
-                            </div>
-                            <!-- single-product-end -->
                         </div>
-					</div>
-				</div>
+                    </div>
+                @endif
 				<!-- tab-area-end -->
 			</div>
 		</div>
@@ -404,7 +174,7 @@
                         <div class="single-team mrg-none-xs">
                             <div class="team-img-area">
                                 <div class="team-img">
-                                    <a href="project.php"><img src="{{asset('web/img/icons/4.png')}}" alt="man" /></a>
+                                    <a href="{{route('web.project_list')}}"><img src="{{asset('web/img/icons/4.png')}}" alt="man" /></a>
                                 </div>
                             </div>
                             <div class="team-content text-center">
@@ -415,7 +185,7 @@
                     <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
                         <div class="single-team">
                             <div class="team-img-area">
-                                <div class="team-img">
+                                <div class="{{route('web.megazine_list')}}">
                                     <a href="megazine.php"><img src="{{asset('web/img/icons/3.png')}}" alt="man" /></a>
                                 </div>
                             </div>
@@ -428,7 +198,7 @@
                         <div class="single-team">
                             <div class="team-img-area">
                                 <div class="team-img">
-                                    <a href="documents.php"><img src="{{asset('web/img/icons/2.png')}}" alt="man" /></a>
+                                    <a href="{{route('web.quiz_list')}}"><img src="{{asset('web/img/icons/2.png')}}" alt="man" /></a>
                                 </div>
                             </div>
                             <div class="team-content text-center">
@@ -447,7 +217,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="banner-img-2">
-							<a href="#"><img style="height: 200px" src="{{asset('web/img/banner/5.jpg')}}" alt="banner" /></a>
+							<a><img style="height: 200px" src="{{asset('web/img/banner/5.jpg')}}" alt="banner" /></a>
 							<div class="banner-text">
 								<h3>G. Meyer Books & Spiritual Traveler Press</h3>
 								<h2>Sale up to 30% off</h2>
@@ -476,7 +246,7 @@
 							</div>
 						</div>
 						<div class="banner-img-2">
-							<a href="#"><img src="{{asset('web/img/banner/6.jpg')}}" alt="banner" /></a>
+							<a><img src="{{asset('web/img/banner/6.jpg')}}" alt="banner" /></a>
 						</div>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -484,7 +254,7 @@
 							<div class="col-md-6 col-xs-6">
                                 <div class="single-bestseller mb-25">
                                     <div class="bestseller-img">
-                                        <a href="#"><img src="{{asset('web/img/book.jpg')}}" alt="book"></a>
+                                        <a href="{{route('web.new_book_list',['book_condition'=>encrypt(1)])}}"><img src="{{asset('web/img/book.jpg')}}" alt="book"></a>
                                         <div class="product-flag">
                                             <ul>
                                                 <li><span class="sale">new</span></li>
@@ -493,14 +263,14 @@
                                         </div>
                                     </div>
                                     <div class="bestseller-text text-center">
-                                        <h3> <a href="#">Books</a></h3>
+                                        <h3> <a href="{{route('web.new_book_list',['book_condition'=>encrypt(1)])}}">Books</a></h3>
                                     </div>
                                 </div>                     
                             </div>
                             <div class="col-md-6 col-xs-6">
                                 <div class="single-bestseller mb-25">
                                     <div class="bestseller-img">
-                                        <a href="#"><img src="{{asset('web/img/megazine.jpg')}}" alt="megazine"></a>
+                                        <a href="{{route('web.megazine_list')}}"><img src="{{asset('web/img/megazine.jpg')}}" alt="megazine"></a>
                                         <div class="product-flag">
                                             <ul>
                                                 <li><span class="sale">new</span></li>
@@ -509,7 +279,7 @@
                                         </div>
                                     </div>
                                     <div class="bestseller-text text-center">
-                                        <h3> <a href="#">Megazines</a></h3>
+                                        <h3> <a href="{{route('web.megazine_list')}}">Megazines</a></h3>
                                     </div>
                                 </div>
                             </div>
@@ -518,7 +288,7 @@
                             <div class="col-md-6 col-xs-6">
                                 <div class="single-bestseller mb-25">
                                     <div class="bestseller-img">
-                                        <a href="#"><img src="{{asset('web/img/project.jpg')}}" alt="project"></a>
+                                        <a href="{{route('web.project_list')}}"><img src="{{asset('web/img/project.jpg')}}" alt="project"></a>
                                         <div class="product-flag">
                                             <ul>
                                                 <li><span class="sale">new</span></li>
@@ -527,14 +297,14 @@
                                         </div>
                                     </div>
                                     <div class="bestseller-text text-center">
-                                        <h3> <a href="#">Projects</a></h3>
+                                        <h3> <a href="{{route('web.project_list')}}">Projects</a></h3>
                                     </div>
                                 </div>                     
                             </div>
                             <div class="col-md-6 col-xs-6">
                                 <div class="single-bestseller mb-25">
                                     <div class="bestseller-img">
-                                        <a href="#"><img src="{{asset('web/img/document.jpg')}}" alt="document"></a>
+                                        <a href="{{route('web.quiz_list')}}"><img src="{{asset('web/img/document.jpg')}}" alt="document"></a>
                                         <div class="product-flag">
                                             <ul>
                                                 <li><span class="sale">new</span></li>
@@ -543,7 +313,7 @@
                                         </div>
                                     </div>
                                     <div class="bestseller-text text-center">
-                                        <h3> <a href="#">Documents</a></h3>
+                                        <h3> <a href="{{route('web.quiz_list')}}">Documents</a></h3>
                                     </div>
                                 </div>
                             </div>
@@ -559,12 +329,12 @@
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="banner-shadow-hover xs-mb">
-							<a href="#"><img src="{{asset('web/img/banner/8.jpg')}}" alt="banner" /></a>
+							<a><img src="{{asset('web/img/banner/8.jpg')}}" alt="banner" /></a>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 						<div class="banner-shadow-hover">
-							<a href="#"><img src="{{asset('web/img/banner/9.jpg')}}" alt="banner" /></a>
+							<a><img src="{{asset('web/img/banner/9.jpg')}}" alt="banner" /></a>
 						</div>
 					</div>
 				</div>

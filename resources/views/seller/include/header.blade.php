@@ -96,36 +96,42 @@
                       <li><a href="{{route('seller.change_password_form')}}">Change Password</a></li>
                     </ul>
                   </li>
-
-                  <li>
-                    <a><i class="fa fa-desktop"></i>Books<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{route('seller.add_book_form')}}">Add New Book</a></li>
-                      <li><a href="{{route('seller.book_list')}}">List Of Books</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-desktop"></i>Projects<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{ route('seller.add_project_form') }}">Add New Project</a></li>
-                      <li><a href="{{ route('seller.project_list') }}">List Of Projects</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-desktop"></i>Megazines<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{ route('seller.add_new_megazine') }}">Add New Megazine</a></li>
-                      <li><a href="{{ route('seller.megazine_list') }}">List Of Megazines</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a><i class="fa fa-desktop"></i>Quizes<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{route('seller.add_new_quiz_form')}}">Add New Quiz</a></li>
-                      <li><a href="{{route('seller.quiz_list')}}">List Of Quizes</a></li>
-                    </ul>
-                  </li>
-
+                  @if (isset($header_data['dealing_category']) && ($header_data['dealing_category']->book == 2))
+                    <li>
+                      <a><i class="fa fa-desktop"></i>Books<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{route('seller.add_book_form')}}">Add New Book</a></li>
+                        <li><a href="{{route('seller.book_list')}}">List Of Books</a></li>
+                      </ul>
+                    </li>
+                  @endif
+                  @if (isset($header_data['dealing_category']) && ($header_data['dealing_category']->project == 2))
+                    <li>
+                      <a><i class="fa fa-desktop"></i>Projects<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{ route('seller.add_project_form') }}">Add New Project</a></li>
+                        <li><a href="{{ route('seller.project_list') }}">List Of Projects</a></li>
+                      </ul>
+                    </li> 
+                  @endif
+                  @if (isset($header_data['dealing_category']) && ($header_data['dealing_category']->megazine == 2))
+                    <li>
+                      <a><i class="fa fa-desktop"></i>Megazines<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{ route('seller.add_new_megazine') }}">Add New Megazine</a></li>
+                        <li><a href="{{ route('seller.megazine_list') }}">List Of Megazines</a></li>
+                      </ul>
+                    </li>
+                  @endif
+                  @if (isset($header_data['dealing_category']) && ($header_data['dealing_category']->quiz == 2))
+                    <li>
+                      <a><i class="fa fa-desktop"></i>Quizes<span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{route('seller.add_new_quiz_form')}}">Add New Quiz</a></li>
+                        <li><a href="{{route('seller.quiz_list')}}">List Of Quizes</a></li>
+                      </ul>
+                    </li>
+                  @endif
                   <li><a><i class="fa fa-desktop"></i>Orders<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('seller.book_order_list')}}">Book Orders</a></li>

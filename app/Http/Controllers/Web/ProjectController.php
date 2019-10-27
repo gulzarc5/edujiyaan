@@ -229,8 +229,7 @@ class ProjectController extends Controller
         $project_file = DB::table('projects')->select('synopsis')->where('id', $project_id)->first();    
         $path = storage_path('app\files\projects\synopsis\\'.$project_file->synopsis);
         if (!File::exists($path)){
-            $response = 404;
-            return $response;
+            abort(404);
         } 
         $file = File::get($path);
         $type = File::mimeType($path);
@@ -250,8 +249,7 @@ class ProjectController extends Controller
         $project_file = DB::table('projects')->select('documentation')->where('id', $project_id)->first();    
         $path = storage_path('app\files\projects\documentation\\'.$project_file->documentation);
         if (!File::exists($path)){
-            $response = 404;
-            return $response;
+            abort(404);
         } 
         $file = File::get($path);
         $type = File::mimeType($path);
@@ -271,8 +269,7 @@ class ProjectController extends Controller
         $project_file = DB::table('projects')->select('ppt')->where('id', $project_id)->first();    
         $path = storage_path('app\files\projects\ppt\\'.$project_file->ppt);
         if (!File::exists($path)){
-            $response = 404;
-            return $response;
+            abort(404);
         } 
         $file = File::get($path);
         $type = File::mimeType($path);

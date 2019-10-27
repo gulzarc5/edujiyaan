@@ -84,5 +84,19 @@ class AppServiceProvider extends ServiceProvider
             //  die();
             $view->with('cart_data_header', $cart_data_header);
         });
+
+        View::composer('seller.include.header', function ($view) {
+            if( Auth::guard('seller')->user() && !empty(Auth::guard('seller')->user()->id)) {
+                $seller_id = Auth::guard('seller')->user()->id;
+
+                $dealing_category = DB::table('seller_deals')->where('user_id',$seller_id)->first();
+
+                $header_data = [
+                    'dealing_category' => $dealing_category,
+                ];
+                $view->with('header_data', $header_data);
+            }
+        });
+
     }
 }

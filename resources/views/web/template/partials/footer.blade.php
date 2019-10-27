@@ -8,7 +8,7 @@
                             <div class="footer-top-menu bb-2">
                                 <nav>
                                     <ul>
-                                        <li><a href="index.php">home</a></li>
+                                        <li><a href="{{route('web.index')}}">home</a></li>
                                         <li><a href="#">contact us</a></li>
                                     </ul>
                                 </nav>
@@ -31,14 +31,13 @@
                                         </div>
                                         <div class="footer-mid-menu" style="display: flex;">
                                             <ul style="margin-right: 114px;">
-                                                <li><a href="shop.php">Books</a></li>
-                                                <li><a href="old_shop.php">Old Books</a></li>
-                                                <li><a href="project.php">Projects </a></li>
+                                                <li><a href="{{route('web.new_book_list')}}">Books</a></li>
+                                                <li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
+                                                <li><a href="{{route('web.project_list')}}">Projects </a></li>
                                             </ul>
                                             <ul>    
-                                                <li><a href="ebook.php">Ebook</a></li>
-                                                <li><a href="megazine.php">News & Megazine</a></li>
-                                                <li><a href="document.php">Documents</a></li>
+                                                <li><a href="{{route('web.megazine_list')}}">Megazines</a></li>
+                                                <li><a href="{{route('web.quiz_list')}}">Quiz</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -50,9 +49,9 @@
                                         </div>
                                         <div class="footer-mid-menu">
                                             <ul>
-                                                <li><a href="terms&cond.php">Return policy</a></li>
-                                                <li><a href="terms&cond.php">Terms and Conditions</a></li>
-                                                <li><a href="terms&cond.php">Disclamer </a></li>
+                                                <li><a href="#">Return policy</a></li>
+                                                <li><a href="#">Terms and Conditions</a></li>
+                                                <li><a href="#">Disclamer </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -64,9 +63,9 @@
                                         </div>
                                         <div class="footer-mid-menu">
                                             <ul>
-                                                <li><a href="login.php">Sign in </a></li>
-                                                <li><a href="register.php">Sign up</a></li>
-                                                <li><a href="#">Cart </a></li>
+                                                <li><a href="{{route('web.user_login')}}">Sign in </a></li>
+                                                <li><a href="{{route('web.signup')}}">Sign up</a></li>
+                                                <li><a href="{{route('web.view_cart')}}">Cart </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -98,12 +97,12 @@
                     <div class="row bt-2">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="copy-right-area">
-                                <p>Copyright © <a href="#">edujiyaan.com</a>. All Right Reserved  ||  Developed By <a href="https://www.webinfotech.net.in">Webinfotech</a></p>
+                                <p>Copyright © <a>edujiyaan.com</a>. All Right Reserved  ||  Developed By <a href="https://www.webinfotech.net.in">Webinfotech</a></p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="payment-img text-right">
-								<a href="#"><img src="{{asset('web/img/1.png')}}" alt="payment" /></a>
+								<a><img src="{{asset('web/img/1.png')}}" alt="payment" /></a>
 							</div>
 						</div>
 					</div>

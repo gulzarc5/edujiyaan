@@ -31,8 +31,21 @@ class SellerController extends Controller
             ->orderBy('book_order_details.id','desc')
             ->limit(10)
             ->get();
+        $book_count = DB::table('books')->where('user_id',$seller_id)->whereNull('deleted_at')->count();
+        $project_count = DB::table('projects')->where('user_id',$seller_id)->whereNull('deleted_at')->count();
+        $megazine_count = DB::table('megazines')->where('user_id',$seller_id)->whereNull('deleted_at')->count();
+        $book_order_count = DB::table('book_order_details')->where('seller_id',$seller_id)->count();
+        $project_order_count = DB::table('project_orders')->where('seller_id',$seller_id)->count();
+        $megazine_order_count = DB::table('megazine_orders')->where('seller_id',$seller_id)->count();
         $deshboard_data = [
             'last_ten_orders' => $last_ten_orders,
+            'book_count' => $book_count,
+            'project_count' => $project_count,
+            'megazine_count' => $megazine_count,
+            'book_order_count' => $book_order_count,
+            'project_order_count' => $project_order_count,
+            'megazine_order_count' => $megazine_order_count,
+
         ];
         return view('seller.seller_deshboard',compact('deshboard_data'));
     }

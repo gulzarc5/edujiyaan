@@ -6,21 +6,65 @@
     <div class="right_col" role="main">
         <!-- top tiles -->
         <div class="row tile_count">
-        <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Total Products</span>
-            <div class="count green">0</div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Books</span>
+            <div class="count green">
+                @if (isset($deshboard_data['book_count']))
+                    {{$deshboard_data['book_count']}}
+                @else
+                    0
+                @endif
+            </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-clock-o"></i> Total Orders</span>
-            <div class="count green">0</div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-clock-o"></i> Total Projects</span>
+            <div class="count green">
+                @if (isset($deshboard_data['project_count']))
+                    {{$deshboard_data['project_count']}}
+                @else
+                    0
+                @endif
+            </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Pending Orders</span>
-            <div class="count green">0</div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Megazine</span>
+            <div class="count green">
+                @if (isset($deshboard_data['megazine_count']))
+                    {{$deshboard_data['megazine_count']}}
+                @else
+                    0
+                @endif
+            </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Delivered Orders</span>
-            <div class="count green">0</div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Book Orders</span>
+            <div class="count green">
+                @if (isset($deshboard_data['book_order_count']))
+                    {{$deshboard_data['book_order_count']}}
+                @else
+                    0
+                @endif
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Project Orders</span>
+            <div class="count green">
+                @if (isset($deshboard_data['project_order_count']))
+                    {{$deshboard_data['project_order_count']}}
+                @else
+                    0
+                @endif
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Megazine Orders</span>
+            <div class="count green">
+                @if (isset($deshboard_data['megazine_order_count']))
+                    {{$deshboard_data['megazine_order_count']}}
+                @else
+                    0
+                @endif
+            </div>
         </div>
     
         

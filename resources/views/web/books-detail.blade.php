@@ -111,10 +111,51 @@
 							</div>
 							<div class="left-menu mb-30">
 								<ul>
-									<li><a href="shop.php"><i class="fas fa-book"></i>&nbsp;&nbsp;Books<span>(29)</span></a></li>									
-									<li><a href="project.php"><i class="fa fa-line-chart"></i>&nbsp;&nbsp;Projects<span>(14)</span></a></li>
-									<li><a href="megazine.php"><i class="far fa-newspaper"></i>Magazines<span>(2)</span></a></li>
-									<li><a href="ebook.php"><i class="far fa-file"></i>&nbsp;&nbsp;Documents<span>(14))</span></a></li>
+									<li><a href="{{route('web.new_book_list')}}">&nbsp;&nbsp;New Books
+										<span>
+											@if (isset($new_books_count))
+												({{$new_books_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>	
+									<li><a href="{{route('web.old_book_list')}}">&nbsp;&nbsp;Old Books
+										<span>
+											@if (isset($old_books_count))
+												({{$old_books_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>									
+									<li><a href="{{route('web.project_list')}}">&nbsp;&nbsp;Projects
+										<span>
+											@if (isset($projects_count))
+												({{$projects_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>
+									<li><a href="{{route('web.megazine_list')}}">&nbsp;&nbsp;Magazines
+										<span>
+											@if (isset($megazines_count))
+												({{$megazines_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>
+									<li><a href="{{route('web.quiz_list')}}">&nbsp;&nbsp;Quiz
+										<span>
+											@if (isset($quiz_count))
+												({{$quiz_count}})
+											@else
+												(0)
+											@endif
+										</span>
+									</a></li>
 								</ul>
 							</div>
 							<div class="banner-area mb-30">

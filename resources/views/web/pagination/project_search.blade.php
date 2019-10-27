@@ -1,12 +1,12 @@
 @if (isset($project) && count($project) > 0 )
     @foreach ($project as $item)
         <div class="product-wrapper mb-40 " style="">
-            <h4><a href="#">
+            <h4><a href="{{route('web.project_detail', ['project_id' => encrypt($item->id)])}}">
                 {{ $item->name }}</a></h4>
             <div class="col-md-6">
             <div class="product-details">                                                
-                <h4><a href="#">Total pages: {{ $item->pages }}</a></h4>
-                <h4><a href="#">Cost: Rs. {{ number_format($item->cost,2,".",'')}}</a></h4>
+                <h4><a href="{{route('web.project_detail', ['project_id' => encrypt($item->id)])}}">Total pages: {{ $item->pages }}</a></h4>
+                <h4><a href="{{route('web.project_detail', ['project_id' => encrypt($item->id)])}}">Cost: Rs. {{ number_format($item->cost,2,".",'')}}</a></h4>
                 </div>
                 <div class="">
                     <div class="product-button">
@@ -16,8 +16,8 @@
             </div>
             <div class="col-md-6">
                 <div class="product-details">
-                    <h4><a href="#">Specialisation: <span>{{$item->ps_name}}</span></a></h4>
-                    <h4><a href="#">Package Includes:</a></h4>
+                    <h4><a href="{{route('web.project_detail', ['project_id' => encrypt($item->id)])}}">Specialisation: <span>{{$item->ps_name}}</span></a></h4>
+                    <h4><a href="{{route('web.project_detail', ['project_id' => encrypt($item->id)])}}">Package Includes:</a></h4>
                     <p>Preview/<span>Documentation</span>/<span>PPT</span>/</p>
                 </div>
             </div>

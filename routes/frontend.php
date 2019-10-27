@@ -15,7 +15,7 @@ Route::group(['namespace'=> 'Web','middleware'=>'web'], function(){
 
         Route::post('Old/Ajax/Book/List','BookController@ajaxBookListOld')->name('ajax_book_list_old');
         Route::get('Old/search/pagination','BookController@ajaxBookListOld');
-        Route::get('Old/Books-Detail/{book_id}', 'BookController@bookDetail')->name('web.books-detail');
+        Route::get('Book/Detail/{book_id}', 'BookController@bookDetail')->name('web.books-detail');
     });
 
     Route::group(['prefix'=>'User'],function(){
@@ -111,9 +111,7 @@ Route::group(['namespace'=> 'Web','middleware'=>'web'], function(){
 });
 
 Route::get('seller/login','Seller\SellerController@sellerLoginForm')->name('seller_login');
-Route::get('/', function () {
-    return view('web.home');
-})->name('web.index');
+Route::get('/','Web\PagesController@indexPage')->name('web.index');
 
 
 // Route::get('/Old-Books', function () {

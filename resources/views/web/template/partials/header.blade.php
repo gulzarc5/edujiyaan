@@ -93,7 +93,7 @@
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
 							<div class="logo-area text-center logo-xs-mrg">
-								<a class="head-img" href="index.html"><img src="{{asset('web/img/logo/logo.png')}}" alt="logo" /></a>
+							<a class="head-img" href="{{route('web.index')}}"><img src="{{asset('web/img/logo/logo.png')}}" alt="logo" /></a>
 							</div>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
@@ -164,7 +164,7 @@
 										<li class="{{  (request()->is('Book/List*')) ? 'active' : '' }}"><a href="{{route('web.new_book_list')}}">Books</a></li>
 										<li class="{{  (request()->is('Book/Old*')) ? 'active' : '' }}"><a href="{{route('web.old_book_list')}}">Old Books</a></li>
 										<li class="{{  (request()->is('project*')) ? 'active' : '' }}"><a href="{{route('web.project_list')}}">Projects</a></li>
-										<li class="{{  (request()->is('Magazines*')) ? 'active' : '' }}"><a href="{{route('web.megazine_list')}}">Magazines</a></li>
+										<li class="{{  (request()->is('megazine*')) ? 'active' : '' }}"><a href="{{route('web.megazine_list')}}">Magazines</a></li>
 										<li class="{{  (request()->is('Quiz*')) ? 'active' : '' }}"><a href="{{route('web.quiz_list')}}">Quiz</a></li>
 										<li><a href="#">Tips and Tricks</a></li>
 									</ul>
@@ -194,7 +194,7 @@
 										<li><a href="{{route('web.quiz_list')}}">Quiz</a></li>
 										<li class="pb-5"><a href="#">Tips and Tricks</a></li>
 										<!-- main-menu-area-end -->
-										<li class="bdr-top"><a href="index.html">My Account</a>
+										<li class="bdr-top"><a>My Account</a>
 											<div class="sub-menu">
 												<ul>
 													<li><a href="{{route('web.myProfile')}}">My Profile</a></li>

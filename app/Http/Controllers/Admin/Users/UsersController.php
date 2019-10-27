@@ -63,7 +63,7 @@ class UsersController extends Controller
 
     public function ajaxAllBuyers()
     {
-    	$query = DB::table('user')        
+    	$query = DB::table('users')        
         ->whereNull('deleted_at')
         ->where('user_role',1)
         ->orderBy('id','desc');

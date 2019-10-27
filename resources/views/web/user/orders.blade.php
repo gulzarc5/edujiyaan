@@ -112,21 +112,21 @@
 															</div>
 															<div class="status" style="display:flex;justify-content:space-between">
 																<div>
-																	<h6 class="del">Delivered</h6>
-																</div>
-																<div>
 																	Payment Status : 
 																	@if ($value->payment_status == 2)
 																		<h6 class="can">Pending</h6> 
 																	@else
 																		<h6 class="del">Paid</h6>
-																	@endif
-																		
+																	@endif					
+																</div>
+																<div>
+																	Order On :<span>{{ \Carbon\Carbon::parse($value->created_at)->toDayDateTimeString()}}</span>
+																	
 																</div>
 															</div>
 			                                      			<div class="flex" style="justify-content: space-between;width: 100%">
 			                                      				<p>Order ID : <span>{{ $value->id }}</span></p>
-			                                      				<p>Order On : <span>{{ \Carbon\Carbon::parse($value->created_at)->toDayDateTimeString()}}</span></p>
+			                                      				<p><a href="{{route('web.project_detail', ['project_id' => encrypt($value->project_id)])}}" title="View Project" class="btn btn-primary margin-mobile">View</a></p>
 			                                      			</div>
 			                                      		</div>
 			                                      	</div>

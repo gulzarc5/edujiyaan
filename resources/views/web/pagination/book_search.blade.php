@@ -9,7 +9,7 @@
                     </a>
                 </div>
                 <div class="product-details text-center">
-                    <h4><a class="semi-name" href="product-details.php?product_id=192">{{$item->book_name}}</a></h4>
+                    <h4><a class="semi-name" href="{{route('web.books-detail',['book_id'=>encrypt($item->id)])}}">{{$item->book_name}}</a></h4>
                     <h6 class="semi-name">Author: {{$item->author_name}}</h6>
                     <h6 class="semi-name">Publisher: {{$item->publisher_name}}</h6>
                     {{-- <h6 class="semi-name">Book Condition: {{$item->book_condition}}</h6> --}}
