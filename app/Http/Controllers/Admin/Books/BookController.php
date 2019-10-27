@@ -307,11 +307,11 @@ class BookController extends Controller
             })
             ->addColumn('status_tab', function($row){
                 if ($row->status == '1') {
-                    $btn = '<a href="#" class="btn btn-success btn-sm">Pending</a>';
+                    $btn = '<a href="#" class="btn btn-warning btn-sm">Pending</a>';
                  }elseif($row->status == '2'){
-                    $btn = '<a href="#" class="btn btn-danger btn-sm">Dispatched</a>';
+                    $btn = '<a href="#" class="btn btn-info btn-sm">Dispatched</a>';
                  }elseif($row->status == '3'){
-                    $btn = '<a href="#" class="btn btn-danger btn-sm">Delivered</a>';
+                    $btn = '<a href="#" class="btn btn-success btn-sm">Delivered</a>';
                  }elseif($row->status == '4'){
                     $btn = '<a href="#" class="btn btn-danger btn-sm">Cancelled</a>';
                  }

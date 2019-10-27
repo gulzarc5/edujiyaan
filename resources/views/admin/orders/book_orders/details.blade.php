@@ -200,10 +200,10 @@
                                           <td>
                                             @if ($item->status == 1)
                                               <a href="{{route('admin.book_order_dispatch_form',['order_id'=>encrypt($item->id)])}}" class="btn btn-info">Dispatch</a>
-                                              <a href="#" class="btn btn-danger">Cancel</a>
+                                              <a href="{{route('admin.book_order_status',['order_id'=>encrypt($item->id),'status'=>encrypt(4)])}}" class="btn btn-danger">Cancel</a>
                                             @elseif($item->status == 2)
-                                              <a href="#" class="btn btn-success">Delivered</a>
-                                              <a href="#" class="btn btn-danger">Cancel</a>
+                                              <a href="{{route('admin.book_order_status',['order_id'=>encrypt($item->id),'status'=>encrypt(3)])}}" class="btn btn-success">Delivered</a>
+                                              <a href="{{route('admin.book_order_status',['order_id'=>encrypt($item->id),'status'=>encrypt(4)])}}" class="btn btn-danger">Cancel</a>
                                             @endif
                                           </td>
                                         </tr>
