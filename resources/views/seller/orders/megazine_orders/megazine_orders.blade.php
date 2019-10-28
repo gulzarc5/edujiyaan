@@ -1,4 +1,4 @@
-@extends('admin.template.admin_master')
+@extends('seller.template.seller_master')
 
 @section('content')
 
@@ -20,7 +20,6 @@
                               <th>Order Id</th>
                               <th>Megazine Name</th>
                               <th>Order By</th>
-                               <th>Seller</th>
                               <th>Total Amount</th>
                               <th>Payment Status</th>                              
                               <th>Order Date</th>
@@ -47,13 +46,12 @@
             var table = $('#size_list').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admin.megazine_order_ajax_list') }}",
+                ajax: "{{ route('seller.megazine_order_ajax_list') }}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'id', name: 'id',searchable: true},
                     {data: 'name', name: 'name' ,searchable: false,orderable: false},   
                     {data: 'u_name', name: 'u_name' ,searchable: false,orderable: false},   
-                    {data: 'seller_name', name: 'seller_name' ,searchable: false,orderable: false},  
                     {data: 'price', name: 'price' ,searchable: true},                    
                     {data: 'payment_status', name: 'payment_status', render:function(data, type, row){
                       if (row.payment_status == '1') {

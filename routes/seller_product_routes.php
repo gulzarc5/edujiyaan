@@ -68,4 +68,14 @@ Route::group(['prefix'=>'Order'],function(){
 		Route::get('Dispatch/Form/{order_id}','OrderController@BookOrderDispatchedForm')->name('seller.book_order_dispatch_form');
 		Route::post('Dispatch/Submit','OrderController@BookOrderDispatched')->name('seller.book_order_dispatch');
 	});
+
+	Route::group(['prefix'=>'Project'],function(){
+		Route::get('List/','OrderController@projectOrderList')->name('seller.project_order_list');
+		Route::get('/ajax/list','OrderController@projectOrderAjaxList')->name('seller.project_order_ajax_list');
+	});
+
+	Route::group(['prefix'=>'Megazine'],function(){
+		Route::get('List/','OrderController@megazineOrderList')->name('seller.megazine_order_list');
+		Route::get('/ajax/list','OrderController@megazineOrderAjaxList')->name('seller.megazine_order_ajax_list');
+	});
 });
