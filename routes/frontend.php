@@ -149,6 +149,16 @@ Route::get('/','Web\PagesController@indexPage')->name('web.index');
 //     return view('web.thankyou.thank');
 // })->name('web.thankyou.thank');
 
+Route::get('/Contact-Us', function () {
+
+    return view('web.thankyou.contact');
+})->name('web.thankyou.contact');
+
+Route::get('/Tips-&-Tricks', function () {
+
+    return view('web.thankyou.tips');
+})->name('web.thankyou.tips');
+
 // ======== Main Pages ==========
 
 

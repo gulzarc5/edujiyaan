@@ -9,7 +9,7 @@
                                 <nav>
                                     <ul>
                                         <li><a href="{{route('web.index')}}">home</a></li>
-                                        <li><a href="#">contact us</a></li>
+                                        <li><a href="{{route('web.thankyou.contact')}}">contact us</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -19,7 +19,7 @@
             </div>
             <!-- footer-top-start -->
             <!-- footer-mid-start -->
-            <div class="footer-mid ptb-50">
+            <div class="footer-mid ptb-20">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-12">
@@ -36,8 +36,9 @@
                                                 <li><a href="{{route('web.project_list')}}">Projects </a></li>
                                             </ul>
                                             <ul>    
-                                                <li><a href="{{route('web.megazine_list')}}">Megazines</a></li>
+                                                <li><a href="{{route('web.megazine_list')}}">Magazines</a></li>
                                                 <li><a href="{{route('web.quiz_list')}}">Quiz</a></li>
+                                                <li><a href="{{route('web.thankyou.tips')}}">Tips & Tricks</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -63,9 +64,9 @@
                                         </div>
                                         <div class="footer-mid-menu">
                                             <ul>
+                                                <li><a href="{{route('web.user.membership')}}">Membership </a></li>
                                                 <li><a href="{{route('web.user_login')}}">Sign in </a></li>
                                                 <li><a href="{{route('web.signup')}}">Sign up</a></li>
-                                                <li><a href="{{route('web.view_cart')}}">Cart </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -79,11 +80,10 @@
                                 </div>
                                 <div class="footer-contact">
                                     <p class="adress">
-                                        <span>Edujiyaan</span>
-                                        Guwahati, Assam
+                                        <span>Edujiyaan : Guwahati, Assam</span>                                       
                                     </p>
-                                    <p><span>Call us now:</span> </p>
-                                    <p><span>Email:</span>  </p>
+                                    <p><span>Call us now :</span> </p>
+                                    <p><span>Email :</span> info@edujiyaan.com </p>
                                 </div>
                             </div>
                         </div>

@@ -2194,7 +2194,7 @@ footer {
 /*----------------------------------------*/
 
 .single-footer .footer-title h3 {
-    color: #ffffff;
+    color: #f07c29;
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
@@ -2248,7 +2248,7 @@ footer {
     font-weight: 400;
 }
 .copy-right-area p a {
-    color: #ffe000;
+    color: #f07c29;
 }
 .copy-right-area p a:hover {
     text-decoration: underline;
@@ -5061,7 +5061,7 @@ nav.menu .cr-dropdown ul {
 }
 .contact-info h3,
 .contact-form h3 {
-  border-bottom: 2px solid #e8e8e9;
+  border-bottom: 1px solid #f07c2996;
   color: #333;
   font-size: 18px;
   font-weight: 700;
@@ -5104,8 +5104,8 @@ nav.menu .cr-dropdown ul {
 }
 .contact-form form .single-form-3 input,
 .contact-form .single-form-3 textarea {
-    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border: 1px solid #eceff8;
+    background: rgb(255, 255, 255) none repeat scroll 0 0;
+    border: 1px solid #f07c294f;
     font-size: 14px;
     margin-bottom: 16px;
     padding: 12px 10px;
@@ -5113,6 +5113,13 @@ nav.menu .cr-dropdown ul {
     color: #333;
     font-family: 'Rufina', serif;
     font-weight: 400;
+}
+
+.contact-form form .single-form-3 input:active,
+.contact-form form .single-form-3 input:focus,
+.contact-form .single-form-3 textarea:active
+.contact-form .single-form-3 textarea:focus {
+   border: 1px solid #f07c29; 
 }
 
 .contact-form form .single-form-3 input::-moz-placeholder ,

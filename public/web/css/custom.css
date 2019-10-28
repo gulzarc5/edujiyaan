@@ -356,37 +356,18 @@
 .bronze .panel-heading{background-color: #cd7f32;border-bottom: #cd7f32;}
 .silver .panel-heading{background-color: #aaa9ad;border-bottom: #aaa9ad;;color: #fff}
 .gold .panel-heading{background-color: #f4d533;border-bottom: #f4d533;;color: #555}
-@media only screen and (max-width: 600px) {
-    .membership .card_main{
-        margin-left: 0px;
-    }
+.tips .entry-header-title h3{
+    color: #333;
+    font-family: 'Rufina', serif;
 }
-.add-addrs{
-    display: table;
-    margin: auto;
-    margin-top: 40px;	
+.tips .tagline {
+    background-color: yellow;
+    font-style: italic; 
+    padding: 3px 10px;
+    font-weight: 700;    
+    display: inline-block;
 }
-.quiz-content{
-	border-bottom: 1px solid #ddd;
-}
-.quiz-content h4{
-	margin: 10px;
-}
-.line-clamp2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
-}
-.line-clamp3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
-}
-.header-mid-area .my-cart ul > li .cart-product .single-cart .cart-info h5 a,.header-mid-area .my-cart ul > li .cart-product .single-cart .cart-info h5 a{
-	text-decoration: none;
-}
+
 /*==================
 	Responsive
 ====================*/
@@ -431,6 +412,37 @@
 	.project-page .margin-mobile{
 		margin-bottom: 15px;
 	}
+}
+@media only screen and (max-width: 600px) {
+    .membership .card_main{
+        margin-left: 0px;
+    }
+}
+.add-addrs{
+    display: table;
+    margin: auto;
+    margin-top: 40px;   
+}
+.quiz-content{
+    border-bottom: 1px solid #ddd;
+}
+.quiz-content h4{
+    margin: 10px;
+}
+.line-clamp2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+.line-clamp3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+.header-mid-area .my-cart ul > li .cart-product .single-cart .cart-info h5 a,.header-mid-area .my-cart ul > li .cart-product .single-cart .cart-info h5 a{
+    text-decoration: none;
 }
 /*========================
 		Only Mobile

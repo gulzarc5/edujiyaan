@@ -166,7 +166,7 @@
 										<li class="{{  (request()->is('project*')) ? 'active' : '' }}"><a href="{{route('web.project_list')}}">Projects</a></li>
 										<li class="{{  (request()->is('megazine*')) ? 'active' : '' }}"><a href="{{route('web.megazine_list')}}">Magazines</a></li>
 										<li class="{{  (request()->is('Quiz*')) ? 'active' : '' }}"><a href="{{route('web.quiz_list')}}">Quiz</a></li>
-										<li><a href="#">Tips and Tricks</a></li>
+										<li class="{{  (request()->is('Tips-&-Tricks*')) ? 'active' : '' }}"><a href="{{route('web.thankyou.tips')}}">Tips and Tricks</a></li>
 									</ul>
 								</nav>
 							</div>
