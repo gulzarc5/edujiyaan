@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use Auth;
 use Carbon\Carbon;
+use App\Mail\OrderMail;
+use Mail;
 
 class CheckoutController extends Controller
 {
@@ -332,6 +334,30 @@ class CheckoutController extends Controller
                     ->where('payment_request_id', $response['id'])
                     ->update(['payment_id' => $response['payments'][0]['payment_id'], 'payment_status' => '1']);
 
+            /** Email Sending **/
+            $project_data = DB::table('projects')
+                ->where('id', $project_id)
+                ->first();
+            if($project_data->user_id != 'A') {
+
+                $request_info = urldecode("Dear Seller, your project ".$project_data->name." has been sold by a customer with Rs.".number_format($project_data->cost).". Please ! check your panel. Thank You");
+                $subject = "Edujiyaan Purchase Email";
+                $data = [
+                    'message' => $request_info,
+                    'subject' => $subject,
+                ];
+                $seller = DB::table('users')->where('id', $project_data->user_id)->first();
+                Mail::to($seller->email)->send(new OrderMail($data));
+            }
+
+             $request_info = urldecode("Dear ".Auth::guard('buyer')->user()->name.", order of project ".$project_data->name." has been success, You can view or download the project file after login in edujiyaan. Thank You");
+                $subject = "Edujiyaan Order Confirmation";
+                $data = [
+                    'message' => $request_info,
+                    'subject' => $subject,
+                ];
+            Mail::to(Auth::guard('buyer')->user()->email)->send(new OrderMail($data));
+            
            	return view('web.thankyou.project_thank');
        	} 
     }
