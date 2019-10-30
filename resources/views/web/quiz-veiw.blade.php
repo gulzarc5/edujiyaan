@@ -9,7 +9,7 @@
 						<div class="breadcrumbs-menu">
 							<ul>
 								<li><a href="#">Home</a></li>
-								<li><a href="#" class="active">Magazines Detail</a></li>
+								<li><a href="#" class="active">Quiz View</a></li>
 							</ul>
 						</div>
 					</div>
@@ -25,62 +25,30 @@
 						<!-- product-main-area-start -->
 						<div class="product-main-area">
 							<div class="row">
-								<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-									<div class="flexslider">
-										<img src="{{asset('images/megazines/thumb/'.$megazine[0]->cover_image.'')}}">
-									</div>
-								</div>
-								<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-									<div class="product-info-main">
-										<div class="page-title">
-											<h1>{{ $megazine[0]->name }}</h1>
-										</div>
-										<div class="product-info-stock-sku">
-                                            {{-- <span>Megazine ID : </span>
-                                            <div class="product-attribute">
-                                                 <span>CHIN124</span>
-                                            </div> --}}
-                                        </div>
-										<div class="product-info-stock-sku">
-											<span>Total Pages : </span>
-											<div class="product-attribute">
-												<span>{{ $megazine[0]->pages }}</span>
+								{{-- Code --}}
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="product-info-main">
+											<div class="page-title">
+												<h1>Prof. London Gusikowski</h1>
 											</div>
+											<div class="product-details flex-center quiz-content" style="justify-content: space-between;width: 100%;margin-bottom: 10px;border: none">                                                
+							                    <h4><a>Catagory : Business Templates</a></h4>
+							                    <h4><a>Total pages : 32</a></h4>
+							                </div>
 										</div>
-										<div class="product-info-price">
-											<div class="price-final">
-												<span>₹ {{ $megazine[0]->cost }}</span>
-											</div>
-										</div>
-										@auth('buyer')
-											@if ($purchase_status == 2)
-												@if (!empty($megazine[0]->file_name))
-													<a href="{{ route('web.megazine_file', ['megazine_id' => encrypt($megazine[0]->id)]) }}" target="_blank">File</a>
-												@endif
-											@endif
-										@endauth
-										@if ($purchase_status == 1)
-											<div class="product-add-form">
-												<form action="#">
-													<a href="{{ route('web.checkout_megazine', ['megazine_id' => encrypt($megazine[0]->id)]) }}">Proceed To Checkout</a>
-												</form>
-											</div>
-										@endif
-									</div>
-								</div>
+									</div>	
+								{{-- Code --}}
 							</div>	
 						</div>
 						<!-- product-main-area-end -->
 						<!-- product-info-area-start -->
 						<div class="product-info-area">
 							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist">
-								<li class="active"><a href="#Details" data-toggle="tab">DESCRIPTION</a></li>
-							</ul>
-							<div class="tab-content">
+							<div class="tab-content" style="border-top: 1px solid #d1d1d1;">
                                 <div class="tab-pane active" id="Details">
                                     <div class="valu">
-                                     {{ $megazine[0]->description }}
+                                      	<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.<br>
+										The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
                                     </div>
                                 </div>
                             </div>	
@@ -140,11 +108,6 @@
 										</span>
 									</a></li>
 								</ul>
-							</div>
-							<div class="banner-area mb-30">
-								<div class="banner-img-2">
-									<a href="#"><img src="{{asset('web/img/banner/31.jpg')}}" alt="banner" /></a>
-								</div>
 							</div>
 						</div>
 					</div>

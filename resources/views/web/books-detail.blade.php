@@ -9,7 +9,7 @@
 						<div class="breadcrumbs-menu">
 							<ul>
 								<li><a href="#">Home</a></li>
-								<li><a href="#" class="active">Product-details</a></li>
+								<li><a href="#" class="active">Books Detail</a></li>
 							</ul>
 						</div>
 					</div>

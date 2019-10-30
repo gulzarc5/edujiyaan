@@ -30,7 +30,7 @@
                                             <h3>Products</h3>
                                         </div>
                                         <div class="footer-mid-menu" style="display: flex;">
-                                            <ul style="margin-right: 114px;">
+                                            <ul style="margin-right: 134px;">
                                                 <li><a href="{{route('web.new_book_list')}}">Books</a></li>
                                                 <li><a href="{{route('web.old_book_list')}}">Old Books</a></li>
                                                 <li><a href="{{route('web.project_list')}}">Projects </a></li>
@@ -50,9 +50,9 @@
                                         </div>
                                         <div class="footer-mid-menu">
                                             <ul>
-                                                <li><a href="#">Return policy</a></li>
-                                                <li><a href="#">Terms and Conditions</a></li>
-                                                <li><a href="#">Disclamer </a></li>
+                                                <li><a href="{{route('web.thankyou.t&c')}}">Return policy</a></li>
+                                                <li><a href="{{route('web.thankyou.t&c')}}">Terms and Conditions</a></li>
+                                                <li><a href="{{route('web.thankyou.t&c')}}">Disclamer </a></li>
                                             </ul>
                                         </div>
                                     </div>

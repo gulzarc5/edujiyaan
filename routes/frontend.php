@@ -159,6 +159,16 @@ Route::get('/Tips-&-Tricks', function () {
     return view('web.thankyou.tips');
 })->name('web.thankyou.tips');
 
+Route::get('/Quiz-view', function () {
+
+    return view('web.quiz-veiw');
+})->name('web.quiz-veiw');
+
+Route::get('/T&C', function () {
+
+    return view('web.thankyou.t&c');
+})->name('web.thankyou.t&c');
+
 // ======== Main Pages ==========
 
 

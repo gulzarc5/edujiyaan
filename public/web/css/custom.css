@@ -367,7 +367,25 @@
     font-weight: 700;    
     display: inline-block;
 }
-
+.product-info-feature .inclues{
+    padding: 5px 25px;
+}
+.product-info-feature .inclues i{
+    margin: 0 10px 0 0;
+    color: #f07c29;
+}
+.product-info-feature .inclues a{
+    position: absolute;
+    right: 30%;
+    padding: 2px 7px;
+    background: #f07c29;
+    color: #fff;
+    border-radius: 3px;
+}
+.product-info-feature {
+    width: 100%;
+    display: inline-block;
+}
 /*==================
 	Responsive
 ====================*/

@@ -67,22 +67,32 @@
 												</a>
 											</div>
 										</div>
-										@if (!empty($project[0]->preview))
-											<a href="{{ route('web.project_preview', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">Preview</a>
-										@endif
-										@auth('buyer')
-											@if ($purchase_status == 2)
-												@if (!empty($project[0]->synopsis))
-													<a href="{{ route('web.project_synopsis', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/Synopsis</a>
-												@endif
-												@if (!empty($project[0]->documentation))
-													<a href="{{ route('web.project_documentation', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/Documentation</a>
-												@endif							
-												@if (!empty($project[0]->ppt))
-													<a href="{{ route('web.project_ppt', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank">/PPT</a>
-												@endif
+										<div class="product-info-feature">
+											@if (!empty($project[0]->preview))
+												<div class="inclues">
+													<i class="fa fa-check-square-o" aria-hidden="true"></i>Preview <a href="{{ route('web.project_preview', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank"> View</a>
+												</div>
 											@endif
-										@endauth
+											@auth('buyer')
+												@if ($purchase_status == 2)
+													@if (!empty($project[0]->synopsis))
+														<div class="inclues">
+															<i class="fa fa-check-square-o" aria-hidden="true"></i>Synopsis <a href="{{ route('web.project_synopsis', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank"> View</a>
+														</div>
+													@endif
+													@if (!empty($project[0]->documentation))
+														<div class="inclues">
+															<i class="fa fa-check-square-o" aria-hidden="true"></i>Documentation <a href="{{ route('web.project_documentation', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank"> View</a>
+														</div>
+													@endif							
+													@if (!empty($project[0]->ppt))
+														<div class="inclues">
+															<i class="fa fa-check-square-o" aria-hidden="true"></i>PPT <a href="{{ route('web.project_ppt', ['project_id' => encrypt($project[0]->id)]) }}" target="_blank"> View</a>
+														</div>
+													@endif
+												@endif
+											@endauth
+										</div>
 										<div class="product-info-price">
 											<div class="price-final">
 												<span>₹ {{ $project[0]->cost }}</span>
